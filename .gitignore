@@ -1,0 +1,5 @@
+test
+__pycache__
+.env
+texts.json
+variabilium.json

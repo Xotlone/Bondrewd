@@ -1,0 +1,6 @@
+discord_components
+discord-py-slash-command
+psycopg2
+python-dotenv
+bs4
+requests

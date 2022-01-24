@@ -1,0 +1,450 @@
+[2022-01-24 01:53:00,947] (client) logging in using static token
+[2022-01-24 01:53:01,916] (gateway) Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 01:53:02,114] (gateway) Shard ID None has connected to Gateway: ["gateway-prd-main-bzkk",{"micros":53384,"calls":["discord-sessions-green-prd-2-102",{"micros":52444,"calls":["start_session",{"micros":36435,"calls":["discord-api-56cd49dd65-7x5xz",{"micros":32924,"calls":["get_user",{"micros":3878},"add_authorized_ip",{"micros":2913},"get_guilds",{"micros":4532},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":5653,"calls":[]}]}]}] (Session ID: fa796169104955827c9e41ed4be83511).
+[2022-01-24 01:53:02,147] (database) D>executio('tabulas_creando')
+[2022-01-24 01:53:02,362] (database) 	tabulas_creando complebitur
+[2022-01-24 01:53:04,366] (client) Syncing commands...
+[2022-01-24 01:53:04,564] (client) Syncing permissions...
+[2022-01-24 01:53:04,566] (client) Completed syncing all commands!
+[2022-01-24 01:54:09,902] logging in using static token
+[2022-01-24 01:54:10,921] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 01:54:11,146] Shard ID None has connected to Gateway: ["gateway-prd-main-9l3b",{"micros":87060,"calls":["discord-sessions-green-prd-2-23",{"micros":85986,"calls":["start_session",{"micros":30415,"calls":["discord-api-56cd49dd65-7gxsw",{"micros":26856,"calls":["get_user",{"micros":3539},"add_authorized_ip",{"micros":1405},"get_guilds",{"micros":3338},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":36576,"calls":[]}]}]}] (Session ID: 90a876663ade6b3d97e3107ae39e0703).
+[2022-01-24 01:54:11,178] D>executio('tabulas_creando')
+[2022-01-24 01:54:11,370] 	tabulas_creando complebitur
+[2022-01-24 01:54:13,375] Syncing commands...
+[2022-01-24 01:54:13,589] Syncing permissions...
+[2022-01-24 01:54:13,590] Completed syncing all commands!
+[2022-01-24 01:54:54,086] logging in using static token
+[2022-01-24 01:54:55,029] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 01:54:55,224] Shard ID None has connected to Gateway: ["gateway-prd-main-2g1w",{"micros":55965,"calls":["discord-sessions-green-prd-2-65",{"micros":54374,"calls":["start_session",{"micros":43082,"calls":["discord-api-56cd49dd65-dwqn4",{"micros":38726,"calls":["get_user",{"micros":6749},"add_authorized_ip",{"micros":1591},"get_guilds",{"micros":3884},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 45702af5c44363322d22044eb88546e4).
+[2022-01-24 01:54:55,259] D>executio('tabulas_creando')
+[2022-01-24 01:54:55,451] 	tabulas_creando complebitur
+[2022-01-24 01:54:55,521] E>Coniuncta in 3.4 secundis
+[2022-01-24 01:54:57,523] Syncing commands...
+[2022-01-24 01:54:57,694] Syncing permissions...
+[2022-01-24 01:54:57,696] Completed syncing all commands!
+[2022-01-24 01:55:39,495] logging in using static token
+[2022-01-24 01:55:40,361] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 01:55:40,586] Shard ID None has connected to Gateway: ["gateway-prd-main-0p3z",{"micros":86997,"calls":["discord-sessions-green-prd-2-15",{"micros":79789,"calls":["start_session",{"micros":56159,"calls":["api-prd-main-n7kd",{"micros":51216,"calls":["get_user",{"micros":2636},"add_authorized_ip",{"micros":7109},"get_guilds",{"micros":12025},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":7766,"calls":[]}]}]}] (Session ID: 05cb3aaa510beec21b63174dcb7128e7).
+[2022-01-24 01:55:40,625] D> executio('tabulas_creando')
+[2022-01-24 01:55:40,866] 	tabulas_creando complebitur
+[2022-01-24 01:55:40,873] E> Coniuncta in 3.7 secundis
+[2022-01-24 01:55:42,878] Syncing commands...
+[2022-01-24 01:55:43,062] Syncing permissions...
+[2022-01-24 01:55:43,063] Completed syncing all commands!
+[2022-01-24 02:17:37,727] logging in using static token
+[2022-01-24 02:17:38,596] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:17:38,869] Shard ID None has connected to Gateway: ["gateway-prd-main-mfw1",{"micros":133193,"calls":["discord-sessions-green-prd-2-124",{"micros":131589,"calls":["start_session",{"micros":128612,"calls":["discord-api-56cd49dd65-s8g72",{"micros":123650,"calls":["get_user",{"micros":9399},"add_authorized_ip",{"micros":5900},"get_guilds",{"micros":32644},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1066,"calls":[]}]}]}] (Session ID: 6d40f8b7337483ef7a02ad46505b0ab8).
+[2022-01-24 02:17:38,997] D> executio('tabulas_creando')
+[2022-01-24 02:17:39,213] 	tabulas_creando complebitur
+[2022-01-24 02:17:39,214] E> Coniuncta in 3.6 secundis
+[2022-01-24 02:17:41,216] Syncing commands...
+[2022-01-24 02:17:41,408] Syncing permissions...
+[2022-01-24 02:17:41,408] Completed syncing all commands!
+[2022-01-24 02:18:59,693] logging in using static token
+[2022-01-24 02:19:00,518] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:19:00,867] Shard ID None has connected to Gateway: ["gateway-prd-main-nb20",{"micros":206707,"calls":["discord-sessions-green-prd-2-144",{"micros":205677,"calls":["start_session",{"micros":176484,"calls":["discord-api-56cd49dd65-gxqp7",{"micros":99024,"calls":["get_user",{"micros":12062},"add_authorized_ip",{"micros":10012},"get_guilds",{"micros":12209},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":18012,"calls":[]}]}]}] (Session ID: d4c79d11e0859f9a419b0bf9c712f74f).
+[2022-01-24 02:19:00,900] D> executio('tabulas_creando')
+[2022-01-24 02:19:01,115] 	tabulas_creando complebitur
+[2022-01-24 02:19:01,117] E> Coniuncta in 3.9 secundis
+[2022-01-24 02:19:03,121] Syncing commands...
+[2022-01-24 02:19:03,336] Syncing permissions...
+[2022-01-24 02:19:03,338] Completed syncing all commands!
+[2022-01-24 02:21:45,606] Websocket closed with 1006, attempting a reconnect.
+[2022-01-24 02:21:45,608] Got a request to RESUME the websocket.
+[2022-01-24 02:21:45,609] E> Shutdown
+[2022-01-24 02:21:46,048] Shard ID None has sent the RESUME payload.
+[2022-01-24 02:21:46,201] Shard ID None has successfully RESUMED session d4c79d11e0859f9a419b0bf9c712f74f under trace ["gateway-prd-main-gv99",{"micros":11912,"calls":["discord-sessions-green-prd-2-144",{"micros":16}]}].
+[2022-01-24 02:21:46,203] E> Connexionem resumitur post 0.59403395652771 seconds
+[2022-01-24 02:22:37,826] logging in using static token
+[2022-01-24 02:22:38,711] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:22:38,941] Shard ID None has connected to Gateway: ["gateway-prd-main-5cp5",{"micros":85921,"calls":["discord-sessions-green-prd-2-144",{"micros":85075,"calls":["start_session",{"micros":70321,"calls":["discord-api-56cd49dd65-dmm7n",{"micros":63210,"calls":["get_user",{"micros":4593},"add_authorized_ip",{"micros":1429},"get_guilds",{"micros":14825},"coros_wait",{"micros":3}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":11758,"calls":[]}]}]}] (Session ID: 141077b74858eb11ab5d38d36cbc3d9c).
+[2022-01-24 02:22:38,973] D> executio('tabulas_creando')
+[2022-01-24 02:22:39,171] 	tabulas_creando complebitur
+[2022-01-24 02:22:39,171] E> Coniuncta in 3.3 secundis
+[2022-01-24 02:22:41,173] Syncing commands...
+[2022-01-24 02:22:41,367] Syncing permissions...
+[2022-01-24 02:22:41,368] Completed syncing all commands!
+[2022-01-24 02:23:34,618] logging in using static token
+[2022-01-24 02:23:35,484] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:23:35,706] Shard ID None has connected to Gateway: ["gateway-prd-main-x7nq",{"micros":77725,"calls":["discord-sessions-green-prd-2-122",{"micros":76589,"calls":["start_session",{"micros":39687,"calls":["discord-api-56cd49dd65-bmh6k",{"micros":35103,"calls":["get_user",{"micros":6955},"add_authorized_ip",{"micros":2938},"get_guilds",{"micros":3376},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: e53f6aa9ec1e412a8f913f85fba217c8).
+[2022-01-24 02:23:35,751] D> executio('tabulas_creando')
+[2022-01-24 02:23:35,963] 	tabulas_creando complebitur
+[2022-01-24 02:23:36,033] E> Coniuncta in 3.6 secundis
+[2022-01-24 02:23:38,051] Syncing commands...
+[2022-01-24 02:23:38,239] Syncing permissions...
+[2022-01-24 02:23:38,240] Completed syncing all commands!
+[2022-01-24 02:31:19,312] logging in using static token
+[2022-01-24 02:31:20,210] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:31:20,901] Shard ID None has connected to Gateway: ["gateway-prd-main-gr7l",{"micros":530238,"calls":["discord-sessions-green-prd-2-78",{"micros":529163,"calls":["start_session",{"micros":511985,"calls":["api-prd-main-h8mk",{"micros":507206,"calls":["get_user",{"micros":7760},"add_authorized_ip",{"micros":4602},"get_guilds",{"micros":467892},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":7478,"calls":[]}]}]}] (Session ID: 95d89d8a32604d17c074f4b6bf0db351).
+[2022-01-24 02:31:20,934] D> executio('tabulas_creando')
+[2022-01-24 02:31:21,129] 	tabulas_creando complebitur
+[2022-01-24 02:31:21,129] E> Coniuncta in 3.9 secundis
+[2022-01-24 02:31:23,131] Syncing commands...
+[2022-01-24 02:31:23,330] Syncing permissions...
+[2022-01-24 02:31:23,364] Completed syncing all commands!
+[2022-01-24 02:32:57,863] logging in using static token
+[2022-01-24 02:32:58,742] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:32:58,979] Shard ID None has connected to Gateway: ["gateway-prd-main-jzx3",{"micros":88078,"calls":["discord-sessions-green-prd-2-66",{"micros":87137,"calls":["start_session",{"micros":60551,"calls":["discord-api-56cd49dd65-zfkbc",{"micros":55635,"calls":["get_user",{"micros":9039},"add_authorized_ip",{"micros":7961},"get_guilds",{"micros":8058},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":5459,"calls":[]}]}]}] (Session ID: cb370da9f979e761f417c0691093c496).
+[2022-01-24 02:32:59,009] D> executio('tabulas_creando')
+[2022-01-24 02:32:59,209] 	tabulas_creando complebitur
+[2022-01-24 02:32:59,209] E> Coniuncta in 3.3 secundis
+[2022-01-24 02:33:01,215] Syncing commands...
+[2022-01-24 02:33:01,412] Syncing permissions...
+[2022-01-24 02:33:01,412] Completed syncing all commands!
+[2022-01-24 02:34:40,742] logging in using static token
+[2022-01-24 02:34:41,584] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:34:41,776] Shard ID None has connected to Gateway: ["gateway-prd-main-hw19",{"micros":48169,"calls":["discord-sessions-green-prd-2-134",{"micros":47100,"calls":["start_session",{"micros":33860,"calls":["discord-api-56cd49dd65-znkzl",{"micros":30300,"calls":["get_user",{"micros":2980},"add_authorized_ip",{"micros":1422},"get_guilds",{"micros":6655},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":12459,"calls":[]}]}]}] (Session ID: 297512e9d9a9fbafa20a31d106c6d06d).
+[2022-01-24 02:34:41,813] D> executio('tabulas_creando')
+[2022-01-24 02:34:42,012] 	tabulas_creando complebitur
+[2022-01-24 02:34:42,042] E> Coniuncta in 3.2 secundis
+[2022-01-24 02:34:44,070] Syncing commands...
+[2022-01-24 02:34:44,258] Syncing permissions...
+[2022-01-24 02:34:44,259] Completed syncing all commands!
+[2022-01-24 02:38:50,225] logging in using static token
+[2022-01-24 02:38:51,164] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:38:51,358] Shard ID None has connected to Gateway: ["gateway-prd-main-ls7q",{"micros":55981,"calls":["discord-sessions-green-prd-2-68",{"micros":55030,"calls":["start_session",{"micros":41086,"calls":["discord-api-56cd49dd65-8xmct",{"micros":37003,"calls":["get_user",{"micros":4223},"add_authorized_ip",{"micros":2553},"get_guilds",{"micros":6156},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":3010,"calls":[]}]}]}] (Session ID: 37bc92ab5468ec479fedc4c643a6e192).
+[2022-01-24 02:38:51,424] D> executio('tabulas_creando')
+[2022-01-24 02:38:51,663] 	tabulas_creando complebitur
+[2022-01-24 02:38:51,668] E> Coniuncta in 4.2 secundis
+[2022-01-24 02:38:53,702] Syncing commands...
+[2022-01-24 02:38:54,032] Syncing permissions...
+[2022-01-24 02:38:54,034] Completed syncing all commands!
+[2022-01-24 02:39:58,610] logging in using static token
+[2022-01-24 02:39:59,494] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:39:59,777] Shard ID None has connected to Gateway: ["gateway-prd-main-drcs",{"micros":139059,"calls":["discord-sessions-green-prd-2-42",{"micros":138194,"calls":["start_session",{"micros":118936,"calls":["discord-api-56cd49dd65-vsjxp",{"micros":108736,"calls":["get_user",{"micros":15861},"add_authorized_ip",{"micros":9965},"get_guilds",{"micros":29706},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":8141,"calls":[]}]}]}] (Session ID: 9034fdc6bd4bfb22f9aef4431fc3fffe).
+[2022-01-24 02:39:59,811] D> executio('tabulas_creando')
+[2022-01-24 02:40:00,012] 	tabulas_creando complebitur
+[2022-01-24 02:40:00,050] E> Coniuncta in 3.8 secundis
+[2022-01-24 02:40:02,077] Syncing commands...
+[2022-01-24 02:40:02,272] Syncing permissions...
+[2022-01-24 02:40:02,273] Completed syncing all commands!
+[2022-01-24 02:41:08,191] logging in using static token
+[2022-01-24 02:41:09,059] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:41:09,298] Shard ID None has connected to Gateway: ["gateway-prd-main-g9f5",{"micros":85270,"calls":["discord-sessions-green-prd-2-30",{"micros":84338,"calls":["start_session",{"micros":42273,"calls":["discord-api-56cd49dd65-drxjd",{"micros":36062,"calls":["get_user",{"micros":5665},"add_authorized_ip",{"micros":4684},"get_guilds",{"micros":3921},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":17780,"calls":[]}]}]}] (Session ID: 71e694088d5b4b5a98fe8b88756715b1).
+[2022-01-24 02:41:09,349] D> executio('tabulas_creando')
+[2022-01-24 02:41:09,541] 	tabulas_creando complebitur
+[2022-01-24 02:41:09,545] E> Coniuncta in 3.8 secundis
+[2022-01-24 02:41:11,547] Syncing commands...
+[2022-01-24 02:41:11,743] Syncing permissions...
+[2022-01-24 02:41:11,744] Completed syncing all commands!
+[2022-01-24 02:42:13,407] logging in using static token
+[2022-01-24 02:42:14,287] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:42:14,513] Shard ID None has connected to Gateway: ["gateway-prd-main-z7w9",{"micros":76326,"calls":["discord-sessions-green-prd-2-49",{"micros":75255,"calls":["start_session",{"micros":34332,"calls":["api-prd-main-tc5m",{"micros":30769,"calls":["get_user",{"micros":3812},"add_authorized_ip",{"micros":3179},"get_guilds",{"micros":3377},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 751fb5520f326c289a6b4df0035cac82).
+[2022-01-24 02:42:14,559] D> executio('tabulas_creando')
+[2022-01-24 02:42:14,861] 	tabulas_creando complebitur
+[2022-01-24 02:42:14,890] E> Coniuncta in 3.7 secundis
+[2022-01-24 02:42:16,912] Syncing commands...
+[2022-01-24 02:42:17,143] Syncing permissions...
+[2022-01-24 02:42:17,175] Completed syncing all commands!
+[2022-01-24 02:43:04,654] logging in using static token
+[2022-01-24 02:43:05,785] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:43:06,015] Shard ID None has connected to Gateway: ["gateway-prd-main-js98",{"micros":85514,"calls":["discord-sessions-green-prd-2-54",{"micros":84535,"calls":["start_session",{"micros":45042,"calls":["api-prd-main-9zdj",{"micros":41848,"calls":["get_user",{"micros":4143},"add_authorized_ip",{"micros":1296},"get_guilds",{"micros":3493},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":15843,"calls":[]}]}]}] (Session ID: 1a59a985a73e72ff1d29c27e3cdf375e).
+[2022-01-24 02:43:06,047] D> executio('tabulas_creando')
+[2022-01-24 02:43:06,245] 	tabulas_creando complebitur
+[2022-01-24 02:43:06,247] E> Coniuncta in 4.4 secundis
+[2022-01-24 02:43:08,248] Syncing commands...
+[2022-01-24 02:43:08,493] Syncing permissions...
+[2022-01-24 02:43:08,495] Completed syncing all commands!
+[2022-01-24 02:47:41,138] logging in using static token
+[2022-01-24 02:47:42,092] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:47:42,352] Shard ID None has connected to Gateway: ["gateway-prd-main-n4mz",{"micros":108845,"calls":["discord-sessions-green-prd-2-44",{"micros":107421,"calls":["start_session",{"micros":58083,"calls":["api-prd-main-8qq1",{"micros":52487,"calls":["get_user",{"micros":4651},"add_authorized_ip",{"micros":4484},"get_guilds",{"micros":9641},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":29219,"calls":[]}]}]}] (Session ID: 39aef2ded81658c1ee1d7e4bc1217c1b).
+[2022-01-24 02:47:42,414] D> executio('tabulas_creando')
+[2022-01-24 02:47:42,633] 	tabulas_creando complebitur
+[2022-01-24 02:47:42,635] E> Coniuncta in 3.6 secundis
+[2022-01-24 02:47:44,636] Syncing commands...
+[2022-01-24 02:47:44,869] Syncing permissions...
+[2022-01-24 02:47:44,869] Completed syncing all commands!
+[2022-01-24 02:50:22,899] logging in using static token
+[2022-01-24 02:50:24,193] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:50:24,383] Shard ID None has connected to Gateway: ["gateway-prd-main-njvj",{"micros":50778,"calls":["discord-sessions-green-prd-2-5",{"micros":49515,"calls":["start_session",{"micros":37249,"calls":["api-prd-main-5f41",{"micros":33818,"calls":["get_user",{"micros":5095},"add_authorized_ip",{"micros":1489},"get_guilds",{"micros":6465},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":9596,"calls":[]}]}]}] (Session ID: 2bed0d6720b5752ce69f8fad6147af4a).
+[2022-01-24 02:50:24,425] D> executio('tabulas_creando')
+[2022-01-24 02:50:24,613] 	tabulas_creando complebitur
+[2022-01-24 02:50:24,707] E> Coniuncta in 4.3 secundis
+[2022-01-24 02:50:26,715] Syncing commands...
+[2022-01-24 02:50:26,893] Syncing permissions...
+[2022-01-24 02:50:26,894] Completed syncing all commands!
+[2022-01-24 02:51:04,116] logging in using static token
+[2022-01-24 02:51:05,294] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:51:05,519] Shard ID None has connected to Gateway: ["gateway-prd-main-gljs",{"micros":81222,"calls":["discord-sessions-green-prd-2-7",{"micros":80122,"calls":["start_session",{"micros":37611,"calls":["discord-api-56cd49dd65-mtzn9",{"micros":33400,"calls":["get_user",{"micros":5466},"add_authorized_ip",{"micros":3960},"get_guilds",{"micros":3858},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":15790,"calls":[]}]}]}] (Session ID: ccea7737abe47c45cc604bd6f67bcfdb).
+[2022-01-24 02:51:05,550] D> executio('tabulas_creando')
+[2022-01-24 02:51:05,733] 	tabulas_creando complebitur
+[2022-01-24 02:51:05,750] E> Coniuncta in 4.0 secundis
+[2022-01-24 02:51:07,753] Syncing commands...
+[2022-01-24 02:51:07,931] Syncing permissions...
+[2022-01-24 02:51:07,938] Completed syncing all commands!
+[2022-01-24 02:54:03,165] logging in using static token
+[2022-01-24 02:54:04,101] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:54:04,366] Shard ID None has connected to Gateway: ["gateway-prd-main-xh2x",{"micros":119806,"calls":["discord-sessions-green-prd-2-72",{"micros":118880,"calls":["start_session",{"micros":102772,"calls":["discord-api-56cd49dd65-p4jkq",{"micros":94722,"calls":["get_user",{"micros":12823},"add_authorized_ip",{"micros":8736},"get_guilds",{"micros":9430},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":9108,"calls":[]}]}]}] (Session ID: 6ec6b03fadfc6760356148b797fabb17).
+[2022-01-24 02:54:04,405] D> executio('tabulas_creando')
+[2022-01-24 02:54:04,635] 	tabulas_creando complebitur
+[2022-01-24 02:54:04,638] E> Coniuncta in 4.5 secundis
+[2022-01-24 02:54:06,641] Syncing commands...
+[2022-01-24 02:54:06,821] Syncing permissions...
+[2022-01-24 02:54:06,823] Completed syncing all commands!
+[2022-01-24 02:58:33,194] logging in using static token
+[2022-01-24 02:58:34,133] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 02:58:34,337] Shard ID None has connected to Gateway: ["gateway-prd-main-3518",{"micros":60500,"calls":["discord-sessions-green-prd-2-16",{"micros":57138,"calls":["start_session",{"micros":37438,"calls":["api-prd-main-9zdj",{"micros":33632,"calls":["get_user",{"micros":6352},"add_authorized_ip",{"micros":2623},"get_guilds",{"micros":3092},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":10646,"calls":[]}]}]}] (Session ID: 11bcaccc14cc7741f6c1e9437800924f).
+[2022-01-24 02:58:34,440] D> executio('tabulas_creando')
+[2022-01-24 02:58:34,632] 	tabulas_creando complebitur
+[2022-01-24 02:58:34,657] E> Coniuncta in 3.5 secundis
+[2022-01-24 02:58:36,683] Syncing commands...
+[2022-01-24 02:58:36,989] Syncing permissions...
+[2022-01-24 02:58:36,990] Completed syncing all commands!
+[2022-01-24 03:00:17,807] logging in using static token
+[2022-01-24 03:00:18,986] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 03:00:19,218] Shard ID None has connected to Gateway: ["gateway-prd-main-njvj",{"micros":88563,"calls":["discord-sessions-green-prd-2-31",{"micros":86842,"calls":["start_session",{"micros":55343,"calls":["discord-api-56cd49dd65-j2rpz",{"micros":51647,"calls":["get_user",{"micros":2838},"add_authorized_ip",{"micros":7765},"get_guilds",{"micros":7838},"coros_wait",{"micros":0}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 83834b9fc48b260729e9fc084d3e97a2).
+[2022-01-24 03:00:19,247] D> executio('tabulas_creando')
+[2022-01-24 03:00:19,455] 	tabulas_creando complebitur
+[2022-01-24 03:00:19,456] E> Coniuncta in 4.0 secundis
+[2022-01-24 03:00:21,460] Syncing commands...
+[2022-01-24 03:00:21,631] Syncing permissions...
+[2022-01-24 03:00:21,633] Completed syncing all commands!
+[2022-01-24 03:01:30,516] logging in using static token
+[2022-01-24 03:01:31,511] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 03:01:31,805] Shard ID None has connected to Gateway: ["gateway-prd-main-d90c",{"micros":115840,"calls":["discord-sessions-green-prd-2-42",{"micros":114865,"calls":["start_session",{"micros":89564,"calls":["discord-api-56cd49dd65-gnblj",{"micros":84637,"calls":["get_user",{"micros":7144},"add_authorized_ip",{"micros":8630},"get_guilds",{"micros":26742},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":9640,"calls":[]}]}]}] (Session ID: 2f5b0eda6b5dec8bef7e78255fce4ac0).
+[2022-01-24 03:01:31,882] D> executio('tabulas_creando')
+[2022-01-24 03:01:32,081] 	tabulas_creando complebitur
+[2022-01-24 03:01:32,082] E> Coniuncta in 4.1 secundis
+[2022-01-24 03:01:34,089] Syncing commands...
+[2022-01-24 03:01:34,302] Syncing permissions...
+[2022-01-24 03:01:34,320] Completed syncing all commands!
+[2022-01-24 03:05:02,863] logging in using static token
+[2022-01-24 03:05:03,911] Shard ID None has sent the IDENTIFY payload.
+[2022-01-24 03:05:04,213] Shard ID None has connected to Gateway: ["gateway-prd-main-hw19",{"micros":66965,"calls":["discord-sessions-green-prd-2-175",{"micros":66138,"calls":["start_session",{"micros":51458,"calls":["discord-api-56cd49dd65-4cb2b",{"micros":48539,"calls":["get_user",{"micros":5593},"add_authorized_ip",{"micros":1628},"get_guilds",{"micros":3504},"coros_wait",{"micros":0}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":3427,"calls":[]}]}]}] (Session ID: 13866b8a35bde902b802faf6634bbf75).
+[2022-01-24 03:05:04,244] D> executio('tabulas_creando')
+[2022-01-24 03:05:04,439] 	tabulas_creando complebitur
+[2022-01-24 03:05:04,440] E> Coniuncta in 4.4 secundis
+[2022-01-24 03:05:06,426] Syncing commands...
+[2022-01-24 03:05:06,633] Syncing permissions...
+[2022-01-24 03:05:06,634] Completed syncing all commands!
+[2022-01-25 00:40:31,090] logging in using static token
+[2022-01-25 00:40:32,275] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:40:32,718] Shard ID None has connected to Gateway: ["gateway-prd-main-qkg1",{"micros":288853,"calls":["discord-sessions-green-prd-2-87",{"micros":287843,"calls":["start_session",{"micros":254964,"calls":["discord-api-7c6474c74-nlxfr",{"micros":231374,"calls":["get_user",{"micros":14861},"add_authorized_ip",{"micros":18981},"get_guilds",{"micros":104420},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":6959,"calls":[]}]}]}] (Session ID: 761093f2101871d1004a2d58f9a8ebf4).
+[2022-01-25 00:40:32,750] D> executio('tabulas_creando')
+[2022-01-25 00:40:32,955] syntax error at or near "UNIQUE"
+LINE 7:     id UNIQUE INT,
+               ^
+
+[2022-01-25 00:40:33,270] Reversum victoria
+[2022-01-25 00:40:33,271] 	tabulas_creando complebitur
+[2022-01-25 00:40:35,297] Syncing commands...
+[2022-01-25 00:40:40,060] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:40:40,391] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:40:40,618] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:40:40,887] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('429 Too Many Requests (error code: 0): You are being rate limited.')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 267, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+[2022-01-25 00:42:02,137] logging in using static token
+[2022-01-25 00:42:03,015] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:42:03,200] Shard ID None has connected to Gateway: ["gateway-prd-main-3d0g",{"micros":40859,"calls":["discord-sessions-green-prd-2-66",{"micros":39611,"calls":["start_session",{"micros":38467,"calls":["discord-api-7c6474c74-2lgtq",{"micros":34569,"calls":["get_user",{"micros":8351},"add_authorized_ip",{"micros":1774},"get_guilds",{"micros":3578},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":477,"calls":[]}]}]}] (Session ID: 755058c6aa1f64523318ee6063116b01).
+[2022-01-25 00:42:03,231] D> executio('tabulas_creando')
+[2022-01-25 00:42:03,508] 	tabulas_creando complebitur
+[2022-01-25 00:42:03,509] E> Coniuncta in 3.4 secundis
+[2022-01-25 00:42:05,512] Syncing commands...
+[2022-01-25 00:42:10,425] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:42:10,661] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:42:10,886] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:42:10,949] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('429 Too Many Requests (error code: 0): You are being rate limited.')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 267, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+[2022-01-25 00:46:37,174] logging in using static token
+[2022-01-25 00:46:38,205] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:46:38,455] Shard ID None has connected to Gateway: ["gateway-prd-main-42dv",{"micros":99583,"calls":["discord-sessions-green-prd-2-133",{"micros":98579,"calls":["start_session",{"micros":85380,"calls":["discord-api-7c6474c74-wl575",{"micros":69370,"calls":["get_user",{"micros":18044},"add_authorized_ip",{"micros":5541},"get_guilds",{"micros":11602},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":12378,"calls":[]}]}]}] (Session ID: b1d1fbe2640d8a8a60040d71d3418021).
+[2022-01-25 00:46:38,485] D> executio('tabulas_creando')
+[2022-01-25 00:46:38,693] 	tabulas_creando complebitur
+[2022-01-25 00:46:38,694] E> Coniuncta in 3.5 secundis
+[2022-01-25 00:46:40,697] Syncing commands...
+[2022-01-25 00:46:45,498] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:46:45,733] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:46:45,957] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:46:46,023] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('429 Too Many Requests (error code: 0): You are being rate limited.')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 267, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+[2022-01-25 00:47:28,790] logging in using static token
+[2022-01-25 00:47:29,640] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:47:29,892] Shard ID None has connected to Gateway: ["gateway-prd-main-f4st",{"micros":69677,"calls":["discord-sessions-green-prd-2-46",{"micros":66514,"calls":["start_session",{"micros":54802,"calls":["discord-api-7c6474c74-jpnnx",{"micros":47183,"calls":["get_user",{"micros":5957},"add_authorized_ip",{"micros":4460},"get_guilds",{"micros":6742},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":11058,"calls":[]}]}]}] (Session ID: 7a61174bae8ce7e7342540fbd67e884b).
+[2022-01-25 00:47:29,924] D> executio('tabulas_creando')
+[2022-01-25 00:47:30,127] 	tabulas_creando complebitur
+[2022-01-25 00:47:30,135] E> Coniuncta in 3.2 secundis
+[2022-01-25 00:47:32,140] Syncing commands...
+[2022-01-25 00:47:32,524] We are being rate limited. Retrying in 0.01 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:47:32,697] We are being rate limited. Retrying in 0.01 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:47:32,867] We are being rate limited. Retrying in 0.01 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:47:33,123] We are being rate limited. Retrying in 0.01 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:47:33,299] We are being rate limited. Retrying in 0.01 seconds. Handled under the bucket "None:None:/applications/934483231926005760/commands"
+[2022-01-25 00:47:33,308] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('429 Too Many Requests (error code: 0): You are being rate limited.')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 267, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+[2022-01-25 00:49:02,205] logging in using static token
+[2022-01-25 00:49:03,040] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:49:03,362] Shard ID None has connected to Gateway: ["gateway-prd-main-dgbm",{"micros":177674,"calls":["discord-sessions-green-prd-2-42",{"micros":176787,"calls":["start_session",{"micros":131183,"calls":["discord-api-7c6474c74-fgj97",{"micros":126450,"calls":["get_user",{"micros":5621},"add_authorized_ip",{"micros":9288},"get_guilds",{"micros":21375},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":26015,"calls":[]}]}]}] (Session ID: 82a63a6b0805a20201ff4eb50d31c16a).
+[2022-01-25 00:49:03,393] D> executio('tabulas_creando')
+[2022-01-25 00:49:03,590] 	tabulas_creando complebitur
+[2022-01-25 00:49:03,592] E> Coniuncta in 3.7 secundis
+[2022-01-25 00:49:05,594] Syncing commands...
+[2022-01-25 00:49:05,946] Syncing permissions...
+[2022-01-25 00:49:05,948] Completed syncing all commands!
+[2022-01-25 00:49:32,435] logging in using static token
+[2022-01-25 00:49:33,360] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:49:33,544] Shard ID None has connected to Gateway: ["gateway-prd-main-0mlb",{"micros":39400,"calls":["discord-sessions-green-prd-2-146",{"micros":37803,"calls":["start_session",{"micros":26088,"calls":["api-prd-main-4cbn",{"micros":22894,"calls":["get_user",{"micros":2350},"add_authorized_ip",{"micros":1324},"get_guilds",{"micros":2839},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":6315,"calls":[]}]}]}] (Session ID: ceb65f20a6d26d80643452bdc74df72f).
+[2022-01-25 00:49:33,575] D> executio('tabulas_creando')
+[2022-01-25 00:49:33,772] 	tabulas_creando complebitur
+[2022-01-25 00:49:33,911] E> Coniuncta in 3.6 secundis
+[2022-01-25 00:49:35,926] Syncing commands...
+[2022-01-25 00:49:36,109] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=TypeError('type object argument after ** must be a mapping, not str')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 453, in sync_all_commands
+    cmd_data = model.CommandData(**command)
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\model.py", line 102, in __init__
+    self.options.append(OptionData(**option))
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\model.py", line 60, in __init__
+    self.options.append(OptionData(**option))
+TypeError: type object argument after ** must be a mapping, not str
+[2022-01-25 00:51:05,328] logging in using static token
+[2022-01-25 00:51:06,172] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:51:06,370] Shard ID None has connected to Gateway: ["gateway-prd-main-b5mb",{"micros":53505,"calls":["discord-sessions-green-prd-2-128",{"micros":52595,"calls":["start_session",{"micros":32476,"calls":["discord-api-7c6474c74-clnjb",{"micros":28131,"calls":["get_user",{"micros":3373},"add_authorized_ip",{"micros":1770},"get_guilds",{"micros":3312},"coros_wait",{"micros":0}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":3689,"calls":[]}]}]}] (Session ID: 2ab3a0dc492acc9af39ff2710d576930).
+[2022-01-25 00:51:06,415] D> executio('tabulas_creando')
+[2022-01-25 00:51:06,623] 	tabulas_creando complebitur
+[2022-01-25 00:51:06,624] E> Coniuncta in 3.7 secundis
+[2022-01-25 00:51:08,626] Syncing commands...
+[2022-01-25 00:51:08,887] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=TypeError('type object argument after ** must be a mapping, not str')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 453, in sync_all_commands
+    cmd_data = model.CommandData(**command)
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\model.py", line 102, in __init__
+    self.options.append(OptionData(**option))
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\model.py", line 60, in __init__
+    self.options.append(OptionData(**option))
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\model.py", line 60, in __init__
+    self.options.append(OptionData(**option))
+TypeError: type object argument after ** must be a mapping, not str
+[2022-01-25 00:52:54,526] logging in using static token
+[2022-01-25 00:52:55,432] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:52:55,614] Shard ID None has connected to Gateway: ["gateway-prd-main-n42h",{"micros":41954,"calls":["discord-sessions-green-prd-2-18",{"micros":40755,"calls":["start_session",{"micros":29192,"calls":["api-prd-main-0rkk",{"micros":25635,"calls":["get_user",{"micros":4314},"add_authorized_ip",{"micros":1136},"get_guilds",{"micros":3114},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":10861,"calls":[]}]}]}] (Session ID: ad15da108b10e5bd242b937e36fae351).
+[2022-01-25 00:52:55,644] D> executio('tabulas_creando')
+[2022-01-25 00:52:55,848] 	tabulas_creando complebitur
+[2022-01-25 00:52:55,850] E> Coniuncta in 3.7 secundis
+[2022-01-25 00:52:57,857] Syncing commands...
+[2022-01-25 00:52:58,243] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn options.1: Sub-command and sub-command group option types are mutually exclusive to all other types')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 254, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In options.1: Sub-command and sub-command group option types are mutually exclusive to all other types
+[2022-01-25 00:54:40,029] logging in using static token
+[2022-01-25 00:54:40,850] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:54:41,049] Shard ID None has connected to Gateway: ["gateway-prd-main-ppht",{"micros":54001,"calls":["discord-sessions-green-prd-2-54",{"micros":50004,"calls":["start_session",{"micros":33310,"calls":["discord-api-7c6474c74-9hw8p",{"micros":30175,"calls":["get_user",{"micros":3401},"add_authorized_ip",{"micros":2970},"get_guilds",{"micros":4250},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":3472,"calls":[]}]}]}] (Session ID: a9f5dc8ccf2c6da576ef900c0b78813e).
+[2022-01-25 00:54:41,082] D> executio('tabulas_creando')
+[2022-01-25 00:54:41,287] 	tabulas_creando complebitur
+[2022-01-25 00:54:41,288] E> Coniuncta in 3.8 secundis
+[2022-01-25 00:54:43,291] Syncing commands...
+[2022-01-25 00:54:43,681] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn options.1: Sub-command and sub-command group option types are mutually exclusive to all other types')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 254, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In options.1: Sub-command and sub-command group option types are mutually exclusive to all other types
+[2022-01-25 00:56:09,539] logging in using static token
+[2022-01-25 00:56:10,397] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:56:10,749] Shard ID None has connected to Gateway: ["gateway-prd-main-ssrn",{"micros":200683,"calls":["discord-sessions-green-prd-2-109",{"micros":198881,"calls":["start_session",{"micros":164151,"calls":["discord-api-7c6474c74-zz5qh",{"micros":82010,"calls":["get_user",{"micros":17218},"add_authorized_ip",{"micros":4446},"get_guilds",{"micros":6926},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":8,"calls":[]},"presence_connect",{"micros":15220,"calls":[]}]}]}] (Session ID: b4b3c0eef6651249dbd567233f4e1cad).
+[2022-01-25 00:56:10,780] D> executio('tabulas_creando')
+[2022-01-25 00:56:10,978] 	tabulas_creando complebitur
+[2022-01-25 00:56:10,992] E> Coniuncta in 3.5 secundis
+[2022-01-25 00:56:12,994] Syncing commands...
+[2022-01-25 00:56:13,480] Syncing permissions...
+[2022-01-25 00:56:13,480] Completed syncing all commands!
+[2022-01-25 00:59:39,016] logging in using static token
+[2022-01-25 00:59:39,882] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 00:59:40,096] Shard ID None has connected to Gateway: ["gateway-prd-main-8vbh",{"micros":68898,"calls":["discord-sessions-green-prd-2-123",{"micros":67718,"calls":["start_session",{"micros":39511,"calls":["discord-api-7c6474c74-6727b",{"micros":31056,"calls":["get_user",{"micros":2809},"add_authorized_ip",{"micros":2461},"get_guilds",{"micros":2885},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":13766,"calls":[]}]}]}] (Session ID: 7e7695235b1fb4ad24cffa3d980a2dfd).
+[2022-01-25 00:59:40,128] D> executio('tabulas_creando')
+[2022-01-25 00:59:40,367] 	tabulas_creando complebitur
+[2022-01-25 00:59:40,377] E> Coniuncta in 3.4 secundis
+[2022-01-25 00:59:42,385] Syncing commands...
+[2022-01-25 00:59:42,956] Syncing permissions...
+[2022-01-25 00:59:42,956] Completed syncing all commands!
+[2022-01-25 01:02:18,591] logging in using static token
+[2022-01-25 01:02:19,425] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 01:02:19,614] Shard ID None has connected to Gateway: ["gateway-prd-main-hf9c",{"micros":44736,"calls":["discord-sessions-green-prd-2-138",{"micros":43791,"calls":["start_session",{"micros":28787,"calls":["api-prd-main-w30w",{"micros":25074,"calls":["get_user",{"micros":3297},"add_authorized_ip",{"micros":1157},"get_guilds",{"micros":4296},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4448,"calls":[]}]}]}] (Session ID: ffb9ec79c4283649fa583f05e74aac2e).
+[2022-01-25 01:02:19,644] D> executio('tabulas_creando')
+[2022-01-25 01:02:19,842] 	tabulas_creando complebitur
+[2022-01-25 01:02:19,872] E> Coniuncta in 3.1 secundis
+[2022-01-25 01:02:21,879] Syncing commands...
+[2022-01-25 01:02:22,289] Syncing permissions...
+[2022-01-25 01:02:22,290] Completed syncing all commands!
+[2022-01-25 01:08:36,672] logging in using static token
+[2022-01-25 01:08:37,742] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 01:08:37,941] Shard ID None has connected to Gateway: ["gateway-prd-main-1jq6",{"micros":55086,"calls":["discord-sessions-green-prd-2-27",{"micros":53867,"calls":["start_session",{"micros":26908,"calls":["api-prd-main-ncw9",{"micros":22864,"calls":["get_user",{"micros":3024},"add_authorized_ip",{"micros":1600},"get_guilds",{"micros":2852},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: e8af873eaedd5c3166215777fa1f7a80).
+[2022-01-25 01:08:37,973] D> executio('tabulas_creando')
+[2022-01-25 01:08:38,192] 	tabulas_creando complebitur
+[2022-01-25 01:08:38,193] E> Coniuncta in 3.8 secundis
+[2022-01-25 01:08:40,197] Syncing commands...
+[2022-01-25 01:08:40,558] Syncing permissions...
+[2022-01-25 01:08:40,568] Completed syncing all commands!
+[2022-01-25 01:12:58,319] logging in using static token
+[2022-01-25 01:12:59,137] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 01:12:59,321] Shard ID None has connected to Gateway: ["gateway-prd-main-t022",{"micros":39896,"calls":["discord-sessions-green-prd-2-102",{"micros":36834,"calls":["start_session",{"micros":30533,"calls":["api-prd-main-dk02",{"micros":27033,"calls":["get_user",{"micros":2504},"add_authorized_ip",{"micros":1516},"get_guilds",{"micros":7853},"coros_wait",{"micros":0}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 44a47929cc78c07858fc1545921c7efc).
+[2022-01-25 01:12:59,351] D> executio('tabulas_creando')
+[2022-01-25 01:12:59,588] 	tabulas_creando complebitur
+[2022-01-25 01:12:59,594] E> Coniuncta in 3.8 secundis
+[2022-01-25 01:13:01,601] Syncing commands...
+[2022-01-25 01:13:01,955] Syncing permissions...
+[2022-01-25 01:13:01,956] Completed syncing all commands!
+[2022-01-25 01:16:08,613] logging in using static token
+[2022-01-25 01:16:09,601] Shard ID None has sent the IDENTIFY payload.
+[2022-01-25 01:16:09,791] Shard ID None has connected to Gateway: ["gateway-prd-main-w9l3",{"micros":44751,"calls":["discord-sessions-green-prd-2-172",{"micros":41079,"calls":["start_session",{"micros":25972,"calls":["api-prd-main-w23p",{"micros":22056,"calls":["get_user",{"micros":2865},"add_authorized_ip",{"micros":1161},"get_guilds",{"micros":2491},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":12122,"calls":[]}]}]}] (Session ID: 1db66cbfe3340d2e82c96a24025bf57d).
+[2022-01-25 01:16:09,822] D> executio('tabulas_creando')
+[2022-01-25 01:16:10,026] 	tabulas_creando complebitur
+[2022-01-25 01:16:10,027] E> Coniuncta in 3.6 secundis
+[2022-01-25 01:16:12,031] Syncing commands...
+[2022-01-25 01:16:12,398] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<SlashCommand.sync_all_commands() done, defined at D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py:415> exception=HTTPException('400 Bad Request (error code: 50035): Invalid Form Body\nIn 0.options.0.name: Command name is invalid')>
+Traceback (most recent call last):
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 491, in sync_all_commands
+    raise ex
+  File "D:\Programs\Anaconda\lib\site-packages\discord_slash\client.py", line 471, in sync_all_commands
+    existing_cmds = await self.req.put_slash_commands(
+  File "D:\Programs\Anaconda\lib\site-packages\discord\http.py", line 254, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In 0.options.0.name: Command name is invalid
