@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNIQUE,
-    typing_celeritas INT
+    accessum_id INT
 );
 
 CREATE TABLE IF NOT EXISTS accessum_campesters (

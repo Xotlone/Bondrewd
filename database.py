@@ -4,8 +4,9 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
+from utilitates import log
+
 load_dotenv('.env')
-log = logging.getLogger('logs')
 
 class Database:
     def __init__(self, dbname, user, password, host, sslmode='require'):
@@ -22,7 +23,7 @@ class Database:
         try:
             self.cursor.execute(command)
             self.database.commit()
-            log.debug(f'SQL "{command}"\nFeliciter supplicium!')
+            log(f'SQL "{command}"\nFeliciter supplicium!', 'D', 'debug')
 
             if output == 'one':
                 out = self.cursor.fetchone()
@@ -34,21 +35,21 @@ class Database:
 
         except psycopg2.ProgrammingError as error:
             self.database.rollback()
-            log.critical(error)
-            log.info('Reversum victoria')
+            log(error, 'D', 'error')
+            log('Reversum victoria', 'D')
             raise error
     
     def executio(self, sql_mandatum: str, output: str=None, **kwargs):
-        log.info(f'D> executio(\'{sql_mandatum}\')')
+        log(f'executio(\'{sql_mandatum}\')', 'D')
         iter_mandatum = os.path.join('sql_bibliothecam_mandatum', sql_mandatum.lower() + '.pgsql')
         if os.path.exists(iter_mandatum):
             with open(iter_mandatum, 'r', encoding='utf-8') as mandatum:
                 try:
                     return self(mandatum.read().format(**kwargs), output)
                 finally:
-                    log.info(f'\t{sql_mandatum} complebitur')
+                    log(f'\t{sql_mandatum} complebitur', 'D')
         else:
-            log.warn('\tMandatum non inveni')
+            log('\tMandatum non inveni', 'D', 'warn')
             return False
 
     def column_names(self, table: str):

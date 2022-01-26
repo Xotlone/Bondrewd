@@ -1,6 +1,7 @@
-discord_components
-discord-py-slash-command
+disnake
 psycopg2
 python-dotenv
 bs4
 requests
+pandas
+git+https://github.com/Nekos-life/Async-nekos.life-wrapper

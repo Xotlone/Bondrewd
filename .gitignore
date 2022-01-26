@@ -3,3 +3,4 @@ __pycache__
 .env
 texts.json
 variabilium.json
+_df.txt
