@@ -1,5 +1,6 @@
-frosty.log
 app
 texts.json
 variabilium.json
 _df.txt
+.log
+.vscode

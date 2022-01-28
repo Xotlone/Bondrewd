@@ -17,7 +17,7 @@ console_out = logging.StreamHandler()
 logging_level = logging.INFO
 logging.basicConfig(
     handlers=(file_log, console_out),
-    format='[%(asctime)s] %(message)s',
+    format='[%(asctime)s] - %(message)s',
     level=logging_level
 )
 
@@ -27,10 +27,10 @@ intents = disnake.Intents.all()
 machina = commands.Bot(command_prefix='/', intents=intents)
 machina.remove_command('help')
 
-log('Cogs loading', 'L')
+log('Cogs loading', 'Loading')
 for cog_name in os.listdir('./cogs'):
     if cog_name.endswith('.py'):
         machina.load_extension(f'cogs.{cog_name[:-3]}')
-        log(f'\t{cog_name[:-3]} loaded', 'L')
+        log(f'  {cog_name[:-3]} loaded', 'Loading')
 
 machina.run(os.getenv('TOKEN'))

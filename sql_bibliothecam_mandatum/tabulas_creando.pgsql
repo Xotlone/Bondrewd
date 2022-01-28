@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNIQUE,
-    accessum_id INT
+    accessum_id INT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS accessum_campesters (
@@ -17,8 +17,7 @@ CREATE TABLE IF NOT EXISTS variabilium (
     valorem TEXT
 );
 
-CREATE TABLE IF NOT EXISTS textuum (
-    id INT UNIQUE,
+CREATE TABLE IF NOT EXISTS doctrina (
     nomen TEXT UNIQUE,
-    valorem TEXT
+    conditio TEXT DEFAULT ''
 );
