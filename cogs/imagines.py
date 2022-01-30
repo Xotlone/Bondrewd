@@ -3,7 +3,8 @@ from disnake.ext import commands
 
 from anekos import SFWImageTags, NSFWImageTags, NekosLifeClient
 
-from configuratione import mandatumes, config
+from configuratione import mandatumes
+import con_ter
 
 class Imagines(commands.Cog):
     def __init__(self, machina: commands.Bot):
@@ -12,12 +13,12 @@ class Imagines(commands.Cog):
 
     @commands.slash_command(**mandatumes.imagines())
     @commands.check(mandatumes.imagines.acs)
-    async def imagines(self, inter: disnake.CommandInteraction):
+    async def mandatum_imagines(self, inter: disnake.CommandInteraction):
        pass
     
-    @imagines.sub_command(**mandatumes.imagines.sub['actio']())
+    @mandatum_imagines.sub_command(**mandatumes.imagines.sub['actio']())
     @commands.check(mandatumes.imagines.sub['actio'].acs)
-    async def actio(self, inter: disnake.CommandInteraction, genus: str, subjecto: disnake.Member=None):
+    async def sub_actio(self, inter: disnake.CommandInteraction, genus: str, subjecto: disnake.Member=None):
         tag = eval(f'SFWImageTags.{genus.upper()}')
         genus = mandatumes.ACTIO_VERBS[genus]
         img = await self.neko.image(tag)
@@ -28,7 +29,7 @@ class Imagines(commands.Cog):
             title += '...'
         embed = disnake.Embed(
             title=title,
-            colour=config.WISTLES['Колокольчик']
+            colour=con_ter.OCCASIONES_DICT['Колокольчик'].colour
         )
         embed.set_image(img.url)
         await inter.send(embed=embed)

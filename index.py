@@ -27,10 +27,10 @@ intents = disnake.Intents.all()
 machina = commands.Bot(command_prefix='/', intents=intents)
 machina.remove_command('help')
 
-log('Cogs loading', 'Loading')
+log('Загрузка модулей', 'Loading')
 for cog_name in os.listdir('./cogs'):
     if cog_name.endswith('.py'):
         machina.load_extension(f'cogs.{cog_name[:-3]}')
-        log(f'  {cog_name[:-3]} loaded', 'Loading')
+        log(f'  {cog_name[:-3]} загружен', 'Loading')
 
 machina.run(os.getenv('TOKEN'))

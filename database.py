@@ -22,7 +22,7 @@ class Database:
         try:
             self.cursor.execute(command)
             self.database.commit()
-            log(f'SQL "{command}"\nFeliciter supplicium!', 'Database', 'debug')
+            log(f'Запрос "{command}"\nВыполнен', 'Database', 'debug')
 
             if output == 'one':
                 out = self.cursor.fetchone()
@@ -35,21 +35,8 @@ class Database:
         except psycopg2.ProgrammingError as error:
             self.database.rollback()
             log(error, 'Database', 'error')
-            log('Reversum victoria', 'Database')
+            log('ОТКАТ', 'Database')
             raise error
-    
-    def executio(self, sql_mandatum: str, output: str=None, **kwargs):
-        log(f'executio(\'{sql_mandatum}\')', 'Database')
-        iter_mandatum = os.path.join('sql_bibliothecam_mandatum', sql_mandatum.lower() + '.pgsql')
-        if os.path.exists(iter_mandatum):
-            with open(iter_mandatum, 'r', encoding='utf-8') as mandatum:
-                try:
-                    return self(mandatum.read().format(**kwargs), output)
-                finally:
-                    log(f'  {sql_mandatum} complebitur', 'Database')
-        else:
-            log('\tMandatum non inveni', 'Database', 'warn')
-            return False
 
 database = Database(*eval(os.getenv('DATABASE_SETTINGS')).values())
 

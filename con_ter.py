@@ -1,17 +1,24 @@
 # Controlatoris diu terminus variables
 
+import time
+
+from disnake.ext import commands
+
+from configuratione import config
 from database import database
 from utilitates import log
 
-class Occasiones:
+class Wistle:
     numerus = 0
+    omnia = []
 
-    def __init__(self, nomen: str, prioritas: int):
+    def __init__(self, nomen: str, colour: int):
         self.nomen = nomen
-        self.prioritas = prioritas
+        self.colour = colour
+        self.prioritas = Wistle.numerus
 
-        self.id = Occasiones.numerus
-        Occasiones.numerus += 1
+        Wistle.numerus += 1
+        Wistle.omnia.append(self)
     
     def __call__(self):
         return self.prioritas
@@ -33,56 +40,27 @@ class Occasiones:
     
     def __ge__(self, other):
         return self.prioritas >= other.prioritas
-
-class AccessumCampester:
-    numerus = 0
-
-    def __init__(self, nomen: str, prioritas: int, occasiones: str):
-        self.nomen = nomen
-        self.prioritas = prioritas
-        self.occasiones = occasiones
-
-        self.id = AccessumCampester.numerus
-        AccessumCampester.numerus += 1
     
-    def __eq__(self, other):
-        for occasion in self.occasiones:
-            if occasion in other.occasiones:
-                return True
+    @staticmethod
+    def get(prioritas: int):
+        for wistle in Wistle.omnia:
+            if prioritas == wistle.prioritas:
+                return wistle
+        
         return False
-
-    def ingressum(self):
-        log(f'  A accessum "{self.nomen}" scriptum est database', 'Database')
-        database(f'INSERT INTO accessum_campesters VALUES ({self.id}, \'{self.nomen}\', {self.prioritas}, \'{self.occasiones}\');')
-        return True
-    
-    def remotionem(self):
-        database(f'DELETE FROM accessum_campesters WHERE id = {self.id};')
-        return True
-    
-    @staticmethod
-    def legere_all():
-        return database(f'SELECT * FROM accessum_campesters', 'all')
-    
-    @staticmethod
-    def get(where: str):
-        raw_accessum = database(f'SELECT * FROM accessum_campesters WHERE {where}', 'one')
-        accessum = AccessumCampester(*raw_accessum[1:])
-        accessum.id = raw_accessum[0]
-        return accessum
 
 class User:
     numerus = 0
 
-    def __init__(self, id: int, accessum_id: int):
+    def __init__(self, id: int, occasione_id: int):
         self.id = id
-        self.accessum_id = accessum_id
-        self.accessum = AccessumCampester.get(f'id = {accessum_id}')
+        self.occasione_id = occasione_id
+        self.occasiones = OCCASIONES_DICT.values()[occasione_id]
 
         User.numerus += 1
     
     def ingressum(self):
-        log(f'  A user {self.id} scriptum est database', 'Database')
+        log(f'  Пользователь с id {self.id} добавлен в таблицу', 'Database')
         database(f'INSERT INTO users (id) VALUES ({self.id});')
         return True
     
@@ -93,70 +71,68 @@ class User:
     @staticmethod
     def legere_all():
         return database(f'SELECT * FROM users', 'all')
+
+class Doctrina:
+    @staticmethod
+    def extractio(nomen: str):
+        return database(f'SELECT conditio FROM doctrina WHERE nomen = \'{nomen}\'', 'one')[0]
     
     @staticmethod
-    def get(where: str):
-        raw_user = database(f'SELECT * FROM users WHERE {where}', 'one')
-        user = User(*raw_user)
-        return user
+    def renovatio(nomen: str, conditio: str):
+        return database(f'UPDATE doctrina SET conditio = \'{conditio}\' WHERE nomen = \'{nomen}\'')
 
-class Variabilis:
-    numerus = 0
+OCCASIONES_DICT = {
+    'Колокольчик': Wistle('Колокольчик', 0xc4986e),
+    'Красный свисток': Wistle('Красный свисток', 0xe62329),
+    'Синий свисток': Wistle('Синий свисток', 0x02aef1),
+    'Лунный свисток': Wistle('Лунный свисток', 0x6064af),
+    'Чёрный свисток': Wistle('Чёрный свисток', 0x22201e),
+    'Белый свисток': Wistle('Белый свисток', 0xfefefe)
+}
 
-    def __init__(self, nomen: str, genus: str, valorem: str):
-        self.nomen = nomen
-        self.genus = genus
-        self.valorem = valorem
-
-        self.id = Variabilis.numerus
-        Variabilis.numerus += 1
-    
-    def ingressum(self):
-        log(f'  A variabilis {self.nomen} = {self.valorem} scriptum est database', 'Database')
-        database(f'INSERT INTO variabilium (id, nomen, genus, velorem) VALUES ({self.id}, \'{self.nomen}\', \'{self.genus}\', \'{self.valorem}\');')
-        return True
-    
-    def remotionem(self):
-        database(f'DELETE FROM variabilium WHERE id = {self.id};')
-        return True
-    
-    @staticmethod
-    def legere_all():
-        return database(f'SELECT * FROM variabilium', 'all')
-
-TERMINUS_COMITIA = {'users': User, 'accessum_campesters': AccessumCampester, 'variabilium': Variabilis}
-
-INDEX_OCCASIONES = [
-    Occasiones('Колокольчик', 0),
-    Occasiones('Красный свисток', 1),
-    Occasiones('Синий свисток', 2),
-    Occasiones('Лунный свисток', 3),
-    Occasiones('Чёрный свисток', 4),
-    Occasiones('Белый свисток', 5)
-]
-
-INDEX_ACCESSUM_CAMPESTER = [
-    AccessumCampester('Omega', 0, 'Колокольчик'),
-    AccessumCampester('Alpha', 23, 'Белый свисток')
-]
-
-INDEX_VARIABILIUM = [
-
-]
+INDEX_VARIABILIUM = {}
 
 INDEX_DOCTRINA = {
     'corpus_conditio': 'False',
     'corpus_limit': '10000'
 }
 
-def initialization():
-    log('Initialization()', 'Database')
-    for accessum in INDEX_ACCESSUM_CAMPESTER:
-        if database(f'SELECT * FROM accessum_campesters WHERE id = {accessum.id}', 'all') == []:
-            accessum.ingressum()
-            log(f'  Accessum campester "{accessum.nomen}" additae', 'Database')
+async def initialization(machina: commands.Bot):
+    t = time.time()
+    log('Инициализация', 'Database')
+
+    database('''
+        CREATE TABLE IF NOT EXISTS users (
+            id BIGINT UNIQUE,
+            occasione_id INT DEFAULT 0
+        );
+
+        CREATE TABLE IF NOT EXISTS variabilium (
+            nomen TEXT UNIQUE,
+            conditio TEXT DEFAULT ''
+        );
+
+        CREATE TABLE IF NOT EXISTS doctrina (
+            nomen TEXT UNIQUE,
+            conditio TEXT DEFAULT ''
+        );
+    ''')
     
+    log('   Инициализация параметров доктрины', 'Database')
     for k, v in INDEX_DOCTRINA.items():
-        if database(f'SELECT * FROM doctrina WHERE nomen = \'{k}\'', 'all') == []:
+        if k not in map(lambda a: a[0], database(f'SELECT nomen FROM doctrina', 'all')):
             database(f'INSERT INTO doctrina VALUES (\'{k}\', \'{v}\')')
-            log(f'  Doctrina parametri "{k}" adiecit')
+            log(f'      Параметр "{k}" добавлен')
+    
+    log('   Добавление отсутствующих в таблицу', 'Database')
+    for member in machina.get_all_members():
+        if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
+            if await machina.is_owner(member):
+                database(f'INSERT INTO users VALUES ({member.id}, 5)')
+                log('   Владелец добавлен в таблицу', 'Database')
+
+            else:
+                database(f'INSERT INTO users VALUES ({member.id}, 0)')
+                log(f'   Участник "{member.name}" добавлен в таблицу', 'Database')
+    
+    log(f'Инициализация прошла успешно за {round(time.time() - t, 2)} с.', 'Database')

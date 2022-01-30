@@ -19,6 +19,29 @@ def log(msg, type: str='', gradu: str='info'):
         msg = type + ' - ' + str(msg)
         _log.debug(msg)
 
+class ProgressBar:
+    def __init__(self, max: int, current: int=0, size: int=20, progress: bool=False):
+        self.max = max
+        self.current = current
+        self.size = size
+        self.progress = progress
+
+        self.border = '│'
+        self.sym = '█'
+        self.space = '─'
+    
+    def __str__(self):
+        if self.current > self.max:
+            raise KeyError(f'ProgressBar current > max ({self.current} > {self.max})')
+
+        step = self.max / self.size
+
+        bar = self.border + self.sym * int(self.current / step) + int((self.max - self.current) / step) * self.space + self.border
+        if self.progress:
+            proc = round(self.current / self.max * 100, 2)
+            bar = f'{bar} [{self.current}/{self.max}] {proc}%'
+        return bar
+
 def notitia_constructione(data: list, originale_genus=None):
     if data != []:
         if originale_genus != None:

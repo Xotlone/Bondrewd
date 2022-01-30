@@ -7,6 +7,8 @@ from disnake.ext.commands import errors
 from configuratione import mandatumes
 import errata_fieri
 
+log = logging.getLogger('logs')
+
 class ErrorTracto(commands.Cog):
     def __init__(self, machina: commands.Bot):
         self.machina = machina
@@ -24,7 +26,7 @@ class ErrorTracto(commands.Cog):
             await errata_fieri.Accessum.call(inter, error, mandatum_occasiones)
         
         else:
-            logging.exception(error, exc_info=True)
+            log.error(error, exc_info=True)
    
 def setup(machina):
     machina.add_cog(ErrorTracto(machina))

@@ -15,8 +15,8 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_connect(self):
-        database.executio('tabulas_creando')
-        con_ter.initialization()
+        await con_ter.initialization(self.machina)
+        config.owner_id = self.machina.owner_id
         log(f'Подключён за {round(time.time() - config.satus_tempus, 2)} с.', 'Event')
 
     @commands.Cog.listener()
@@ -26,7 +26,7 @@ class Events(commands.Cog):
     
     @commands.Cog.listener()
     async def on_resumed(self):
-        log(f'Соеденение восстановлено за {time.time() - config.shutdown_tempore} с.', 'Event')
+        log(f'Соеденение восстановлено за {round(time.time() - config.shutdown_tempore, 2)} с.', 'Event')
     
     @commands.Cog.listener()
     async def on_message(self, msg: disnake.Message):
@@ -47,18 +47,16 @@ class Events(commands.Cog):
     async def on_guild_join(self, guild: disnake.Guild):
         log(f'Присоединён к гильдии "{guild.name}"', 'E')
 
-        for particeps in guild.members:
-            if particeps.id not in database('SELECT id FROM users', 'all'):
-                if particeps == guild.owner:
-                    alpha_id = con_ter.INDEX_ACCESSUM_CAMPESTER[-1].id
-                    novum_membrum = con_ter.User(particeps.id, alpha_id)
+        for member in guild.members:
+            if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
+                if await self.machina.is_owner(member):
+                    novum_membrum = con_ter.User(member.id, 5)
                 
                 else:
-                    omega_id = con_ter.INDEX_ACCESSUM_CAMPESTER[0].id
-                    novum_membrum = con_ter.User(particeps.id, omega_id)
+                    novum_membrum = con_ter.User(member.id, 0)
 
                 novum_membrum.ingressum()
-                log(f'Записан новый участник {particeps.name}', 'Event')
+                log(f'Записан новый участник {member.name}', 'Event')
     
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
@@ -67,13 +65,10 @@ class Events(commands.Cog):
         
         log(f'{message.author.name}: "{message.content}"', 'Message')
         
-        corpus_conditio = bool(database('SELECT conditio FROM doctrina WHERE nomen = \'corpus_conditio\'', 'one')[0])
+        corpus_conditio = int(database('SELECT conditio FROM doctrina WHERE nomen = \'corpus_conditio\'', 'one')[0])
         corpus_limit = int(database('SELECT conditio FROM doctrina WHERE nomen = \'corpus_limit\'', 'one')[0])
         if corpus_conditio and corpus_limit < 100000:
             verbum_processing.corpus_addition(message.author.id, message.content)
-        
-        elif corpus_limit >= 100000:
-            log('КОРПУС ЗАПОЛНЕН', 'DOCTRINA')
     
 def setup(machina):
     machina.add_cog(Events(machina))
