@@ -3,7 +3,7 @@ import os
 import psycopg2
 from dotenv import load_dotenv
 
-from utilitates import log
+from utilities import log
 
 load_dotenv('.env')
 
@@ -40,7 +40,7 @@ class Database:
 
 database = Database(*eval(os.getenv('DATABASE_SETTINGS')).values())
 
-def user_existentiae(id: int):
+def user_exist(id: int):
     return id in list(map(lambda el: el[0], database(f'''
         SELECT id FROM users
     ''', 'all')))

@@ -1,87 +1,80 @@
-# Controlatoris diu terminus variables
-
 import time
 
 from disnake.ext import commands
 
-from configuratione import config
 from database import database
-from utilitates import log
+from utilities import log
 
 class Wistle:
-    numerus = 0
-    omnia = []
+    count = 0
+    _instances = []
 
-    def __init__(self, nomen: str, colour: int):
-        self.nomen = nomen
+    def __init__(self, name: str, colour: int):
+        self.name = name
         self.colour = colour
-        self.prioritas = Wistle.numerus
+        self.priority = Wistle.count
 
-        Wistle.numerus += 1
-        Wistle.omnia.append(self)
+        Wistle.count += 1
+        Wistle._instances.append(self)
     
     def __call__(self):
-        return self.prioritas
+        return self.priority
 
     def __eq__(self, other):
-        return self.prioritas == other.prioritas
+        return self.priority == other.priority
     
     def __ne__(self, other):
-        return self.prioritas != other.prioritas
+        return self.priority != other.priority
     
     def __lt__(self, other):
-        return self.prioritas < other.prioritas
+        return self.priority < other.priority
     
     def __gt__(self, other):
-        return self.prioritas > other.prioritas
+        return self.priority > other.priority
     
     def __le__(self, other):
-        return self.prioritas <= other.prioritas
+        return self.priority <= other.priority
     
     def __ge__(self, other):
-        return self.prioritas >= other.prioritas
+        return self.priority >= other.priority
     
     @staticmethod
-    def get(prioritas: int):
-        for wistle in Wistle.omnia:
-            if prioritas == wistle.prioritas:
+    def get(priority: int):
+        for wistle in Wistle._instances:
+            if priority == wistle.priority:
                 return wistle
         
         return False
 
 class User:
-    numerus = 0
+    count = 0
 
-    def __init__(self, id: int, occasione_id: int):
+    def __init__(self, id: int, rank_id: int):
         self.id = id
-        self.occasione_id = occasione_id
-        self.occasiones = OCCASIONES_DICT.values()[occasione_id]
+        self.rank_id = rank_id
+        self.access = RANKS_DICT.values()[rank_id]
 
-        User.numerus += 1
+        User.count += 1
     
-    def ingressum(self):
+    def insert(self):
         log(f'  Пользователь с id {self.id} добавлен в таблицу', 'Database')
         database(f'INSERT INTO users (id) VALUES ({self.id});')
         return True
     
-    def remotionem(self):
+    def remove(self):
         database(f'DELETE FROM users WHERE id = {self.id};')
         return True
+
+class ML:
+    @staticmethod
+    def extract(name: str):
+        return database(f'SELECT condition FROM ml WHERE name = \'{name}\'', 'one')[0]
     
     @staticmethod
-    def legere_all():
-        return database(f'SELECT * FROM users', 'all')
+    def update(name: str, condition: str):
+        return database(f'UPDATE ml SET condition = \'{condition}\' WHERE name = \'{name}\'')
 
-class Doctrina:
-    @staticmethod
-    def extractio(nomen: str):
-        return database(f'SELECT conditio FROM doctrina WHERE nomen = \'{nomen}\'', 'one')[0]
-    
-    @staticmethod
-    def renovatio(nomen: str, conditio: str):
-        return database(f'UPDATE doctrina SET conditio = \'{conditio}\' WHERE nomen = \'{nomen}\'')
-
-OCCASIONES_DICT = {
+RANKS_DICT = {
     'Колокольчик': Wistle('Колокольчик', 0xc4986e),
     'Красный свисток': Wistle('Красный свисток', 0xe62329),
     'Синий свисток': Wistle('Синий свисток', 0x02aef1),
@@ -90,44 +83,44 @@ OCCASIONES_DICT = {
     'Белый свисток': Wistle('Белый свисток', 0xfefefe)
 }
 
-INDEX_VARIABILIUM = {}
+INDEX_VARIABLES = {}
 
-INDEX_DOCTRINA = {
-    'corpus_conditio': 'False',
+INDEX_ML = {
+    'corpus_condition': '0',
     'corpus_limit': '10000'
 }
 
-async def initialization(machina: commands.Bot):
+async def initialization(bot: commands.Bot):
     t = time.time()
     log('Инициализация', 'Database')
 
     database('''
         CREATE TABLE IF NOT EXISTS users (
             id BIGINT UNIQUE,
-            occasione_id INT DEFAULT 0
+            rank_id INT DEFAULT 0
         );
 
-        CREATE TABLE IF NOT EXISTS variabilium (
-            nomen TEXT UNIQUE,
-            conditio TEXT DEFAULT ''
+        CREATE TABLE IF NOT EXISTS variables (
+            name TEXT UNIQUE,
+            condition TEXT DEFAULT ''
         );
 
-        CREATE TABLE IF NOT EXISTS doctrina (
-            nomen TEXT UNIQUE,
-            conditio TEXT DEFAULT ''
+        CREATE TABLE IF NOT EXISTS ml (
+            name TEXT UNIQUE,
+            condition TEXT DEFAULT ''
         );
     ''')
     
-    log('   Инициализация параметров доктрины', 'Database')
-    for k, v in INDEX_DOCTRINA.items():
-        if k not in map(lambda a: a[0], database(f'SELECT nomen FROM doctrina', 'all')):
-            database(f'INSERT INTO doctrina VALUES (\'{k}\', \'{v}\')')
+    log('   Инициализация параметров ML', 'Database')
+    for k, v in INDEX_ML.items():
+        if k not in map(lambda a: a[0], database(f'SELECT name FROM ml', 'all')):
+            database(f'INSERT INTO ml VALUES (\'{k}\', \'{v}\')')
             log(f'      Параметр "{k}" добавлен')
     
     log('   Добавление отсутствующих в таблицу', 'Database')
-    for member in machina.get_all_members():
+    for member in bot.get_all_members():
         if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
-            if await machina.is_owner(member):
+            if await bot.is_owner(member):
                 database(f'INSERT INTO users VALUES ({member.id}, 5)')
                 log('   Владелец добавлен в таблицу', 'Database')
 

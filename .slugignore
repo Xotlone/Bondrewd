@@ -1,7 +1,8 @@
 app
 texts.json
-variabilium.json
+variables.json
 _df.txt
 .log
 .vscode
 queries.pgsql
+workspace.code-workspace

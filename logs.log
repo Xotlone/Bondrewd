@@ -1,16 +1,23 @@
-[2022-01-31 01:32:33,294] - Loading  - Загрузка модулей
-[2022-01-31 01:32:33,844] - Loading  -   error_tracto загружен
-[2022-01-31 01:32:33,849] - Loading  -   events загружен
-[2022-01-31 01:32:33,852] - Loading  -   imagines загружен
-[2022-01-31 01:32:33,865] - Loading  -   informationes загружен
-[2022-01-31 01:32:33,868] - Loading  -   mutatio загружен
-[2022-01-31 01:32:33,870] - logging in using static token
-[2022-01-31 01:32:35,025] - Shard ID None has sent the IDENTIFY payload.
-[2022-01-31 01:32:35,265] - Shard ID None has connected to Gateway: ["gateway-prd-main-2p8b",{"micros":70642,"calls":["discord-sessions-green-prd-2-147",{"micros":69499,"calls":["start_session",{"micros":32699,"calls":["api-prd-main-fdjg",{"micros":27597,"calls":["get_user",{"micros":4783},"add_authorized_ip",{"micros":1556},"get_guilds",{"micros":3327},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":29155,"calls":[]}]}]}] (Session ID: 3f73b8cfa18aeb8fce17e1c645ea4c9a).
-[2022-01-31 01:32:35,269] - Database - Инициализация
-[2022-01-31 01:32:35,485] - Database -    Инициализация параметров доктрины
-[2022-01-31 01:32:35,899] - Database -    Добавление отсутствующих в таблицу
-[2022-01-31 01:32:35,902] - Database - Инициализация прошла успешно за 0.63 с.
-[2022-01-31 01:32:35,903] - Event    - Подключён за 6.73 с.
-[2022-01-31 01:32:49,175] - Mandatum - Выполнение "member"
-[2022-01-31 01:32:49,573] - Mandatum -   Мандат выполнен за 0.4 с.
+[2022-03-16 22:02:13,145] - Loading  - Загрузка модулей
+[2022-03-16 22:02:14,005] - Loading  -   error_handler загружен
+[2022-03-16 22:02:14,030] - Loading  -   events загружен
+[2022-03-16 22:02:14,035] - Loading  -   images загружен
+[2022-03-16 22:02:14,050] - Loading  -   information загружен
+[2022-03-16 22:02:14,055] - Loading  -   learning загружен
+[2022-03-16 22:02:14,059] - Loading  -   other загружен
+[2022-03-16 22:02:14,064] - Loading  -   spotter загружен
+[2022-03-16 22:02:14,081] - logging in using static token
+[2022-03-16 22:02:15,250] - Shard ID None has sent the IDENTIFY payload.
+[2022-03-16 22:02:15,515] - Shard ID None has connected to Gateway: ["gateway-prd-main-sktr",{"micros":117544,"calls":["discord-sessions-blue-prd-2-161",{"micros":112716,"calls":["start_session",{"micros":78696,"calls":["discord-api-5bfd4c658b-kfmlp",{"micros":71565,"calls":["get_user",{"micros":5159},"add_authorized_ip",{"micros":3050},"get_guilds",{"micros":10843},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":14410,"calls":[]}]}]}] (Session ID: ca5ac4d24d336cb7cf99b2a6e4d8e1f1).
+[2022-03-16 22:02:15,569] - Database - Инициализация
+[2022-03-16 22:02:15,780] - Database -    Инициализация параметров ML
+[2022-03-16 22:02:16,187] - Database -    Добавление отсутствующих в таблицу
+[2022-03-16 22:02:17,542] - Database - Инициализация прошла успешно за 1.97 с.
+[2022-03-16 22:02:17,549] - ML       - Инициализация ML
+[2022-03-16 22:02:17,552] - Event    - Подключён за 38.72 с.
+[2022-03-16 22:02:35,027] - Command  - Выполнение "pre"
+[2022-03-16 22:02:35,927] - Command  -   Команда выполнена за 0.9 с.
+[2022-03-16 22:02:56,526] - Command  - Выполнение "tokenize"
+[2022-03-16 22:02:57,751] - Command  -   Команда выполнена за 1.16 с.
+[2022-03-16 22:03:20,817] - Command  - Выполнение "ml"
+[2022-03-16 22:03:21,622] - Command  -   Команда выполнена за 0.79 с.
