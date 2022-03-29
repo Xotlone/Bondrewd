@@ -1,4 +1,4 @@
-disnake
+disnake==2.4.0
 psycopg2
 python-dotenv
 bs4

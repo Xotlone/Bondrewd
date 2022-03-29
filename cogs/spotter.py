@@ -16,8 +16,8 @@ class Spotter(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
     
-    @dis_commands.slash_command(**commands.manual_viscus())
-    @dis_commands.check(commands.manual_viscus.acs)
+    @dis_commands.slash_command(**commands.manual_request())
+    @dis_commands.check(commands.manual_request.acs)
     async def command_manual_execute(self, inter: disnake.CommandInteraction, request: str):
         try:
             request = database(request, 'all')
@@ -95,13 +95,13 @@ class Spotter(dis_commands.Cog):
                 )
                 await inter.edit_original_message(embed=embed)
     
-    @dis_commands.slash_command(**commands.inserta())
-    @dis_commands.check(commands.inserta.acs)
+    @dis_commands.slash_command(**commands.insert())
+    @dis_commands.check(commands.insert.acs)
     async def command_insert(self, inter: disnake.CommandInteraction):
         pass
     
-    @command_insert.sub_command(**commands.inserta.sub['param']())
-    @dis_commands.check(commands.inserta.sub['param'].acs)
+    @command_insert.sub_command(**commands.insert.sub['param']())
+    @dis_commands.check(commands.insert.sub['param'].acs)
     async def sub_param(self, inter: disnake.CommandInteraction, type: str, value: str):
         try:
             database(f'INSERT INTO {type} VALUES ({value})')
@@ -124,8 +124,8 @@ class Spotter(dis_commands.Cog):
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, value)
     
-    @command_insert.sub_command(**commands.inserta.sub['ml']())
-    @dis_commands.check(commands.inserta.sub['ml'].acs)
+    @command_insert.sub_command(**commands.insert.sub['ml']())
+    @dis_commands.check(commands.insert.sub['ml'].acs)
     async def sub_ml_data(self, inter: disnake.CommandInteraction, type: str, file: disnake.Attachment):
         raise Exception('IN DEVELOPING')
     

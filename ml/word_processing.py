@@ -71,3 +71,28 @@ class Tokenizator:
         groups = groupby(corpus, lambda r: r[0])
         counts = [(a, len(list(c))) for a, c in groups]
         return {k: v for (k, v) in sorted(counts, key=lambda el: el[1])}
+
+def skip_gramm(sentence: str, n_gramm: int=3, padding: str='correspond'):
+    processed = Tokenizator.pre(sentence)
+
+    if padding == 'ignore':
+        arange = range(len(processed))
+    elif padding == 'correspond':
+        arange = range(int(n_gramm / 2), len(processed) - int(n_gramm / 2))
+    else:
+        raise ValueError('Padding must be "ignore" or "correspond"')
+
+    output = []
+    for step in arange:
+        surrounding = []
+        half_gramm = list(range(1, int((n_gramm - 1) / 2 + 1)))
+        minus_half_gramm = list(map(lambda x: -x, half_gramm))
+        minus_half_gramm.reverse()
+        gramm_window = minus_half_gramm + half_gramm
+        for n in gramm_window:
+            if n + step < 0 or n + step > len(processed) - 1:
+                continue
+            surrounding.append(processed[n + step])
+        output.append({processed[step]: surrounding})
+    
+    return output

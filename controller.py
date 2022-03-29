@@ -97,7 +97,8 @@ async def initialization(bot: commands.Bot):
     database('''
         CREATE TABLE IF NOT EXISTS users (
             id BIGINT UNIQUE,
-            rank_id INT DEFAULT 0
+            rank_id INT DEFAULT 0,
+            complex_chars TEXT DEFAULT ''
         );
 
         CREATE TABLE IF NOT EXISTS variables (

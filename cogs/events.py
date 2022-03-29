@@ -19,7 +19,7 @@ class Events(dis_commands.Cog):
         config.owner_id = self.bot.owner_id
         log('Инициализация ML', 'ML')
         word_processing.Tokenizator.corpus_init()
-        log(f'Подключён за {round(time.time() - config.connect_time, 2)} с.', 'Event')
+        log(f'Подключёние за {round(time.time() - config.connect_time, 2)} с.', 'Event')
 
     @dis_commands.Cog.listener()
     async def on_disconnect(self):
@@ -49,7 +49,7 @@ class Events(dis_commands.Cog):
     
     @dis_commands.Cog.listener()
     async def on_guild_join(self, guild: disnake.Guild):
-        log(f'Присоединён к гильдии "{guild.name}"', 'E')
+        log(f'Присоединение к гильдии "{guild.name}"', 'E')
 
         for member in guild.members:
             if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:

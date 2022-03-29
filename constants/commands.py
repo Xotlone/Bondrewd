@@ -221,11 +221,37 @@ ml = Command(
                 ),
             )
         ),
+        SubCommand(
+            'skip-gramm',
+            'Генерация скип-граммы из текста',
+            [
+                Option(
+                    'text',
+                    'Текст, который станет скип-граммой',
+                    OptionType.string,
+                    True
+                ),
+                Option(
+                    'n_gramm',
+                    'n - радиус захватываемого текста',
+                    OptionType.integer,
+                    False,
+                    [3, 5, 7, 9]
+                ),
+                Option(
+                    'padding',
+                    'Игнорирует-ли движущееся окно рамки текста',
+                    OptionType.string,
+                    False,
+                    ['ignore', 'correspond']
+                )
+            ]
+        )
     ),
     access='Чёрный свисток'
 )
 
-manual_viscus = Command(
+manual_request = Command(
     'manual',
     'Прямой запрос',
     [
@@ -281,7 +307,7 @@ extract = Command(
     access='Красный свисток'
 )
 
-inserta = Command(
+insert = Command(
     'data_insert',
     'Запись новых параметров/обучаемых параметров',
     sub=(
@@ -364,8 +390,8 @@ update = Command(
                             OptionType.string,
                             True,
                             {
-                                'Y': '1',
-                                'N': '0'
+                                'Да': '1',
+                                'Нет': '0'
                             }
                         ),
                         Option(
@@ -492,7 +518,7 @@ images = Command(
     )
 )
 
-munera = Command(
+funcs = Command(
     'funcs',
     'Функции',
     sub=(
@@ -508,5 +534,30 @@ munera = Command(
                 )
             ]
         ),
+        SubCommand(
+            'learn-japanese',
+            'Учить японский',
+            [
+                Option(
+                    'alphabet',
+                    'Азбука (для начинающий хирагана)',
+                    OptionType.string,
+                    True,
+                    {
+                        'Хирагана': 'hira'
+                    }
+                ),
+                Option(
+                    'only_complex',
+                    'Только сложные иероглифы с вашего списка',
+                    OptionType.boolean,
+                    False,
+                    {
+                        'Да': True,
+                        'Нет': False
+                    }
+                )
+            ]
+        )
     )
 )
