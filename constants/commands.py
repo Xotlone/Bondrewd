@@ -281,7 +281,7 @@ extract = Command(
         SubCommand('param', 'Извлечение параметров',
                    [
                        Option(
-                           'type',
+                           'table_name',
                            'Тип',
                            OptionType.string,
                            True,
@@ -323,7 +323,7 @@ insert = Command(
         SubCommand('param', 'Запись параметра',
                    [
                        Option(
-                           'type',
+                           'table_name',
                            'Тип',
                            OptionType.string,
                            True,
@@ -367,7 +367,7 @@ update = Command(
         SubCommand('param', 'Обновление параметра',
                    [
                        Option(
-                           'type',
+                           'table_name',
                            'Тип',
                            OptionType.string,
                            True,
