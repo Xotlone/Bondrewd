@@ -9,6 +9,7 @@ from utilities import log
 import controller
 from ml import word_processing
 
+
 class Events(dis_commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -19,7 +20,7 @@ class Events(dis_commands.Cog):
         config.owner_id = self.bot.owner_id
         log('Инициализация ML', 'ML')
         word_processing.Tokenizator.corpus_init()
-        log(f'Подключёние за {round(time.time() - config.connect_time, 2)} с.', 'Event')
+        log(f'Подключение за {round(time.time() - config.connect_time, 2)} с.', 'Event')
 
     @dis_commands.Cog.listener()
     async def on_disconnect(self):
@@ -74,6 +75,7 @@ class Events(dis_commands.Cog):
         if corpus_condition and corpus_limit < 100000:
             word_processing.Tokenizator.corpus_update(message.author.id, message.content)
             print(word_processing.Tokenizator.update_rating())
-    
+
+
 def setup(bot):
     bot.add_cog(Events(bot))

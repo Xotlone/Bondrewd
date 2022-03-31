@@ -2,49 +2,54 @@ import typing
 
 from disnake.ext import commands
 from disnake import Option, OptionType, Permissions
-from anekos import SFWImageTags, NSFWImageTags
 
 from constants import config
 import controller
 from database import database
 
-GENERALES_PERMISSIONES = Permissions.general()
+GENERAL_PERMISSIONS = Permissions.general()
+
 
 class RanksCheck:
+    def __init__(self):
+        self.access = None
+
     def acs(self, ctx: commands.Context):
         user_rank_id = database(f'SELECT rank_id FROM users WHERE id = {ctx.author.id}', 'one')[0]
 
-        if user_rank_id == None:
+        if user_rank_id is None:
             if ctx.author.id == config.owner_id:
                 user = controller.User(ctx.author.id, 5)
-            
+
             else:
                 user = controller.User(ctx.author.id, 0)
-                
+
             user.insert()
-        
+
         return controller.RANKS_DICT[self.access].priority <= user_rank_id
+
 
 class SubCommand(RanksCheck):
     count = 0
     _instances = []
 
-    def __init__(
-        self,
-        name: str,
-        description: str,
-        options: typing.List[Option]=[],
-        access: str='hereditas'
-    ):
+    def __init__(self,
+                 name: str,
+                 description: str,
+                 options: typing.List[Option] = None,
+                 access: str = 'hereditary'):
+        super().__init__()
+        if options is None:
+            options = []
         self.name = name
         self.description = description
         self.options = options
         self.access = access
         self.id = SubCommand.count
-        
+
         SubCommand.count += 1
         SubCommand._instances.append(self)
-    
+
     def __call__(self):
         return {
             'name': self.name,
@@ -58,27 +63,27 @@ class SubCommand(RanksCheck):
             if name.lower() == sub_command.name:
                 return sub_command
 
+
 class SubCommandGroup(RanksCheck):
     count = 0
     _instances = []
 
-    def __init__(
-        self,
-        name,
-        sub: typing.Tuple[SubCommand],
-        access: str='hereditas'
-    ):
+    def __init__(self,
+                 name: str,
+                 sub,
+                 access: str = 'hereditary'):
+        super().__init__()
         self.name = name
         self.sub = {n.name: n for n in sub}
         self.access = access
         self.id = SubCommandGroup.count
-        
+
         SubCommandGroup.count += 1
         SubCommandGroup._instances.append(self)
-    
+
     def __call__(self):
         return {'name': self.name}
-    
+
     @staticmethod
     def sort(key: str):
         if key == 'name':
@@ -100,7 +105,7 @@ class SubCommandGroup(RanksCheck):
                 group.sub = {k: v for k, v in subs}
                 out.append(group)
             return out
-        
+
         elif key == 'id':
             _instances = SubCommandGroup.sort(key)
             out = []
@@ -109,22 +114,25 @@ class SubCommandGroup(RanksCheck):
                 group.sub = {k: v for k, v in subs}
                 out.append(group)
             return out
-        
+
         else:
             raise KeyError(f'Key "{key}" does not exist')
+
 
 class Command(RanksCheck):
     count = 0
     _instances = []
 
-    def __init__(
-        self,
-        name: str,
-        description: str,
-        options: typing.List[Option]=[],
-        sub: typing.Tuple[typing.Union[SubCommand, SubCommandGroup]]=(),
-        access: str='Колокольчик'
-    ):
+    def __init__(self,
+                 name: str,
+                 description: str,
+                 options: typing.List[Option] = None,
+                 sub=(),
+                 access: str = 'Колокольчик'
+                 ):
+        super().__init__()
+        if options is None:
+            options = []
         self.name = name
         self.description = description
         self.options = options
@@ -134,24 +142,24 @@ class Command(RanksCheck):
 
         if sub != {}:
             for _sub in sub:
-                if _sub.access == 'hereditas':
+                if _sub.access == 'hereditary':
                     _sub.access = access
-                
+
                 if isinstance(_sub, SubCommandGroup):
                     for _sub2 in _sub.sub.values():
-                        if _sub2.access == 'hereditas':
+                        if _sub2.access == 'hereditary':
                             _sub2.access = _sub.access
 
         Command.count += 1
         Command._instances.append(self)
-    
+
     def __call__(self):
         return {
             'name': self.name,
             'description': self.description,
             'options': self.options
         }
-    
+
     @staticmethod
     def sort(key: str):
         if key == 'name':
@@ -162,7 +170,7 @@ class Command(RanksCheck):
 
         else:
             raise KeyError(f'Key "{key}" does not exist')
-    
+
     @staticmethod
     def sub_sort(key: str):
         if key == 'name':
@@ -173,7 +181,7 @@ class Command(RanksCheck):
                 command.sub = {k: v for k, v in subs}
                 out.append(command)
             return out
-        
+
         elif key == 'id':
             _instances = Command.sort(key)
             out = []
@@ -182,43 +190,44 @@ class Command(RanksCheck):
                 command.sub = {k: v for k, v in subs}
                 out.append(command)
             return out
-        
+
         else:
             raise KeyError(f'Key "{key}" does not exist')
-    
+
     @staticmethod
     def search(name: str):
         for command in Command._instances:
             if name.lower() == command.name:
                 return command
 
+
 ml = Command(
     'ml',
     'Все функции машинного обучения',
     sub=(
         SubCommandGroup(
-            'tokenizator',
+            'tokenizer',
             (
                 SubCommand('tokenize', 'Токенизировать текст (сырой текст принимается)',
-                    [
-                        Option(
-                            'text',
-                            'Текст для токенизации',
-                            OptionType.string,
-                            True
-                        )
-                    ]
-                ),
+                           [
+                               Option(
+                                   'text',
+                                   'Текст для токенизации',
+                                   OptionType.string,
+                                   True
+                               )
+                           ]
+                           ),
                 SubCommand('pre', 'Преподготовка текста к токенизации',
-                    [
-                        Option(
-                            'text',
-                            'Текст для преподготовки',
-                            OptionType.string,
-                            True
-                        )
-                    ]
-                ),
+                           [
+                               Option(
+                                   'text',
+                                   'Текст для преподготовки',
+                                   OptionType.string,
+                                   True
+                               )
+                           ]
+                           ),
             )
         ),
         SubCommand(
@@ -270,39 +279,39 @@ extract = Command(
     'Извлечение параметров/обучаемых параметров',
     sub=(
         SubCommand('param', 'Извлечение параметров',
-            [
-                Option(
-                    'type',
-                    'Тип',
-                    OptionType.string,
-                    True,
-                    {
-                        'Пользовательские': 'users',
-                        'Переменные': 'variables'
-                    }
-                ),
-                Option(
-                    'key',
-                    'Ключ',
-                    OptionType.string,
-                    False
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'type',
+                           'Тип',
+                           OptionType.string,
+                           True,
+                           {
+                               'Пользовательские': 'users',
+                               'Переменные': 'variables'
+                           }
+                       ),
+                       Option(
+                           'key',
+                           'Ключ',
+                           OptionType.string,
+                           False
+                       )
+                   ]
+                   ),
         SubCommand('ml', 'Извлечение обучаемых параметров',
-            [
-                Option(
-                    'key',
-                    'Ключ',
-                    OptionType.string,
-                    True,
-                    {
-                        'Словарный корпус': 'corpus'
-                    }
-                )
-            ],
-            'Чёрный свисток'
-        )
+                   [
+                       Option(
+                           'key',
+                           'Ключ',
+                           OptionType.string,
+                           True,
+                           {
+                               'Словарный корпус': 'corpus'
+                           }
+                       )
+                   ],
+                   'Чёрный свисток'
+                   )
     ),
     access='Красный свисток'
 )
@@ -312,41 +321,41 @@ insert = Command(
     'Запись новых параметров/обучаемых параметров',
     sub=(
         SubCommand('param', 'Запись параметра',
-            [
-                Option(
-                    'type',
-                    'Тип',
-                    OptionType.string,
-                    True,
-                    {
-                        'Переменные': 'variables'
-                    }
-                ),
-                Option(
-                    'value',
-                    'Значение (<val>)',
-                    OptionType.string,
-                    True
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'type',
+                           'Тип',
+                           OptionType.string,
+                           True,
+                           {
+                               'Переменные': 'variables'
+                           }
+                       ),
+                       Option(
+                           'value',
+                           'Значение (<val>)',
+                           OptionType.string,
+                           True
+                       )
+                   ]
+                   ),
         SubCommand('ml', 'Запись обучаемых параметров',
-            [
-                Option(
-                    'type',
-                    'Тип',
-                    OptionType.string,
-                    True
-                ),
-                Option(
-                    'file',
-                    'Файл с параметрами',
-                    OptionType.attachment,
-                    True
-                )
-            ],
-            'Лунный свисток'
-        )
+                   [
+                       Option(
+                           'type',
+                           'Тип',
+                           OptionType.string,
+                           True
+                       ),
+                       Option(
+                           'file',
+                           'Файл с параметрами',
+                           OptionType.attachment,
+                           True
+                       )
+                   ],
+                   'Лунный свисток'
+                   )
     ),
     access='Синий свисток'
 )
@@ -356,55 +365,55 @@ update = Command(
     'Обновление существующих параметров/обучаемых параметров',
     sub=(
         SubCommand('param', 'Обновление параметра',
-            [
-                Option(
-                    'type',
-                    'Тип',
-                    OptionType.string,
-                    True,
-                    {
-                        'Переменные': 'variables'
-                    }
-                ),
-                Option(
-                    'value',
-                    'Значение (<name>=<val>)',
-                    OptionType.string,
-                    True
-                ),
-                Option(
-                    'key',
-                    'Ключ',
-                    OptionType.string,
-                    False
-                )
-            ]
-        ),
-        SubCommandGroup('ml', 
-            [
-                SubCommand('corpus', 'Параметры заполнения корпуса',
-                    [
-                        Option(
-                            'condition',
-                            'Включение заполнения корпуса',
-                            OptionType.string,
-                            True,
-                            {
-                                'Да': '1',
-                                'Нет': '0'
-                            }
-                        ),
-                        Option(
-                            'limit',
-                            'Лимит корпуса',
-                            OptionType.integer,
-                            False
+                   [
+                       Option(
+                           'type',
+                           'Тип',
+                           OptionType.string,
+                           True,
+                           {
+                               'Переменные': 'variables'
+                           }
+                       ),
+                       Option(
+                           'value',
+                           'Значение (<name>=<val>)',
+                           OptionType.string,
+                           True
+                       ),
+                       Option(
+                           'key',
+                           'Ключ',
+                           OptionType.string,
+                           False
+                       )
+                   ]
+                   ),
+        SubCommandGroup('ml',
+                        [
+                            SubCommand('corpus', 'Параметры заполнения корпуса',
+                                       [
+                                           Option(
+                                               'condition',
+                                               'Включение заполнения корпуса',
+                                               OptionType.string,
+                                               True,
+                                               {
+                                                   'Да': '1',
+                                                   'Нет': '0'
+                                               }
+                                           ),
+                                           Option(
+                                               'limit',
+                                               'Лимит корпуса',
+                                               OptionType.integer,
+                                               False
+                                           )
+                                       ]
+                                       ),
+                        ],
+                        'Лунный свисток'
                         )
-                    ]
-                ),
-            ],
-            'Лунный свисток'
-        )
     ),
     access='Синий свисток'
 )
@@ -413,62 +422,62 @@ info = Command(
     'information',
     'Разного рода информация',
     sub=(
-        SubCommand('commands', 'Список мандатов'),
-        SubCommand('command', 'Описание определённого мандата',
-            [
-                Option(
-                    'name',
-                    'Название мандата, конкретное описание которого запрашивается',
-                    OptionType.string,
-                    True
-                )
-            ]
-        ),
+        SubCommand('commands', 'Список команд'),
+        SubCommand('command', 'Описание определённой команды',
+                   [
+                       Option(
+                           'name',
+                           'Название команды для отображения описания',
+                           OptionType.string,
+                           True
+                       )
+                   ]
+                   ),
         SubCommand('avatar', 'Аватар субъекта',
-            [
-                Option(
-                    'user',
-                    'Пользователь, аватар которого требуется',
-                    OptionType.user,
-                    False
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'user',
+                           'Пользователь, аватар которого требуется',
+                           OptionType.user,
+                           False
+                       )
+                   ]
+                   ),
         SubCommand('ping', 'Задержка отклика'),
         SubCommand('sticker', 'Информация о стикере',
-            [
-                Option(
-                    'id',
-                    'id стикера',
-                    OptionType.integer,
-                    True
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'id',
+                           'id стикера',
+                           OptionType.integer,
+                           True
+                       )
+                   ]
+                   ),
         SubCommand('ml', 'Информация о состоянии обучения'),
         SubCommand('member', 'Информация о пользователе',
-            [
-                Option(
-                    'user',
-                    'Пользователь',
-                    OptionType.user,
-                    False
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'user',
+                           'Пользователь',
+                           OptionType.user,
+                           False
+                       )
+                   ]
+                   ),
         SubCommand('rating', 'Рейтинг вклада в знания естественного языка',
-            [
-                Option(
-                    'ml',
-                    'Тип доктрины, рейтинг вклада которой вами требуется',
-                    OptionType.string,
-                    True,
-                    {
-                        'Словарный корпус': 'corpus'
-                    }
-                )
-            ]
-        ),
+                   [
+                       Option(
+                           'ml',
+                           'Тип доктрины, рейтинг вклада которой вами требуется',
+                           OptionType.string,
+                           True,
+                           {
+                               'Словарный корпус': 'corpus'
+                           }
+                       )
+                   ]
+                   ),
     )
 )
 
@@ -544,17 +553,17 @@ funcs = Command(
                     OptionType.string,
                     True,
                     {
-                        'Хирагана': 'hira'
+                        'Хирагана': 'hiragana'
                     }
                 ),
                 Option(
                     'only_complex',
                     'Только сложные иероглифы с вашего списка',
-                    OptionType.boolean,
+                    OptionType.string,
                     False,
                     {
-                        'Да': True,
-                        'Нет': False
+                        'Да': '1',
+                        'Нет': '0'
                     }
                 )
             ]

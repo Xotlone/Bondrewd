@@ -10,7 +10,8 @@ from ml import word_processing
 import exceptions
 from database import database
 
-class Informationes(dis_commands.Cog):
+
+class Information(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
 
@@ -30,25 +31,26 @@ class Informationes(dis_commands.Cog):
                     if isinstance(sub1, commands.SubCommandGroup):
                         for sub2 in sub1.sub.values():
                             _instances[sub2.access].append(f'`{command.name} {sub1.name} {sub2.name}`')
-                    
+
                     else:
                         _instances[sub1.access].append(f'`{command.name} {sub1.name}`')
             else:
                 _instances[command.access].append(f'`{command.name}`')
-        
+
         for el in _instances.items():
-            if el[1] == []:
+            if not el[1]:
                 _instances[el[0]] = ['Команды отсутствуют']
 
         embed = disnake.Embed(
             title='Все команды',
-            description='Команды разделены на группы. Название каждой группы говорит о требуемом *свистке* для использования. Линия слева так-же говорит о цвете *свистка*.',
+            description='Команды разделены на группы. Название каждой группы говорит о требуемом *свистке* для '
+                        'использования. Линия слева так-же говорит о цвете *свистка*.',
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         for access, sub in _instances.items():
             embed.add_field(access, ', '.join(sub), inline=False)
         await inter.edit_original_message(embed=embed)
-    
+
     @command_info.sub_command(**commands.info.sub['command']())
     @dis_commands.check(commands.info.sub['command'].acs)
     async def sub_command(self, inter: disnake.CommandInteraction, name: str):
@@ -58,7 +60,7 @@ class Informationes(dis_commands.Cog):
             if command.sub != {}:
                 for sub in command.sub.values():
                     _instances[f'{command.name} {sub.name}'] = sub
-            
+
             else:
                 _instances[command.name] = command
 
@@ -78,11 +80,11 @@ class Informationes(dis_commands.Cog):
                 colour=config.DEFAULT_COLOR
             )
             await inter.edit_original_message(embed=embed)
-    
+
     @command_info.sub_command(**commands.info.sub['avatar']())
     @dis_commands.check(commands.info.sub['avatar'].acs)
-    async def sub_avatar(self, inter: disnake.CommandInteraction, user: disnake.Member=None):
-        if user == None:
+    async def sub_avatar(self, inter: disnake.CommandInteraction, user: disnake.Member = None):
+        if user is None:
             user = inter.author
 
         embed = disnake.Embed(
@@ -107,17 +109,17 @@ class Informationes(dis_commands.Cog):
         embed.description = f'{_ping} мс.'
         await msg.edit(embed=embed)
         log(f'  {_ping} мс.', 'Command')
-    
+
     @command_info.sub_command(**commands.info.sub['sticker']())
     @dis_commands.check(commands.info.sub['sticker'].acs)
     async def sub_sticker(self, inter: disnake.CommandInteraction, _id: int):
         sticker = self.bot.get_sticker(_id)
-        if sticker == None:
+        if sticker is None:
             embed = disnake.Embed(
                 title='Стикер не найден',
                 colour=config.DEFAULT_COLOR
             )
-        
+
         else:
             description = f'''Название: **{sticker.name}**;
             Описание: {sticker.description if sticker.description != '' else 'Отсутствует'};
@@ -132,9 +134,9 @@ class Informationes(dis_commands.Cog):
                 description=description,
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
-        
+
         await inter.edit_original_message(embed=embed)
-    
+
     @command_info.sub_command(**commands.info.sub['ml']())
     @dis_commands.check(commands.info.sub['ml'].acs)
     async def sub_ml_rules(self, inter: disnake.CommandInteraction):
@@ -142,7 +144,7 @@ class Informationes(dis_commands.Cog):
         corpus_limit = int(controller.ML.extract('corpus_limit'))
         corpus_length = len(word_processing.Tokenizator.corpus_get())
         corpus_fill = str(ProgressBar(corpus_limit, corpus_length, progress=True))
-        corpus_descriptio = f'''```py
+        corpus_description = f'''```py
 condition={corpus_condition}
 limit={corpus_limit}
 length={corpus_length}
@@ -153,20 +155,20 @@ fill="{corpus_fill}"```'''
             description=commands.info.sub['ml'].description,
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
-        embed.add_field('Corpus', corpus_descriptio, inline=False)
+        embed.add_field('Corpus', corpus_description, inline=False)
 
         await inter.edit_original_message(embed=embed)
-    
+
     @command_info.sub_command(**commands.info.sub['member']())
     @dis_commands.check(commands.info.sub['member'].acs)
-    async def sub_member(self, inter: disnake.CommandInteraction, user: disnake.Member=None):
-        if user == None:
+    async def sub_member(self, inter: disnake.CommandInteraction, user: disnake.Member = None):
+        if user is None:
             user = inter.author
-        
+
         if user.bot:
             error = ValueError('User is bot')
             await exceptions.Bot(inter, error)
-        
+
         wistle = controller.Wistle.get(int(database(f'SELECT rank_id FROM users WHERE id = {user.id}', 'one')[0]))
         description = f'''Имя: **{user.name}**;
         Доступ: **{wistle.name}**;
@@ -182,7 +184,7 @@ fill="{corpus_fill}"```'''
         )
         embed.set_thumbnail(user.avatar)
         await inter.edit_original_message(embed=embed)
-    
+
     @command_info.sub_command(**commands.info.sub['rating']())
     @dis_commands.check(commands.info.sub['rating'].acs)
     async def sub_rating(self, inter: disnake.CommandInteraction, ml: str):
@@ -190,7 +192,9 @@ fill="{corpus_fill}"```'''
             corpus_rating = word_processing.Tokenizator.update_rating()
             corpus_len = len(word_processing.Tokenizator.corpus_get())
             proc = word_processing.normed_exponential_func([int(x[1]) / corpus_len for x in corpus_rating])
-            users_list = '\n'.join([f'{i + 1}. **{self.bot.get_user(int(a)).name}**: `{c}` {round(proc[i] * 100, 2)}%' for i, (a, c) in enumerate(corpus_rating.items())][:10])
+            users_list = '\n'.join([f'{i + 1}. **{self.bot.get_user(int(a)).name}**: `{c}` '
+                                    f'{round(proc[i] * 100, 2)}%' for i, (a, c) in enumerate(corpus_rating.items())][
+                                   :10])
 
             embed = disnake.Embed(
                 title='Рейтинг вклада в корпус',
@@ -198,6 +202,7 @@ fill="{corpus_fill}"```'''
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
             await inter.edit_original_message(embed=embed)
-   
+
+
 def setup(bot):
-    bot.add_cog(Informationes(bot))
+    bot.add_cog(Information(bot))

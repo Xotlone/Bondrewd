@@ -1,6 +1,5 @@
-test
+test.py
 __pycache__
-.env
 texts.json
 variables.json
 _df.txt

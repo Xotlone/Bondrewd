@@ -5,6 +5,7 @@ from disnake.ext import commands
 from database import database
 from utilities import log
 
+
 class Wistle:
     count = 0
     _instances = []
@@ -16,35 +17,36 @@ class Wistle:
 
         Wistle.count += 1
         Wistle._instances.append(self)
-    
+
     def __call__(self):
         return self.priority
 
     def __eq__(self, other):
         return self.priority == other.priority
-    
+
     def __ne__(self, other):
         return self.priority != other.priority
-    
+
     def __lt__(self, other):
         return self.priority < other.priority
-    
+
     def __gt__(self, other):
         return self.priority > other.priority
-    
+
     def __le__(self, other):
         return self.priority <= other.priority
-    
+
     def __ge__(self, other):
         return self.priority >= other.priority
-    
+
     @staticmethod
     def get(priority: int):
         for wistle in Wistle._instances:
             if priority == wistle.priority:
                 return wistle
-        
+
         return False
+
 
 class User:
     count = 0
@@ -55,24 +57,26 @@ class User:
         self.access = RANKS_DICT.values()[rank_id]
 
         User.count += 1
-    
+
     def insert(self):
         log(f'  Пользователь с id {self.id} добавлен в таблицу', 'Database')
         database(f'INSERT INTO users (id) VALUES ({self.id});')
         return True
-    
+
     def remove(self):
         database(f'DELETE FROM users WHERE id = {self.id};')
         return True
+
 
 class ML:
     @staticmethod
     def extract(name: str):
         return database(f'SELECT condition FROM ml WHERE name = \'{name}\'', 'one')[0]
-    
+
     @staticmethod
     def update(name: str, condition: str):
         return database(f'UPDATE ml SET condition = \'{condition}\' WHERE name = \'{name}\'')
+
 
 RANKS_DICT = {
     'Колокольчик': Wistle('Колокольчик', 0xc4986e),
@@ -89,6 +93,7 @@ INDEX_ML = {
     'corpus_condition': '0',
     'corpus_limit': '10000'
 }
+
 
 async def initialization(bot: commands.Bot):
     t = time.time()
@@ -111,13 +116,13 @@ async def initialization(bot: commands.Bot):
             condition TEXT DEFAULT ''
         );
     ''')
-    
+
     log('   Инициализация параметров ML', 'Database')
     for k, v in INDEX_ML.items():
         if k not in map(lambda a: a[0], database(f'SELECT name FROM ml', 'all')):
             database(f'INSERT INTO ml VALUES (\'{k}\', \'{v}\')')
             log(f'      Параметр "{k}" добавлен')
-    
+
     log('   Добавление отсутствующих в таблицу', 'Database')
     for member in bot.get_all_members():
         if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
@@ -128,5 +133,5 @@ async def initialization(bot: commands.Bot):
             else:
                 database(f'INSERT INTO users VALUES ({member.id}, 0)')
                 log(f'   Участник "{member.name}" добавлен в таблицу', 'Database')
-    
+
     log(f'Инициализация прошла успешно за {round(time.time() - t, 2)} с.', 'Database')

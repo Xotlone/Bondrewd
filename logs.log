@@ -1,21 +1,17 @@
-[2022-03-19 22:04:16,543] - Loading  - Загрузка модулей
-[2022-03-19 22:04:21,720] - Loading  -   error_handler загружен
-[2022-03-19 22:04:21,729] - Loading  -   events загружен
-[2022-03-19 22:04:21,734] - Loading  -   images загружен
-[2022-03-19 22:04:21,738] - Loading  -   information загружен
-[2022-03-19 22:04:21,742] - Loading  -   ml_cog загружен
-[2022-03-19 22:04:21,747] - Loading  -   other загружен
-[2022-03-19 22:04:21,752] - Loading  -   spotter загружен
-[2022-03-19 22:04:21,762] - logging in using static token
-[2022-03-19 22:04:24,607] - Shard ID None has sent the IDENTIFY payload.
-[2022-03-19 22:04:25,047] - Shard ID None has connected to Gateway: ["gateway-prd-main-3l8d",{"micros":77156,"calls":["discord-sessions-blue-prd-2-48",{"micros":76047,"calls":["start_session",{"micros":36847,"calls":["discord-api-74884784c-dp8hp",{"micros":33603,"calls":["get_user",{"micros":3627},"add_authorized_ip",{"micros":1434},"get_guilds",{"micros":8520},"coros_wait",{"micros":5}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":14196,"calls":[]}]}]}] (Session ID: 1e6ea969f82e21f145cb33dc96096b1c).
-[2022-03-19 22:04:25,050] - Database - Инициализация
-[2022-03-19 22:04:25,786] - Database -    Инициализация параметров ML
-[2022-03-19 22:04:27,253] - Database -    Добавление отсутствующих в таблицу
-[2022-03-19 22:04:30,912] - Database - Инициализация прошла успешно за 5.86 с.
-[2022-03-19 22:04:30,915] - ML       - Инициализация ML
-[2022-03-19 22:04:30,917] - Event    - Подключён за 25.2 с.
-[2022-03-19 22:06:04,944] - Command  - Выполнение "skip-gramm"
-[2022-03-19 22:06:06,841] - Command  -   Команда выполнена за 1.9 с.
-[2022-03-19 22:06:39,726] - Command  - Выполнение "skip-gramm"
-[2022-03-19 22:06:42,096] - Command  -   Команда выполнена за 2.37 с.
+[2022-03-31 21:46:19,741] - Loading  - Загрузка модулей
+[2022-03-31 21:46:20,869] - Loading  -   error_handler загружен
+[2022-03-31 21:46:20,875] - Loading  -   events загружен
+[2022-03-31 21:46:20,890] - Loading  -   images загружен
+[2022-03-31 21:46:20,894] - Loading  -   information загружен
+[2022-03-31 21:46:20,897] - Loading  -   ml_cog загружен
+[2022-03-31 21:46:20,906] - Loading  -   other загружен
+[2022-03-31 21:46:20,910] - Loading  -   spotter загружен
+[2022-03-31 21:46:20,912] - logging in using static token
+[2022-03-31 21:46:21,825] - Shard ID None has sent the IDENTIFY payload.
+[2022-03-31 21:46:22,046] - Shard ID None has connected to Gateway: ["gateway-prd-main-g2f3",{"micros":79403,"calls":["discord-sessions-blue-prd-2-36",{"micros":75806,"calls":["start_session",{"micros":43486,"calls":["discord-api-7c6c54d9d8-f6mhn",{"micros":38551,"calls":["get_user",{"micros":8398},"add_authorized_ip",{"micros":6057},"get_guilds",{"micros":3411},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":21056,"calls":[]}]}]}] (Session ID: 7876b200c48cea0297df61565173fc11).
+[2022-03-31 21:46:22,048] - Database - Инициализация
+[2022-03-31 21:46:22,597] - Database -    Инициализация параметров ML
+[2022-03-31 21:46:23,047] - Database -    Добавление отсутствующих в таблицу
+[2022-03-31 21:46:25,990] - Database - Инициализация прошла успешно за 3.94 с.
+[2022-03-31 21:46:25,990] - ML       - Инициализация ML
+[2022-03-31 21:46:25,991] - Event    - Подключение за 8.83 с.

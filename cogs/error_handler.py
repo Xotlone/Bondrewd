@@ -9,13 +9,14 @@ import exceptions
 
 log = logging.getLogger('logs')
 
+
 class ErrorHandler(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
 
     @dis_commands.Cog.listener()
     async def on_slash_command_error(self, inter: disnake.CommandInteraction, error: dis_commands.CommandError):
-        er = lambda e: isinstance(error, e)
+        def er(e): isinstance(error, e)
 
         if er(errors.CheckFailure):
             try:
@@ -27,6 +28,7 @@ class ErrorHandler(dis_commands.Cog):
 
         else:
             log.error(error, exc_info=True)
-   
+
+
 def setup(bot):
     bot.add_cog(ErrorHandler(bot))

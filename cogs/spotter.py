@@ -12,10 +12,11 @@ import exceptions
 from ml import word_processing
 from utilities import ProgressBar
 
+
 class Spotter(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
-    
+
     @dis_commands.slash_command(**commands.manual_request())
     @dis_commands.check(commands.manual_request.acs)
     async def command_manual_execute(self, inter: disnake.CommandInteraction, request: str):
@@ -30,7 +31,7 @@ class Spotter(dis_commands.Cog):
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error, request)
-        
+
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error)
 
@@ -49,14 +50,15 @@ class Spotter(dis_commands.Cog):
 
     @command_extract.sub_command(**commands.extract.sub['param']())
     @dis_commands.check(commands.extract.sub['param'].acs)
-    async def sub_param(self, inter: disnake.CommandInteraction, type: str, key: str=''):
+    async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, key: str = ''):
         try:
             if key != '':
                 key = f'WHERE {key}'
-            
-            param = database(f'SELECT * FROM {type} {key}', 'all')
 
-            column = database(f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' AND table_name=\'{type}\'', 'all')
+            param = database(f'SELECT * FROM {table_name} {key}', 'all')
+
+            column = database(f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' '
+                              f'AND table_name=\'{table_name}\'', 'all')
             column = list(map(lambda c: c[0], column))
             table = pd.DataFrame(param, columns=column)
 
@@ -69,7 +71,7 @@ class Spotter(dis_commands.Cog):
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
-        
+
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, key)
 
@@ -87,27 +89,30 @@ class Spotter(dis_commands.Cog):
                     colour=controller.RANKS_DICT['Чёрный свисток'].colour
                 )
                 await inter.edit_original_message(embed=embed, file=corpus)
-            
+
             else:
                 embed = disnake.Embed(
                     title='Корпус не обнаружен',
                     colour=controller.RANKS_DICT['Чёрный свисток'].colour
                 )
                 await inter.edit_original_message(embed=embed)
-    
+
     @dis_commands.slash_command(**commands.insert())
     @dis_commands.check(commands.insert.acs)
     async def command_insert(self, inter: disnake.CommandInteraction):
         pass
-    
+
     @command_insert.sub_command(**commands.insert.sub['param']())
     @dis_commands.check(commands.insert.sub['param'].acs)
-    async def sub_param(self, inter: disnake.CommandInteraction, type: str, value: str):
+    async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, value: str):
         try:
-            database(f'INSERT INTO {type} VALUES ({value})')
-            request = database(f'SELECT * FROM {type}', 'all')[-10:]
+            database(f'INSERT INTO {table_name} VALUES ({value})')
+            request = database(f'SELECT * FROM {table_name}', 'all')[-10:]
 
-            column = database(f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' AND table_name=\'{type}\'', 'all')
+            column = database(
+                f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' AND '
+                f'table_name=\'{table_name}\'',
+                'all')
             column = list(map(lambda c: c[0], column))
             table = pd.DataFrame(request, columns=column)
 
@@ -117,34 +122,37 @@ class Spotter(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Синий свисток'].colour
             )
             await inter.edit_original_message(embed=embed)
-        
+
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
-        
+
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, value)
-    
+
     @command_insert.sub_command(**commands.insert.sub['ml']())
     @dis_commands.check(commands.insert.sub['ml'].acs)
     async def sub_ml_data(self, inter: disnake.CommandInteraction, type: str, file: disnake.Attachment):
         raise Exception('IN DEVELOPING')
-    
+
     @dis_commands.slash_command(**commands.update())
     @dis_commands.check(commands.update.acs)
     async def command_data_update(self, inter: disnake.CommandInteraction):
         pass
-    
+
     @command_data_update.sub_command(**commands.update.sub['param']())
     @dis_commands.check(commands.update.sub['param'].acs)
-    async def sub_param(self, inter: disnake.CommandInteraction, type: str, value: str, key: str=''):
+    async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, value: str, key: str = ''):
         try:
             if key != '':
                 key = f'WHERE {key}'
-            request = f'UPDATE {type} SET {value} {key}'
+            request = f'UPDATE {table_name} SET {value} {key}'
             database(request)
-            request = database(f'SELECT * FROM {type}')[:10]
+            request = database(f'SELECT * FROM {table_name}')[:10]
 
-            column = database(f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' AND table_name=\'{type}\'', 'all')
+            column = database(
+                f'SELECT column_name FROM information_schema.columns WHERE table_schema = \'public\' AND '
+                f'table_name=\'{table_name}\'',
+                'all')
             column = list(map(lambda c: c[0], column))
             table = pd.DataFrame(request, columns=column)
 
@@ -154,7 +162,7 @@ class Spotter(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Синий свисток'].colour
             )
             await inter.edit_original_message(embed=embed)
-        
+
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
 
@@ -165,13 +173,13 @@ class Spotter(dis_commands.Cog):
 
     @group_ml.sub_command(**commands.update.sub['ml'].sub['corpus']())
     @dis_commands.check(commands.update.sub['ml'].sub['corpus'].acs)
-    async def re_mutabilis(self, inter: disnake.CommandInteraction, condition: str, limit: int=0):
+    async def re_mutabilis(self, inter: disnake.CommandInteraction, condition: str, limit: int = 0):
         if limit == 0:
             limit = int(controller.ML.extract('corpus_limit'))
 
-        if limit <= 100000 and limit >= 1000:
+        if 100000 >= limit >= 1000:
             controller.ML.update('corpus_condition', condition)
-            controller.ML.update('corpus_limit', limit)
+            controller.ML.update('corpus_limit', str(limit))
 
             embed = disnake.Embed(
                 title='Изменения записаны',
@@ -179,10 +187,11 @@ class Spotter(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Лунный свисток'].colour
             )
             await inter.edit_original_message(embed=embed)
-        
+
         else:
             error = Exception('Corpus limit')
             await exceptions.MLCorpusLimit.call(inter, error)
-   
+
+
 def setup(bot):
     bot.add_cog(Spotter(bot))
