@@ -6,6 +6,7 @@ from disnake import Option, OptionType, Permissions
 from constants import config
 import controller
 from database import database
+from external_libs.google_trans_new import google_trans_new
 
 GENERAL_PERMISSIONS = Permissions.general()
 
@@ -469,7 +470,7 @@ info = Command(
                    [
                        Option(
                            'ml',
-                           'Тип доктрины, рейтинг вклада которой вами требуется',
+                           'Часть конвейера NLP',
                            OptionType.string,
                            True,
                            {
@@ -581,6 +582,30 @@ funcs = Command(
                         'Да': '1',
                         'Нет': '0'
                     }
+                )
+            ]
+        ),
+        SubCommand(
+            'translate',
+            'Переводчик',
+            [
+                Option(
+                    'text',
+                    'Текст',
+                    OptionType.string,
+                    True
+                ),
+                Option(
+                    'from_lang',
+                    'С какого языка (по умолчанию автоматически)',
+                    OptionType.string,
+                    False
+                ),
+                Option(
+                    'to_lang',
+                    'На какой язык (по умолчанию русский)',
+                    OptionType.string,
+                    False
                 )
             ]
         )

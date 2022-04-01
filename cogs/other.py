@@ -7,6 +7,7 @@ from disnake.ext import commands as dis_commands
 from constants import commands, config
 import controller
 from database import database
+from external_libs.google_trans_new import google_trans_new
 
 
 class Other(dis_commands.Cog):
@@ -30,7 +31,7 @@ class Other(dis_commands.Cog):
 
     @command_funcs.sub_command(**commands.funcs.sub['learn-japanese']())
     @dis_commands.check(commands.funcs.sub['learn-japanese'].acs)
-    async def learn_japanese(self, inter: disnake.CommandInteraction, alphabet: str, only_complex: str = '0'):
+    async def sub_learn_japanese(self, inter: disnake.CommandInteraction, alphabet: str, only_complex: str = '0'):
         only_complex = int(only_complex)
         if alphabet == 'hiragana':
             alphabet = list(config.HIRAGANA.items())
@@ -163,6 +164,28 @@ class Other(dis_commands.Cog):
 
             await clicked.response.edit_message(embed=embed, components=[])
             await asyncio.sleep(2)
+
+    @command_funcs.sub_command(**commands.funcs.sub['translate']())
+    @dis_commands.check(commands.funcs.sub['translate'].acs)
+    async def sub_translate(self, inter: disnake.CommandInteraction, text: str, from_lang: str = 'auto', to_lang: str
+    = 'ru'):
+        if from_lang not in google_trans_new.LANGUAGES or to_lang not in google_trans_new.LANGUAGES:
+            embed = disnake.Embed(
+                title='Не соответствует IETF',
+                description=f'Кода языка "{from_lang}" или "{to_lang}" не существует',
+                colour=disnake.Colour.red()
+            )
+
+        else:
+            translator = google_trans_new.google_translator()
+            translated = translator.translate(text, to_lang, from_lang)
+            embed = disnake.Embed(
+                title='Перевод',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+            embed.add_field(f'С {from_lang} на {to_lang}', translated)
+
+        await inter.edit_original_message(embed=embed)
 
 
 def setup(bot):

@@ -151,7 +151,7 @@ length={corpus_length}
 fill="{corpus_fill}"```'''
 
         embed = disnake.Embed(
-            title='Правила ML',
+            title='Информация о ML',
             description=commands.info.sub['ml'].description,
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
