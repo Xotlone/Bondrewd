@@ -170,12 +170,12 @@ fill="{corpus_fill}"```'''
             await exceptions.Bot(inter, error)
 
         wistle = controller.Wistle.get(int(database(f'SELECT rank_id FROM users WHERE id = {user.id}', 'one')[0]))
-        description = f'''Имя: **{user.name}**;
-        Доступ: **{wistle.name}**;
-        Создан: {disnake.utils.format_dt(user.created_at, style='R')};
-        Вступил на сервер: {disnake.utils.format_dt(user.joined_at, style='R')};
-        Роли: {", ".join(list(map(lambda role: f'**{role.name}**', user.roles))[1:])};
-        Идентификатор: `{user.id}`.'''
+        description = f'''Имя: **{user.name}**
+        Доступ: **{wistle.name}**
+        Создан: {disnake.utils.format_dt(user.created_at, style='R')}
+        Вступил на сервер: {disnake.utils.format_dt(user.joined_at, style='R')}
+        Роли: {", ".join(list(map(lambda role: f'**{role.name}**', user.roles))[1:])}
+        Идентификатор: `{user.id}`'''
 
         embed = disnake.Embed(
             title=f'О {user.name}',

@@ -87,10 +87,6 @@ CHOICE_DELAY = 60
 
 ANIMEITEMSCOUNT = 4175858
 ANIMELINK = 'https://safebooru.donmai.us/'
-ANIMEEROLINK = 'http://anime.reactor.cc/tag/Anime+Ero'
-ANIMENEKOLINK = 'http://anime.reactor.cc/tag/Animal+Ears'
-ANIMECUTE = 'http://anime.reactor.cc/tag/Anime+%D0%9D%D1%8F%D1%88%D0%B8'
-ANIMEMONSTERGIRL = 'http://anime.reactor.cc/tag/Monster+Girl+%28Anime%29'
 HENTAILINK = 'https://anitokyo.tv/hentai/'
 
 owner_id = 0

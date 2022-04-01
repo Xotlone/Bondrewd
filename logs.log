@@ -1,17 +1,33 @@
-[2022-03-31 21:46:19,741] - Loading  - Загрузка модулей
-[2022-03-31 21:46:20,869] - Loading  -   error_handler загружен
-[2022-03-31 21:46:20,875] - Loading  -   events загружен
-[2022-03-31 21:46:20,890] - Loading  -   images загружен
-[2022-03-31 21:46:20,894] - Loading  -   information загружен
-[2022-03-31 21:46:20,897] - Loading  -   ml_cog загружен
-[2022-03-31 21:46:20,906] - Loading  -   other загружен
-[2022-03-31 21:46:20,910] - Loading  -   spotter загружен
-[2022-03-31 21:46:20,912] - logging in using static token
-[2022-03-31 21:46:21,825] - Shard ID None has sent the IDENTIFY payload.
-[2022-03-31 21:46:22,046] - Shard ID None has connected to Gateway: ["gateway-prd-main-g2f3",{"micros":79403,"calls":["discord-sessions-blue-prd-2-36",{"micros":75806,"calls":["start_session",{"micros":43486,"calls":["discord-api-7c6c54d9d8-f6mhn",{"micros":38551,"calls":["get_user",{"micros":8398},"add_authorized_ip",{"micros":6057},"get_guilds",{"micros":3411},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":21056,"calls":[]}]}]}] (Session ID: 7876b200c48cea0297df61565173fc11).
-[2022-03-31 21:46:22,048] - Database - Инициализация
-[2022-03-31 21:46:22,597] - Database -    Инициализация параметров ML
-[2022-03-31 21:46:23,047] - Database -    Добавление отсутствующих в таблицу
-[2022-03-31 21:46:25,990] - Database - Инициализация прошла успешно за 3.94 с.
-[2022-03-31 21:46:25,990] - ML       - Инициализация ML
-[2022-03-31 21:46:25,991] - Event    - Подключение за 8.83 с.
+[2022-04-01 16:03:54,797] - Loading  - Загрузка модулей
+[2022-04-01 16:03:55,248] - Loading  -   error_handler загружен
+[2022-04-01 16:03:55,537] - Loading  -   events загружен
+[2022-04-01 16:03:55,559] - Loading  -   images загружен
+[2022-04-01 16:03:55,562] - Loading  -   information загружен
+[2022-04-01 16:03:55,565] - Loading  -   ml_cog загружен
+[2022-04-01 16:03:55,567] - Loading  -   other загружен
+[2022-04-01 16:03:56,335] - Loading  -   spotter загружен
+[2022-04-01 16:03:56,336] - logging in using static token
+[2022-04-01 16:03:57,122] - Shard ID None has sent the IDENTIFY payload.
+[2022-04-01 16:03:57,368] - Shard ID None has connected to Gateway: ["gateway-prd-main-h6gh",{"micros":100517,"calls":["discord-sessions-blue-prd-2-132",{"micros":99396,"calls":["start_session",{"micros":78277,"calls":["discord-api-67ff589cfd-qkch4",{"micros":74961,"calls":["get_user",{"micros":12673},"add_authorized_ip",{"micros":3054},"get_guilds",{"micros":14182},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":5055,"calls":[]}]}]}] (Session ID: 35e3a56460c82d5b44b00d3549fe0fb4).
+[2022-04-01 16:03:57,370] - Database - Инициализация
+[2022-04-01 16:03:57,553] - Database -    Инициализация параметров ML
+[2022-04-01 16:03:57,912] - Database -    Добавление отсутствующих в таблицу
+[2022-04-01 16:03:58,818] - Database - Инициализация прошла успешно за 1.45 с.
+[2022-04-01 16:03:58,818] - ML       - Инициализация ML
+[2022-04-01 16:03:58,819] - Event    - Подключение за 5.62 с.
+[2022-04-01 16:04:07,187] - Command  - Выполнение "commands"
+[2022-04-01 16:04:07,784] - Command  -   Команда выполнена за 0.6 с.
+[2022-04-01 16:05:46,161] - Command  - Выполнение "skip-gramm"
+[2022-04-01 16:05:47,315] - Command  -   Команда выполнена за 1.15 с.
+[2022-04-01 16:06:21,387] - Command  - Выполнение "param"
+[2022-04-01 16:06:22,245] - Command  -   Команда выполнена за 0.86 с.
+[2022-04-01 16:06:28,511] - Command  - Выполнение "param"
+[2022-04-01 16:06:29,263] - Command  -   Команда выполнена за 0.75 с.
+[2022-04-01 16:07:20,283] - Command  - Выполнение "corpus"
+[2022-04-01 16:07:21,110] - Command  -   Команда выполнена за 0.83 с.
+[2022-04-01 16:07:51,526] - Command  - Выполнение "ml"
+[2022-04-01 16:07:52,597] - Command  -   Команда выполнена за 1.07 с.
+[2022-04-01 16:08:53,131] - Command  - Выполнение "avatar"
+[2022-04-01 16:08:53,840] - Command  -   Команда выполнена за 0.71 с.
+[2022-04-01 16:09:20,323] - Command  - Выполнение "member"
+[2022-04-01 16:09:20,921] - Command  -   Команда выполнена за 0.6 с.

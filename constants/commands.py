@@ -511,7 +511,7 @@ images = Command(
             'Действие',
             [
                 Option(
-                    'type',
+                    'action_type',
                     'Выберите действие',
                     OptionType.string,
                     True,
@@ -524,6 +524,22 @@ images = Command(
                 )
             ]
         ),
+        SubCommand(
+            'parse',
+            'Парсинг',
+            [
+                Option(
+                    'parse_type',
+                    'Категория парсинга',
+                    OptionType.string,
+                    False,
+                    {
+                        'Аниме': 'anime',
+                        'Хентай': 'hentai'
+                    }
+                )
+            ]
+        )
     )
 )
 
