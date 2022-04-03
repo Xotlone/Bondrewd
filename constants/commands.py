@@ -6,7 +6,6 @@ from disnake import Option, OptionType, Permissions
 from constants import config
 import controller
 from database import database
-from external_libs.google_trans_new import google_trans_new
 
 GENERAL_PERMISSIONS = Permissions.general()
 
