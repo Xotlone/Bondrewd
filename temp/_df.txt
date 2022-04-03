@@ -1,0 +1,12 @@
+[
+    {'sdo': ['sdpomdspo', 'g']},
+    {'g': ['sdo', 'msd']},
+    {'msd': ['g', 'pogspo']},
+    {'pogspo': ['msd', 'gdsopg']},
+    {'gdsopg': ['pogspo', 'm']},
+    {'m': ['gdsopg', 'dspom']},
+    {'dspom': ['m', 'gspoj']},
+    {'gspoj': ['dspom', 'mgonmdpsjpjv']},
+    {'mgonmdpsjpjv': ['gspoj', 'sdg']},
+    {'sdg': ['mgonmdpsjpjv', 'sd']},
+]
