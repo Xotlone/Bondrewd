@@ -87,7 +87,10 @@ RANKS_DICT = {
     'Белый свисток': Wistle('Белый свисток', 0xfefefe)
 }
 
-INDEX_VARIABLES = {}
+INDEX_VARIABLES = {
+    'logging': '0',
+    'logging_channel': '0'
+}
 
 INDEX_ML = {
     'corpus_condition': '0',
@@ -116,6 +119,12 @@ async def initialization(bot: commands.Bot):
             condition TEXT DEFAULT ''
         );
     ''')
+
+    log('   Инициализация стандартных параметров', 'Database')
+    for k, v in INDEX_VARIABLES.items():
+        if k not in map(lambda a: a[0], database(f'SELECT name FROM variables', 'all')):
+            database(f'INSERT INTO variables VALUES (\'{k}\', \'{v}\')')
+            log(f'      Параметр "{k}" добавлен')
 
     log('   Инициализация параметров ML', 'Database')
     for k, v in INDEX_ML.items():
