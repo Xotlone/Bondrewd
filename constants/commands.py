@@ -1,7 +1,7 @@
 import typing
 
 from disnake.ext import commands
-from disnake import Option, OptionType, Permissions
+from disnake import Option, OptionType, Permissions, ChannelType
 
 from constants import config
 import controller
@@ -618,5 +618,28 @@ funcs = Command(
                 )
             ]
         )
+    )
+)
+
+administration = Command(
+    'administration',
+    'Команды администрации сервера',
+    sub=(
+        SubCommand(
+            'logging',
+            'Назначить канал для логирования',
+            [
+                Option(
+                    'condition',
+                    'Состояние',
+                    OptionType.string,
+                    True,
+                    {
+                        'Отключить': '0',
+                        'Этот канал': '1'
+                    }
+                )
+            ]
+        ),
     )
 )

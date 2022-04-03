@@ -11,8 +11,19 @@ from ml import word_processing
 
 
 class Events(dis_commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
+
+    async def send_logging(self, guild_id: int, text: str):
+        channel_id = database(f'SELECT logging FROM servers_settings WHERE id = {guild_id}', 'one')[0]
+        if channel_id != 0:
+            channel = self.bot.get_channel(channel_id)
+            embed = disnake.Embed(
+                title='Лог',
+                description=text,
+                colour=disnake.Colour.yellow()
+            )
+            await channel.send(embed=embed)
 
     @dis_commands.Cog.listener()
     async def on_connect(self):
@@ -20,7 +31,10 @@ class Events(dis_commands.Cog):
         config.owner_id = self.bot.owner_id
         log('Инициализация ML', 'ML')
         word_processing.Tokenizator.corpus_init()
-        log(f'Подключение за {round(time.time() - config.connect_time, 2)} с.', 'Event')
+        log_msg = f'Подключение за {round(time.time() - config.connect_time, 2)} с.'
+        log(log_msg, 'Event')
+        async for guild in self.bot.fetch_guilds(limit=None):
+            await self.send_logging(guild.id, log_msg)
 
     @dis_commands.Cog.listener()
     async def on_disconnect(self):
@@ -29,7 +43,10 @@ class Events(dis_commands.Cog):
     
     @dis_commands.Cog.listener()
     async def on_resumed(self):
-        log(f'Соединение восстановлено за {round(time.time() - config.shutdown_time, 2)} с.', 'Event')
+        log_msg = f'Соединение восстановлено за {round(time.time() - config.shutdown_time, 2)} с.'
+        log(log_msg, 'Event')
+        async for guild in self.bot.fetch_guilds(limit=None):
+            await self.send_logging(guild.id, log_msg)
     
     @dis_commands.Cog.listener()
     async def on_message(self, msg: disnake.Message):
@@ -51,6 +68,10 @@ class Events(dis_commands.Cog):
     @dis_commands.Cog.listener()
     async def on_guild_join(self, guild: disnake.Guild):
         log(f'Присоединение к гильдии "{guild.name}"', 'E')
+
+        if guild.id not in map(lambda a: a[0], database('SELECT id FROM servers_settings', 'all')):
+            database(f'INSERT INTO servers_settings VALUES ({guild.id})')
+            log(f'   Сервер "{guild.name}" добавлен в таблицу')
 
         for member in guild.members:
             if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
@@ -75,6 +96,24 @@ class Events(dis_commands.Cog):
         if corpus_condition and corpus_limit < 100000:
             word_processing.Tokenizator.corpus_update(message.author.id, message.content)
             print(word_processing.Tokenizator.update_rating())
+
+    @dis_commands.Cog.listener()
+    async def on_message_delete(self, message: disnake.Message):
+        if message.author.bot:
+            return
+
+        log_msg = f'Сообщение автора {message.author.name} удалено "{message.content}"'
+        log(log_msg, 'Message')
+        await self.send_logging(message.guild.id, log_msg)
+
+    @dis_commands.Cog.listener()
+    async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
+        if before.author.bot:
+            return
+
+        log_msg = f'Сообщение автора {before.author.name} изменено "{before.content}" -> "{after.content}"'
+        log(log_msg, 'Message')
+        await self.send_logging(before.guild.id, log_msg)
 
 
 def setup(bot):

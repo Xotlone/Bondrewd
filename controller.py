@@ -87,10 +87,7 @@ RANKS_DICT = {
     'Белый свисток': Wistle('Белый свисток', 0xfefefe)
 }
 
-INDEX_VARIABLES = {
-    'logging': '0',
-    'logging_channel': '0'
-}
+INDEX_VARIABLES = {}
 
 INDEX_ML = {
     'corpus_condition': '0',
@@ -118,6 +115,11 @@ async def initialization(bot: commands.Bot):
             name TEXT UNIQUE,
             condition TEXT DEFAULT ''
         );
+        
+        CREATE TABLE IF NOT EXISTS servers_settings (
+            id BIGINT UNIQUE,
+            logging BIGINT DEFAULT 0
+        );
     ''')
 
     log('   Инициализация стандартных параметров', 'Database')
@@ -137,10 +139,16 @@ async def initialization(bot: commands.Bot):
         if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
             if await bot.is_owner(member):
                 database(f'INSERT INTO users VALUES ({member.id}, 5)')
-                log('   Владелец добавлен в таблицу', 'Database')
+                log('      Владелец добавлен в таблицу', 'Database')
 
             else:
                 database(f'INSERT INTO users VALUES ({member.id}, 0)')
-                log(f'   Участник "{member.name}" добавлен в таблицу', 'Database')
+                log(f'      Участник "{member.name}" добавлен в таблицу', 'Database')
+
+    log('   Инициализация параметров серверов', 'Database')
+    async for guild in bot.fetch_guilds(limit=None):
+        if guild.id not in map(lambda a: a[0], database('SELECT id FROM servers_settings', 'all')):
+            database(f'INSERT INTO servers_settings VALUES ({guild.id})')
+            log(f'      Сервер "{guild.name}" добавлен в таблицу')
 
     log(f'Инициализация прошла успешно за {round(time.time() - t, 2)} с.', 'Database')
