@@ -1,9 +1,6 @@
 test.py
 __pycache__
-texts.json
-variables.json
-_df.txt
+temp
 .vscode
-queries.pgsql
 workspace.code-workspace
 .idea

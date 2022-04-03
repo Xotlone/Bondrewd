@@ -151,4 +151,8 @@ async def initialization(bot: commands.Bot):
             database(f'INSERT INTO servers_settings VALUES ({guild.id})')
             log(f'      Сервер "{guild.name}" добавлен в таблицу')
 
+    log('   Очистка временных файлов')
+    ram_file = open('temp/ram.csv', 'w', newline='')
+    ram_file.close()
+
     log(f'Инициализация прошла успешно за {round(time.time() - t, 2)} с.', 'Database')

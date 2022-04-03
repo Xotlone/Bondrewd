@@ -1,7 +1,9 @@
 import time
+import csv
 
 import disnake
 from disnake.ext import commands as dis_commands
+from matplotlib import pyplot as plt
 
 from constants import commands, config
 from utilities import log, ProgressBar
@@ -41,11 +43,6 @@ class Information(dis_commands.Cog):
                                 _instances[sub2.access].append(f'|  {sub1.name}')
                                 prev_access = sub2.access
                             _instances[sub2.access].append(f'|  |  {sub2.name}')
-
-                    #else:
-                        #_instances[sub1.access].append(f'  {sub1.name}')
-            #else:
-                #_instances[command.access].append(command.name)
 
         for el in _instances.items():
             if not el[1]:
@@ -213,6 +210,37 @@ fill="{corpus_fill}"```'''
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
             await inter.edit_original_message(embed=embed)
+
+    @command_info.sub_command(**commands.info.sub['ram']())
+    @dis_commands.check(commands.info.sub['ram'].acs)
+    async def sub_ram(self, inter: disnake.CommandInteraction):
+        x, y = [], []
+        with open('temp/ram.csv') as csv_file:
+            data = csv.reader(csv_file)
+            for row in data:
+                x.append(int(row[0]))
+                y.append(int(row[1]))
+
+        local_max = [0, 0]
+        for i, j in zip(x, y):
+            if local_max[1] < j:
+                local_max = [i, j]
+
+        plt.plot(x, y, 'c-')
+        plt.xlabel('Время (секунды)')
+        plt.ylabel('Потребление (МБ)')
+        plt.title('Потребление ОЗУ')
+        plt.ylim(0, 500)
+        plt.annotate(local_max[1], local_max)
+        plt.savefig(fname='temp/ram_plot.png', format='png')
+        plt.close()
+
+        embed = disnake.Embed(
+            title='Потребление ОЗУ',
+            colour=controller.RANKS_DICT['Колокольчик'].colour
+        )
+        embed.set_image(file=disnake.File('temp/ram_plot.png'))
+        await inter.edit_original_message(embed=embed)
 
 
 def setup(bot):

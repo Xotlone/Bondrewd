@@ -432,62 +432,85 @@ info = Command(
     'information',
     'Разного рода информация',
     sub=(
-        SubCommand('commands', 'Список команд'),
-        SubCommand('command', 'Описание определённой команды',
-                   [
-                       Option(
-                           'name',
-                           'Название команды для отображения описания',
-                           OptionType.string,
-                           True
-                       )
-                   ]
-                   ),
-        SubCommand('avatar', 'Аватар субъекта',
-                   [
-                       Option(
-                           'user',
-                           'Пользователь, аватар которого требуется',
-                           OptionType.user,
-                           False
-                       )
-                   ]
-                   ),
-        SubCommand('ping', 'Задержка отклика'),
-        SubCommand('sticker', 'Информация о стикере',
-                   [
-                       Option(
-                           'id',
-                           'id стикера',
-                           OptionType.integer,
-                           True
-                       )
-                   ]
-                   ),
-        SubCommand('ml', 'Информация о состоянии обучения'),
-        SubCommand('member', 'Информация о пользователе',
-                   [
-                       Option(
-                           'user',
-                           'Пользователь',
-                           OptionType.user,
-                           False
-                       )
-                   ]
-                   ),
-        SubCommand('rating', 'Рейтинг вклада в знания естественного языка',
-                   [
-                       Option(
-                           'ml',
-                           'Часть конвейера NLP',
-                           OptionType.string,
-                           True,
-                           {
-                               'Словарный корпус': 'corpus'
-                           }
-                       )
-                   ]
-                   ),
+        SubCommand(
+            'commands',
+            'Список команд'
+        ),
+        SubCommand(
+            'command',
+            'Описание определённой команды',
+            [
+                Option(
+                    'name',
+                    'Название команды для отображения описания',
+                    OptionType.string,
+                    True
+                )
+            ]
+        ),
+        SubCommand(
+            'avatar',
+            'Аватар участника',
+            [
+                Option(
+                    'user',
+                    'Пользователь, аватар которого требуется',
+                    OptionType.user,
+                    False
+                )
+            ]
+        ),
+        SubCommand(
+            'ping',
+            'Задержка отклика'
+        ),
+        SubCommand(
+            'sticker',
+            'Информация о стикере',
+            [
+                Option(
+                    'id',
+                    'id стикера',
+                    OptionType.integer,
+                    True
+                )
+            ]
+        ),
+        SubCommand(
+            'ml',
+            'Информация о состоянии обучения'
+        ),
+        SubCommand(
+            'member',
+            'Информация о пользователе',
+            [
+                Option(
+                    'user',
+                    'Пользователь',
+                    OptionType.user,
+                    False
+                )
+            ]
+        ),
+        SubCommand(
+            'rating',
+            'Рейтинг вклада в знания естественного языка',
+            [
+                Option(
+                    'ml',
+                    'Часть конвейера NLP',
+                    OptionType.string,
+                    True,
+                    {
+                        'Словарный корпус': 'corpus'
+                    }
+                )
+            ]
+        ),
+        SubCommand(
+            'ram',
+            'График использования ОЗУ'
+        )
     )
 )
 

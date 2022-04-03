@@ -24,10 +24,10 @@ class ML(dis_commands.Cog):
     @dis_commands.check(commands.ml.sub['tokenizer'].sub['tokenize'].acs)
     async def sub_tokenize(self, inter: disnake.CommandInteraction, text: str):
         tokens = word_processing.Tokenizator.tokenize(inter.author.id, text)
-        with open('_df.txt', 'w', encoding='utf-8') as f:
+        with open('temp/_df.txt', 'w', encoding='utf-8') as f:
             f.write(str(tokens))
 
-        tokenized_text = disnake.File('_df.txt', 'tokenized_text.txt')
+        tokenized_text = disnake.File('temp/_df.txt', 'tokenized_text.txt')
         embed = disnake.Embed(
             title='Токенизированный текст',
             colour=controller.RANKS_DICT['Чёрный свисток'].colour
@@ -39,9 +39,9 @@ class ML(dis_commands.Cog):
     async def sub_pre(self, inter: disnake.CommandInteraction, text: str):
         tokens = word_processing.Tokenizator.pre(text)
 
-        with open('_df.txt', 'w', encoding='utf-8') as f:
+        with open('temp/_df.txt', 'w', encoding='utf-8') as f:
             f.write(str(tokens))
-        file = disnake.File('_df.txt', 'filtered_text.txt')
+        file = disnake.File('temp/_df.txt', 'filtered_text.txt')
         embed = disnake.Embed(
             title='Подготовленный текст',
             colour=controller.RANKS_DICT['Чёрный свисток'].colour
@@ -58,9 +58,9 @@ class ML(dis_commands.Cog):
             s_gramm_txt += f'    {str(i)},\n'
         s_gramm_txt += ']'
 
-        with open('_df.txt', 'w', encoding='utf-8') as f:
+        with open('temp/_df.txt', 'w', encoding='utf-8') as f:
             f.write(str(s_gramm_txt))
-        file = disnake.File('_df.txt', 'skip-gramm.txt')
+        file = disnake.File('temp/_df.txt', 'skip-gramm.txt')
         await inter.edit_original_message(file=file)
 
 
