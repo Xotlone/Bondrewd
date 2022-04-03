@@ -566,10 +566,15 @@ images = Command(
                     'Категория парсинга',
                     OptionType.string,
                     False,
-                    {
-                        'Аниме': 'anime',
-                        'Хентай': 'hentai'
-                    }
+                    [
+                        'Anime',
+                        'Anime Ero',
+                        'Anime Ero Gifs',
+                        'Anime Ears',
+                        'Anime Cute',
+                        'Monster Girl',
+                        'Hentai'
+                    ]
                 )
             ]
         )

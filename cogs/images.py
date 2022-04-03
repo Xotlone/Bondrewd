@@ -38,8 +38,9 @@ class Images(dis_commands.Cog):
 
     @command_images.sub_command(**commands.images.sub['parse']())
     @dis_commands.check(commands.images.sub['parse'].acs)
-    async def sub_parse(self, inter: disnake.CommandInteraction, parse_type: str = 'anime'):
-        if parse_type == 'anime':
+    @dis_commands.is_nsfw()
+    async def sub_parse(self, inter: disnake.CommandInteraction, parse_type: str = 'Anime'):
+        if parse_type == 'Anime':
             parser = utilities.AnimeParser()
             parsed = parser.try_parse()
             embed = disnake.Embed(
@@ -47,7 +48,47 @@ class Images(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
 
-        elif parse_type == 'hentai':
+        elif parse_type == 'Anime Ero':
+            parser = utilities.AnimeEroParser()
+            parsed = parser.try_parse()
+            embed = disnake.Embed(
+                title='Аниме Эротика',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+
+        elif parse_type == 'Anime Ero Gifs':
+            parser = utilities.AnimeEroGifsParser()
+            parsed = parser.try_parse()
+            embed = disnake.Embed(
+                title='Аниме Эротика (гифки)',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+
+        elif parse_type == 'Anime Ears':
+            parser = utilities.AnimeEarsParser()
+            parsed = parser.try_parse()
+            embed = disnake.Embed(
+                title='Аниме Неко (и не только)',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+
+        elif parse_type == 'Anime Cute':
+            parser = utilities.AnimeCuteParser()
+            parsed = parser.try_parse()
+            embed = disnake.Embed(
+                title='Аниме Няши',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+
+        elif parse_type == 'Monster Girl':
+            parser = utilities.AnimeMonsterGirlParser()
+            parsed = parser.try_parse()
+            embed = disnake.Embed(
+                title='Monster Girl',
+                colour=controller.RANKS_DICT['Колокольчик'].colour
+            )
+
+        elif parse_type == 'Hentai':
             parser = utilities.HentaiParser()
             parsed = parser.try_parse()
             embed = disnake.Embed(

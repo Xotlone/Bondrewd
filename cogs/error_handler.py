@@ -16,18 +16,24 @@ class ErrorHandler(dis_commands.Cog):
 
     @dis_commands.Cog.listener()
     async def on_slash_command_error(self, inter: disnake.CommandInteraction, error: dis_commands.CommandError):
-        def er(e): isinstance(error, e)
+        log.error(repr(error), exc_info=True)
+        log.info(error.args)
 
-        if er(errors.CheckFailure):
+        if type(error) == errors.CheckFailure:
             try:
                 command_access = commands.Command.search(inter.application_command.name).access
             except AttributeError:
                 command_access = commands.SubCommand.search(inter.application_command.name).access
 
-            await exceptions.Access.call(inter, error, command_access)
+            await exceptions.Access(inter, command_access)
 
-        else:
-            log.error(error, exc_info=True)
+        elif type(error) == errors.NSFWChannelRequired:
+            await exceptions.NSFW(inter)
+
+        elif type(error) == errors.CommandInvokeError and error.args[0] == 'Command raised an exception: ' \
+                                                                           'InteractionNotResponded: This interaction ' \
+                                                                           'hasn\'t been responded to yet':
+            await exceptions.UndefinedError(inter)
 
 
 def setup(bot):

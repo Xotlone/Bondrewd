@@ -87,6 +87,11 @@ CHOICE_DELAY = 90  # In seconds
 
 ANIMEITEMSCOUNT = 4175858
 ANIMELINK = 'https://safebooru.donmai.us/'
+ANIMEEROLINK = 'http://anime.reactor.cc/tag/Anime+Ero'
+ANIMEEROGIFSLINK = 'http://anime.reactor.cc/tag/Anime+Ero+Gifs'
+ANIMENEKOLINK = 'http://anime.reactor.cc/tag/Animal+Ears'
+ANIMECUTELINK = 'http://anime.reactor.cc/tag/Anime+%D0%9D%D1%8F%D1%88%D0%B8'
+ANIMEMONSTERGIRLLINK = 'http://anime.reactor.cc/tag/Monster+Girl+%28Anime%29'
 HENTAILINK = 'https://anitokyo.tv/hentai/'
 
 RAM_READ_DELAY = 1  # In seconds

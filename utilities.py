@@ -77,13 +77,14 @@ class Parser:
 
         raise Exception('parsing', self.attempts, 'attempts exhausted')
 
-    def parse(self) -> str:
+    def parse(self) -> dict:
         """Уникальная функция парсинга одного объекта"""
         pass
 
 
 class AnimeParser(Parser):
     link = config.ANIMELINK
+
     def parse(self):
         rnd = random.randint(1000, config.ANIMEITEMSCOUNT)
         response = requests.get(
@@ -95,8 +96,114 @@ class AnimeParser(Parser):
         return {'image': item}
 
 
+class AnimeEroParser(Parser):
+    link = config.ANIMEEROLINK
+
+    def parse(self):
+        response = requests.get(
+            config.ANIMEEROLINK,
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(response.content, 'html.parser')
+        count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
+        rnd = random.randint(0, count)
+
+        page = requests.get(
+            f'{config.ANIMEEROLINK}/{rnd}',
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(page.content, 'html.parser')
+        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        return {'image': item}
+
+
+class AnimeEroGifsParser(Parser):
+    link = config.ANIMEEROGIFSLINK
+
+    def parse(self):
+        response = requests.get(
+            config.ANIMEEROGIFSLINK,
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(response.content, 'html.parser')
+        count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
+        rnd = random.randint(0, count)
+
+        page = requests.get(
+            f'{config.ANIMEEROGIFSLINK}/{rnd}',
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(page.content, 'html.parser')
+        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        return {'image': item}
+
+
+class AnimeEarsParser(Parser):
+    link = config.ANIMENEKOLINK
+
+    def parse(self):
+        response = requests.get(
+            config.ANIMENEKOLINK,
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(response.content, 'html.parser')
+        count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
+        rnd = random.randint(0, count)
+
+        page = requests.get(
+            f'{config.ANIMENEKOLINK}/{rnd}',
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(page.content, 'html.parser')
+        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        return {'image': item}
+
+
+class AnimeCuteParser(Parser):
+    link = config.ANIMECUTELINK
+
+    def parse(self):
+        response = requests.get(
+            config.ANIMECUTELINK,
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(response.content, 'html.parser')
+        count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
+        rnd = random.randint(0, count)
+
+        page = requests.get(
+            f'{config.ANIMECUTELINK}/{rnd}',
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(page.content, 'html.parser')
+        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        return {'image': item}
+
+
+class AnimeMonsterGirlParser(Parser):
+    link = config.ANIMEMONSTERGIRLLINK
+
+    def parse(self):
+        response = requests.get(
+            config.ANIMEMONSTERGIRLLINK,
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(response.content, 'html.parser')
+        count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
+        rnd = random.randint(0, count)
+
+        page = requests.get(
+            f'{config.ANIMEMONSTERGIRLLINK}/{rnd}',
+            headers=config.HEADERS
+        )
+        soup = BeautifulSoup(page.content, 'html.parser')
+        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        return {'image': item}
+
+
 class HentaiParser(Parser):
     link = config.HENTAILINK
+
     def parse(self):
         response = requests.get(
             config.HENTAILINK,
