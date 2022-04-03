@@ -6,3 +6,4 @@ _df.txt
 .vscode
 queries.pgsql
 workspace.code-workspace
+.idea
