@@ -275,148 +275,158 @@ manual_request = Command(
     access='Белый свисток'
 )
 
-extract = Command(
-    'data_extract',
-    'Извлечение параметров/обучаемых параметров',
+data = Command(
+    'data',
+    'Работа с данными',
     sub=(
-        SubCommand('param', 'Извлечение параметров',
-                   [
-                       Option(
-                           'table_name',
-                           'Тип',
-                           OptionType.string,
-                           True,
-                           {
-                               'Пользовательские': 'users',
-                               'Переменные': 'variables'
-                           }
-                       ),
-                       Option(
-                           'key',
-                           'Ключ',
-                           OptionType.string,
-                           False
-                       )
-                   ]
-                   ),
-        SubCommand('ml', 'Извлечение обучаемых параметров',
-                   [
-                       Option(
-                           'key',
-                           'Ключ',
-                           OptionType.string,
-                           True,
-                           {
-                               'Словарный корпус': 'corpus'
-                           }
-                       )
-                   ],
-                   'Чёрный свисток'
-                   )
+        SubCommandGroup(
+            'extract',
+            sub=(
+                SubCommand(
+                    'param',
+                    'Извлечение параметров',
+                    [
+                        Option(
+                            'table_name',
+                            'Тип',
+                            OptionType.string,
+                            True,
+                            {
+                                'Пользовательские': 'users',
+                                'Переменные': 'variables'
+                            }
+                        ),
+                        Option(
+                            'key',
+                            'Ключ',
+                            OptionType.string,
+                            False
+                        )
+                    ]
+                ),
+                SubCommand(
+                    'ml',
+                    'Извлечение обучаемых параметров',
+                    [
+                        Option(
+                            'key',
+                            'Ключ',
+                            OptionType.string,
+                            True,
+                            {
+                                'Словарный корпус': 'corpus'
+                            }
+                        )
+                    ],
+                    'Чёрный свисток'
+                )
+            ),
+            access='Красный свисток'
+        ),
+        SubCommandGroup(
+            'insert',
+            sub=(
+                SubCommand(
+                    'param',
+                    'Запись параметра',
+                    [
+                        Option(
+                            'table_name',
+                            'Тип',
+                            OptionType.string,
+                            True,
+                            {
+                                'Переменные': 'variables'
+                            }
+                        ),
+                        Option(
+                            'value',
+                            'Значение (<val>)',
+                            OptionType.string,
+                            True
+                        )
+                    ]
+                ),
+                #SubCommand(
+                #    'ml',
+                #    'Запись обучаемых параметров',
+                #    [
+                #        Option(
+                #            'type',
+                #            'Тип',
+                #            OptionType.string,
+                #            True
+                #        ),
+                #        Option(
+                #            'file',
+                #            'Файл с параметрами',
+                #            OptionType.attachment,
+                #            True
+                #        )
+                #    ],
+                #    'Лунный свисток'
+                #)
+            ),
+            access='Синий свисток'
+        ),
+        SubCommandGroup(
+            'update',
+            sub=(
+                SubCommand(
+                    'param',
+                    'Обновление параметра',
+                    [
+                        Option(
+                            'table_name',
+                            'Тип',
+                            OptionType.string,
+                            True,
+                            {
+                                'Переменные': 'variables'
+                            }
+                        ),
+                        Option(
+                            'value',
+                            'Значение (<name>=<val>)',
+                            OptionType.string,
+                            True
+                        ),
+                        Option(
+                            'key',
+                            'Ключ',
+                            OptionType.string,
+                            False
+                        )
+                    ]
+                ),
+                SubCommand(
+                    'ml-corpus',
+                    'Параметры заполнения корпуса',
+                    [
+                        Option(
+                            'condition',
+                            'Включение заполнения корпуса',
+                            OptionType.string,
+                            True,
+                            {
+                                'Да': '1',
+                                'Нет': '0'
+                            }
+                        ),
+                        Option(
+                            'limit',
+                            'Лимит корпуса',
+                            OptionType.integer,
+                            False
+                        )
+                    ],
+                    'Лунный свисток'
+                )
+            ),
+            access='Синий свисток'
+        )
     ),
     access='Красный свисток'
-)
-
-insert = Command(
-    'data_insert',
-    'Запись новых параметров/обучаемых параметров',
-    sub=(
-        SubCommand('param', 'Запись параметра',
-                   [
-                       Option(
-                           'table_name',
-                           'Тип',
-                           OptionType.string,
-                           True,
-                           {
-                               'Переменные': 'variables'
-                           }
-                       ),
-                       Option(
-                           'value',
-                           'Значение (<val>)',
-                           OptionType.string,
-                           True
-                       )
-                   ]
-                   ),
-        SubCommand('ml', 'Запись обучаемых параметров',
-                   [
-                       Option(
-                           'type',
-                           'Тип',
-                           OptionType.string,
-                           True
-                       ),
-                       Option(
-                           'file',
-                           'Файл с параметрами',
-                           OptionType.attachment,
-                           True
-                       )
-                   ],
-                   'Лунный свисток'
-                   )
-    ),
-    access='Синий свисток'
-)
-
-update = Command(
-    'data_update',
-    'Обновление существующих параметров/обучаемых параметров',
-    sub=(
-        SubCommand('param', 'Обновление параметра',
-                   [
-                       Option(
-                           'table_name',
-                           'Тип',
-                           OptionType.string,
-                           True,
-                           {
-                               'Переменные': 'variables'
-                           }
-                       ),
-                       Option(
-                           'value',
-                           'Значение (<name>=<val>)',
-                           OptionType.string,
-                           True
-                       ),
-                       Option(
-                           'key',
-                           'Ключ',
-                           OptionType.string,
-                           False
-                       )
-                   ]
-                   ),
-        SubCommandGroup('ml',
-                        [
-                            SubCommand('corpus', 'Параметры заполнения корпуса',
-                                       [
-                                           Option(
-                                               'condition',
-                                               'Включение заполнения корпуса',
-                                               OptionType.string,
-                                               True,
-                                               {
-                                                   'Да': '1',
-                                                   'Нет': '0'
-                                               }
-                                           ),
-                                           Option(
-                                               'limit',
-                                               'Лимит корпуса',
-                                               OptionType.integer,
-                                               False
-                                           )
-                                       ]
-                                       ),
-                        ],
-                        'Лунный свисток'
-                        )
-    ),
-    access='Синий свисток'
 )
 
 info = Command(

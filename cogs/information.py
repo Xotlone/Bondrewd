@@ -26,16 +26,26 @@ class Information(dis_commands.Cog):
         command_instances = commands.Command.sub_sort('name')
         _instances = {k: [] for k in controller.RANKS_DICT.keys()}
         for command in command_instances:
+            _instances[command.access].append(f'\n{command.name}')
             if command.sub != {}:
+                prev_access = None
                 for sub1 in command.sub.values():
+                    if command.access != sub1.access and (prev_access is None or prev_access != sub1.access):
+                        _instances[sub1.access].append(f'\n{command.name}')
+                        prev_access = sub1.access
+                    _instances[sub1.access].append(f'|  {sub1.name}')
                     if isinstance(sub1, commands.SubCommandGroup):
                         for sub2 in sub1.sub.values():
-                            _instances[sub2.access].append(f'`{command.name} {sub1.name} {sub2.name}`')
+                            if sub1.access != sub2.access and prev_access != sub2.access:
+                                _instances[sub2.access].append(f'\n{command.name}')
+                                _instances[sub2.access].append(f'|  {sub1.name}')
+                                prev_access = sub2.access
+                            _instances[sub2.access].append(f'|  |  {sub2.name}')
 
-                    else:
-                        _instances[sub1.access].append(f'`{command.name} {sub1.name}`')
-            else:
-                _instances[command.access].append(f'`{command.name}`')
+                    #else:
+                        #_instances[sub1.access].append(f'  {sub1.name}')
+            #else:
+                #_instances[command.access].append(command.name)
 
         for el in _instances.items():
             if not el[1]:
@@ -48,7 +58,8 @@ class Information(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         for access, sub in _instances.items():
-            embed.add_field(access, ', '.join(sub), inline=False)
+            backslashed_sub = '\n'.join(sub)
+            embed.add_field(access, f'```{backslashed_sub}```', inline=False)
         await inter.edit_original_message(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['command']())

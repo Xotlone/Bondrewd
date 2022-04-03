@@ -23,7 +23,7 @@ class Spotter(dis_commands.Cog):
         try:
             request = database(request, 'all')
             embed = disnake.Embed(
-                title='Прямой запрос',
+                title='Прямой SQL запрос',
                 description=f'```{request}```',
                 colour=controller.RANKS_DICT['Белый свисток'].colour
             )
@@ -43,13 +43,18 @@ class Spotter(dis_commands.Cog):
             )
             await inter.edit_original_message(embed=embed)
 
-    @dis_commands.slash_command(**commands.extract())
-    @dis_commands.check(commands.extract.acs)
-    async def command_extract(self, inter: disnake.CommandInteraction):
+    @dis_commands.slash_command(**commands.data())
+    @dis_commands.check(commands.data.acs)
+    async def command_data(self, inter: disnake.CommandInteraction):
         pass
 
-    @command_extract.sub_command(**commands.extract.sub['param']())
-    @dis_commands.check(commands.extract.sub['param'].acs)
+    @command_data.sub_command_group(**commands.data.sub['extract']())
+    @dis_commands.check(commands.data.sub['extract'].acs)
+    async def group_extract(self, inter: disnake.CommandInteraction):
+        pass
+
+    @group_extract.sub_command(**commands.data.sub['extract'].sub['param']())
+    @dis_commands.check(commands.data.sub['extract'].sub['param'].acs)
     async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, key: str = ''):
         try:
             if key != '':
@@ -75,9 +80,9 @@ class Spotter(dis_commands.Cog):
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, key)
 
-    @command_extract.sub_command(**commands.extract.sub['ml']())
-    @dis_commands.check(commands.extract.sub['ml'].acs)
-    async def sub_ml_data(self, inter: disnake.CommandInteraction, key: str):
+    @group_extract.sub_command(**commands.data.sub['extract'].sub['ml']())
+    @dis_commands.check(commands.data.sub['extract'].sub['ml'].acs)
+    async def sub_ml(self, inter: disnake.CommandInteraction, key: str):
         if key == 'corpus':
             limit = int(controller.ML.extract('corpus_limit'))
             if os.path.exists('ml/corpus.csv'):
@@ -97,13 +102,13 @@ class Spotter(dis_commands.Cog):
                 )
                 await inter.edit_original_message(embed=embed)
 
-    @dis_commands.slash_command(**commands.insert())
-    @dis_commands.check(commands.insert.acs)
-    async def command_insert(self, inter: disnake.CommandInteraction):
+    @command_data.sub_command_group(**commands.data.sub['insert']())
+    @dis_commands.check(commands.data.sub['insert'].acs)
+    async def group_insert(self, inter: disnake.CommandInteraction):
         pass
 
-    @command_insert.sub_command(**commands.insert.sub['param']())
-    @dis_commands.check(commands.insert.sub['param'].acs)
+    @group_insert.sub_command(**commands.data.sub['insert'].sub['param']())
+    @dis_commands.check(commands.data.sub['insert'].sub['param'].acs)
     async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, value: str):
         try:
             database(f'INSERT INTO {table_name} VALUES ({value})')
@@ -129,18 +134,19 @@ class Spotter(dis_commands.Cog):
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, value)
 
-    @command_insert.sub_command(**commands.insert.sub['ml']())
-    @dis_commands.check(commands.insert.sub['ml'].acs)
+    # TODO: Создание команды "data insert ml <type: str> <file: disnake.Attachment>"
+    '''@group_insert.sub_command(**commands.data.sub['insert'].sub['ml']())
+    @dis_commands.check(commands.data.sub['insert'].sub['ml'].acs)
     async def sub_ml_data(self, inter: disnake.CommandInteraction, type: str, file: disnake.Attachment):
-        raise Exception('IN DEVELOPING')
+        raise Exception('IN DEVELOPING')'''
 
-    @dis_commands.slash_command(**commands.update())
-    @dis_commands.check(commands.update.acs)
-    async def command_data_update(self, inter: disnake.CommandInteraction):
+    @command_data.sub_command_group(**commands.data.sub['update']())
+    @dis_commands.check(commands.data.sub['update'].acs)
+    async def group_update(self, inter: disnake.CommandInteraction):
         pass
 
-    @command_data_update.sub_command(**commands.update.sub['param']())
-    @dis_commands.check(commands.update.sub['param'].acs)
+    @group_update.sub_command(**commands.data.sub['update'].sub['param']())
+    @dis_commands.check(commands.data.sub['update'].sub['param'].acs)
     async def sub_param(self, inter: disnake.CommandInteraction, table_name: str, value: str, key: str = ''):
         try:
             if key != '':
@@ -166,14 +172,9 @@ class Spotter(dis_commands.Cog):
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
 
-    @command_data_update.sub_command_group(**commands.update.sub['ml']())
-    @dis_commands.check(commands.update.sub['ml'].acs)
-    async def group_ml(self, inter: disnake.CommandInteraction):
-        pass
-
-    @group_ml.sub_command(**commands.update.sub['ml'].sub['corpus']())
-    @dis_commands.check(commands.update.sub['ml'].sub['corpus'].acs)
-    async def re_mutabilis(self, inter: disnake.CommandInteraction, condition: str, limit: int = 0):
+    @group_update.sub_command(**commands.data.sub['update'].sub['ml-corpus']())
+    @dis_commands.check(commands.data.sub['update'].sub['ml-corpus'].acs)
+    async def sub_ml_corpus(self, inter: disnake.CommandInteraction, condition: str, limit: int = 0):
         if limit == 0:
             limit = int(controller.ML.extract('corpus_limit'))
 

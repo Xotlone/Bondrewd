@@ -83,7 +83,7 @@ for seg in SEGMENTED_HIRAGANA:
 		HIRAGANA[sym[0]] = sym[1]
 
 LJ_CHOICES_COUNT = 8
-CHOICE_DELAY = 60
+CHOICE_DELAY = 90
 
 ANIMEITEMSCOUNT = 4175858
 ANIMELINK = 'https://safebooru.donmai.us/'

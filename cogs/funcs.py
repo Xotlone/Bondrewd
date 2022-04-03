@@ -10,7 +10,7 @@ from database import database
 from external_libs.google_trans_new import google_trans_new
 
 
-class Other(dis_commands.Cog):
+class Funcs(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
 
@@ -80,6 +80,7 @@ class Other(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
             embed.set_author(name=inter.author.name, icon_url=inter.author.avatar.url)
+            embed.set_footer(text=f'На ответ даётся {config.CHOICE_DELAY} с.')
             orig = await inter.edit_original_message(embed=embed, components=buttons)
             try:
                 clicked = await self.bot.wait_for('button_click', check=lambda x: x.author.id == inter.author.id
@@ -169,7 +170,8 @@ class Other(dis_commands.Cog):
     @dis_commands.check(commands.funcs.sub['translate'].acs)
     async def sub_translate(self, inter: disnake.CommandInteraction, text: str, from_lang: str = 'auto', to_lang: str
     = 'ru'):
-        if from_lang not in google_trans_new.LANGUAGES or to_lang not in google_trans_new.LANGUAGES:
+        if (from_lang not in google_trans_new.LANGUAGES and from_lang != 'auto') or \
+                (to_lang not in google_trans_new.LANGUAGES and to_lang != 'auto'):
             embed = disnake.Embed(
                 title='Не соответствует IETF',
                 description=f'Кода языка "{from_lang}" или "{to_lang}" не существует',
@@ -189,4 +191,4 @@ class Other(dis_commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Other(bot))
+    bot.add_cog(Funcs(bot))

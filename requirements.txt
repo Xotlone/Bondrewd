@@ -1,8 +1,10 @@
 disnake==2.4.0
-psycopg2
-python-dotenv
+psycopg2==2.9.3
+python-dotenv==0.20.0
 bs4
-requests
-pandas
+requests==2.27.1
+pandas==1.4.2
 git+https://github.com/Nekos-life/Async-nekos.life-wrapper
-numpy
+numpy==1.19.0
+keras
+memory_profiler
