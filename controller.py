@@ -60,7 +60,7 @@ class User:
 
     def insert(self):
         log(f'  Пользователь с id {self.id} добавлен в таблицу', 'Database')
-        database(f'INSERT INTO users (id) VALUES ({self.id});')
+        database(f'INSERT INTO users VALUES ({self.id});')
         return True
 
     def remove(self):

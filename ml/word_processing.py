@@ -71,7 +71,7 @@ class Tokenizator:
         corpus = Tokenizator.corpus_get()
         groups = groupby(corpus, lambda r: r[0])
         counts = [(a, len(list(c))) for a, c in groups]
-        return {k: v for (k, v) in sorted(counts, key=lambda el: el[1])}
+        return {k: v for (k, v) in sorted(counts, key=lambda el: el[1], reverse=True)}
 
 
 def skip_gramm(sentence: str, n_gramm: int = 3, padding: str = 'correspond'):

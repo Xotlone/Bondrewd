@@ -95,7 +95,6 @@ class Events(dis_commands.Cog):
         corpus_limit = int(database('SELECT condition FROM ml WHERE name = \'corpus_limit\'', 'one')[0])
         if corpus_condition and corpus_limit < 100000:
             word_processing.Tokenizator.corpus_update(message.author.id, message.content)
-            print(word_processing.Tokenizator.update_rating())
 
     @dis_commands.Cog.listener()
     async def on_message_delete(self, message: disnake.Message):

@@ -199,7 +199,7 @@ fill="{corpus_fill}"```'''
         if ml == 'corpus':
             corpus_rating = word_processing.Tokenizator.update_rating()
             corpus_len = len(word_processing.Tokenizator.corpus_get())
-            proc = word_processing.normed_exponential_func([int(x[1]) / corpus_len for x in corpus_rating])
+            proc = word_processing.normed_exponential_func([int(x[1]) / corpus_len for x in corpus_rating.items()])
             users_list = '\n'.join([f'{i + 1}. **{self.bot.get_user(int(a)).name}**: `{c}` '
                                     f'{round(proc[i] * 100, 2)}%' for i, (a, c) in enumerate(corpus_rating.items())][
                                    :10])
