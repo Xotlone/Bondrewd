@@ -63,9 +63,9 @@ class Parser:
             try:
                 parsed = self.parse()
                 for repeated_attempt in range(self.attempts):
-                    if parsed in objects:
+                    if parsed in objects or parsed == False:
                         parsed = self.parse()
-                        log(f'    Существующее изображение. Попытка {repeated_attempt}...')
+                        log(f'    Существующее изображение или неудачный результат. Попытка {repeated_attempt}...')
                     else:
                         return parsed
                 break
@@ -127,15 +127,18 @@ class AnimeEroGifsParser(Parser):
         )
         soup = BeautifulSoup(response.content, 'html.parser')
         count = int(soup.find('div', {'class': 'pagination_expanded'}).find_all('a')[0].text)
-        rnd = random.randint(0, count)
 
-        page = requests.get(
-            f'{config.ANIMEEROGIFSLINK}/{rnd}',
-            headers=config.HEADERS
-        )
-        soup = BeautifulSoup(page.content, 'html.parser')
-        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
-        return {'image': item}
+        for at in range(self.attempts):
+            rnd = random.randint(0, count)
+            page = requests.get(
+                f'{config.ANIMEEROGIFSLINK}/{rnd}',
+                headers=config.HEADERS
+            )
+            soup = BeautifulSoup(page.content, 'html.parser')
+            item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+            if '.gif' in item:
+                return {'image': item}
+        return False
 
 
 class AnimeEarsParser(Parser):
