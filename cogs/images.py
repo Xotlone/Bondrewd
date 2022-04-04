@@ -1,7 +1,7 @@
 import disnake
 from disnake.ext import commands as dis_commands
 
-from anekos import NekosLifeClient
+from anekos import NekosLifeClient, SFWImageTags
 
 import utilities
 from constants import commands
