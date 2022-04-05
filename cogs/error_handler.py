@@ -36,5 +36,6 @@ class ErrorHandler(dis_commands.Cog):
             await exceptions.UndefinedError(inter)
 
 
+
 def setup(bot):
     bot.add_cog(ErrorHandler(bot))
