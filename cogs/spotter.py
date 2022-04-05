@@ -80,27 +80,27 @@ class Spotter(dis_commands.Cog):
         except errors.UndefinedColumn as error:
             await exceptions.DBUndefinedColumn.call(inter, error, key)
 
-    @group_extract.sub_command(**commands.data.sub['extract'].sub['ml']())
-    @dis_commands.check(commands.data.sub['extract'].sub['ml'].acs)
-    async def sub_ml(self, inter: disnake.CommandInteraction, key: str):
-        if key == 'corpus':
-            limit = int(controller.ML.extract('corpus_limit'))
-            if os.path.exists('ml/corpus.csv'):
-                corpus = disnake.File('ml/corpus.csv')
-                pb = str(ProgressBar(limit, len(word_processing.Tokenizator.corpus_get()), progress=True))
-                embed = disnake.Embed(
-                    title='Словарный корпус',
-                    description=f'Заполненность {pb}',
-                    colour=controller.RANKS_DICT['Чёрный свисток'].colour
-                )
-                await inter.edit_original_message(embed=embed, file=corpus)
-
-            else:
-                embed = disnake.Embed(
-                    title='Корпус не обнаружен',
-                    colour=controller.RANKS_DICT['Чёрный свисток'].colour
-                )
-                await inter.edit_original_message(embed=embed)
+    #@group_extract.sub_command(**commands.data.sub['extract'].sub['ml']())
+    #@dis_commands.check(commands.data.sub['extract'].sub['ml'].acs)
+    #async def sub_ml(self, inter: disnake.CommandInteraction, key: str):
+    #    if key == 'corpus':
+    #        limit = int(controller.ML.extract('corpus_limit'))
+    #        if os.path.exists('ml/corpus.csv'):
+    #            corpus = disnake.File('ml/corpus.csv')
+    #            pb = str(ProgressBar(limit, len(word_processing.Tokenizator.corpus_get()), progress=True))
+    #            embed = disnake.Embed(
+    #                title='Словарный корпус',
+    #                description=f'Заполненность {pb}',
+    #                colour=controller.RANKS_DICT['Чёрный свисток'].colour
+    #            )
+    #            await inter.edit_original_message(embed=embed, file=corpus)
+    #
+    #        else:
+    #            embed = disnake.Embed(
+    #                title='Корпус не обнаружен',
+    #                colour=controller.RANKS_DICT['Чёрный свисток'].colour
+    #            )
+    #            await inter.edit_original_message(embed=embed)
 
     @command_data.sub_command_group(**commands.data.sub['insert']())
     @dis_commands.check(commands.data.sub['insert'].acs)
@@ -172,26 +172,26 @@ class Spotter(dis_commands.Cog):
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
 
-    @group_update.sub_command(**commands.data.sub['update'].sub['ml-corpus']())
-    @dis_commands.check(commands.data.sub['update'].sub['ml-corpus'].acs)
-    async def sub_ml_corpus(self, inter: disnake.CommandInteraction, condition: str, limit: int = 0):
-        if limit == 0:
-            limit = int(controller.ML.extract('corpus_limit'))
-
-        if 100000 >= limit >= 1000:
-            controller.ML.update('corpus_condition', condition)
-            controller.ML.update('corpus_limit', str(limit))
-
-            embed = disnake.Embed(
-                title='Изменения записаны',
-                description=f'`corpus_condition={condition}`\n`corpus_limit={limit}`',
-                colour=controller.RANKS_DICT['Лунный свисток'].colour
-            )
-            await inter.edit_original_message(embed=embed)
-
-        else:
-            error = Exception('Corpus limit')
-            await exceptions.MLCorpusLimit.call(inter, error)
+    #@group_update.sub_command(**commands.data.sub['update'].sub['ml-corpus']())
+    #@dis_commands.check(commands.data.sub['update'].sub['ml-corpus'].acs)
+    #async def sub_ml_corpus(self, inter: disnake.CommandInteraction, condition: str, limit: int = 0):
+    #    if limit == 0:
+    #        limit = int(controller.ML.extract('corpus_limit'))
+    #
+    #    if 100000 >= limit >= 1000:
+    #        controller.ML.update('corpus_condition', condition)
+    #        controller.ML.update('corpus_limit', str(limit))
+    #
+    #        embed = disnake.Embed(
+    #            title='Изменения записаны',
+    #            description=f'`corpus_condition={condition}`\n`corpus_limit={limit}`',
+    #            colour=controller.RANKS_DICT['Лунный свисток'].colour
+    #        )
+    #        await inter.edit_original_message(embed=embed)
+    #
+    #    else:
+    #        error = Exception('Corpus limit')
+    #        await exceptions.MLCorpusLimit.call(inter, error)
 
 
 def setup(bot):

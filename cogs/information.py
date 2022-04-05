@@ -145,27 +145,27 @@ class Information(dis_commands.Cog):
 
         await inter.edit_original_message(embed=embed)
 
-    @command_info.sub_command(**commands.info.sub['ml']())
-    @dis_commands.check(commands.info.sub['ml'].acs)
-    async def sub_ml_rules(self, inter: disnake.CommandInteraction):
-        corpus_condition = int(controller.ML.extract('corpus_condition'))
-        corpus_limit = int(controller.ML.extract('corpus_limit'))
-        corpus_length = len(word_processing.Tokenizator.corpus_get())
-        corpus_fill = str(ProgressBar(corpus_limit, corpus_length, progress=True))
-        corpus_description = f'''```py
-condition={corpus_condition}
-limit={corpus_limit}
-length={corpus_length}
-fill="{corpus_fill}"```'''
-
-        embed = disnake.Embed(
-            title='Информация о ML',
-            description=commands.info.sub['ml'].description,
-            colour=controller.RANKS_DICT['Колокольчик'].colour
-        )
-        embed.add_field('Corpus', corpus_description, inline=False)
-
-        await inter.edit_original_message(embed=embed)
+#    @command_info.sub_command(**commands.info.sub['ml']())
+#    @dis_commands.check(commands.info.sub['ml'].acs)
+#    async def sub_ml_rules(self, inter: disnake.CommandInteraction):
+#        corpus_condition = int(controller.ML.extract('corpus_condition'))
+#        corpus_limit = int(controller.ML.extract('corpus_limit'))
+#        corpus_length = len(word_processing.Tokenizator.corpus_get())
+#        corpus_fill = str(ProgressBar(corpus_limit, corpus_length, progress=True))
+#        corpus_description = f'''```py
+#condition={corpus_condition}
+#limit={corpus_limit}
+#length={corpus_length}
+#fill="{corpus_fill}"```'''
+#
+#        embed = disnake.Embed(
+#            title='Информация о ML',
+#            description=commands.info.sub['ml'].description,
+#            colour=controller.RANKS_DICT['Колокольчик'].colour
+#        )
+#        embed.add_field('Corpus', corpus_description, inline=False)
+#
+#        await inter.edit_original_message(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['member']())
     @dis_commands.check(commands.info.sub['member'].acs)
@@ -193,23 +193,23 @@ fill="{corpus_fill}"```'''
         embed.set_thumbnail(user.avatar)
         await inter.edit_original_message(embed=embed)
 
-    @command_info.sub_command(**commands.info.sub['rating']())
-    @dis_commands.check(commands.info.sub['rating'].acs)
-    async def sub_rating(self, inter: disnake.CommandInteraction, ml: str):
-        if ml == 'corpus':
-            corpus_rating = word_processing.Tokenizator.update_rating()
-            corpus_len = len(word_processing.Tokenizator.corpus_get())
-            proc = word_processing.normed_exponential_func([int(x[1]) / corpus_len for x in corpus_rating.items()])
-            users_list = '\n'.join([f'{i + 1}. **{self.bot.get_user(int(a)).name}**: `{c}` '
-                                    f'{round(proc[i] * 100, 2)}%' for i, (a, c) in enumerate(corpus_rating.items())][
-                                   :10])
-
-            embed = disnake.Embed(
-                title='Рейтинг вклада в корпус',
-                description=users_list,
-                colour=controller.RANKS_DICT['Колокольчик'].colour
-            )
-            await inter.edit_original_message(embed=embed)
+    #@command_info.sub_command(**commands.info.sub['rating']())
+    #@dis_commands.check(commands.info.sub['rating'].acs)
+    #async def sub_rating(self, inter: disnake.CommandInteraction, ml: str):
+    #    if ml == 'corpus':
+    #        corpus_rating = word_processing.Tokenizator.update_rating()
+    #        corpus_len = len(word_processing.Tokenizator.corpus_get())
+    #        proc = word_processing.normed_exponential_func([int(x[1]) / corpus_len for x in corpus_rating.items()])
+    #        users_list = '\n'.join([f'{i + 1}. **{self.bot.get_user(int(a)).name}**: `{c}` '
+    #                                f'{round(proc[i] * 100, 2)}%' for i, (a, c) in enumerate(corpus_rating.items())][
+    #                               :10])
+    #
+    #        embed = disnake.Embed(
+    #            title='Рейтинг вклада в корпус',
+    #            description=users_list,
+    #            colour=controller.RANKS_DICT['Колокольчик'].colour
+    #        )
+    #        await inter.edit_original_message(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['ram']())
     @dis_commands.check(commands.info.sub['ram'].acs)

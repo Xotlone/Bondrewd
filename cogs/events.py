@@ -57,8 +57,6 @@ class Events(dis_commands.Cog):
     async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
         log(f'Выполнение "{inter.application_command.name}"', 'Command')
         config.command_time = time.time()
-        
-        await inter.response.defer()
     
     @dis_commands.Cog.listener()
     async def on_slash_command_completion(self, inter: disnake.CommandInteraction):

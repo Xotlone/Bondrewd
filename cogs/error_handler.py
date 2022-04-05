@@ -1,6 +1,7 @@
 import logging
 
 import disnake
+from disnake import errors as dis_errors
 from disnake.ext import commands as dis_commands
 from disnake.ext.commands import errors
 
@@ -17,7 +18,6 @@ class ErrorHandler(dis_commands.Cog):
     @dis_commands.Cog.listener()
     async def on_slash_command_error(self, inter: disnake.CommandInteraction, error: dis_commands.CommandError):
         log.error(repr(error), exc_info=True)
-        log.info(error.args)
 
         if type(error) == errors.CheckFailure:
             try:
@@ -30,11 +30,8 @@ class ErrorHandler(dis_commands.Cog):
         elif type(error) == errors.NSFWChannelRequired:
             await exceptions.NSFW(inter)
 
-        elif type(error) == errors.CommandInvokeError and error.args[0] == 'Command raised an exception: ' \
-                                                                           'InteractionNotResponded: This interaction ' \
-                                                                           'hasn\'t been responded to yet':
+        elif type(error) == dis_errors.InteractionTimedOut:
             await exceptions.UndefinedError(inter)
-
 
 
 def setup(bot):

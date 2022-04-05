@@ -24,7 +24,7 @@ class OtherError:
             )
 
         embed.set_author(name=inter.author.name, icon_url=inter.author.avatar)
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
         await inter.delete_original_message(delay=config.ERROR_REMOVE)
 
 
