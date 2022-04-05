@@ -255,7 +255,7 @@ ml = Command(
                     ['ignore', 'correspond']
                 )
             ]
-        )
+        ),
     ),
     access='Чёрный свисток'
 )
@@ -510,7 +510,7 @@ info = Command(
         SubCommand(
             'ram',
             'График использования ОЗУ'
-        )
+        ),
     )
 )
 
