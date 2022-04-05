@@ -205,31 +205,31 @@ ml = Command(
     'ml',
     'Все функции машинного обучения',
     sub=(
-        SubCommandGroup(
-            'tokenizer',
-            (
-                SubCommand('tokenize', 'Токенизировать текст (сырой текст принимается)',
-                           [
-                               Option(
-                                   'text',
-                                   'Текст для токенизации',
-                                   OptionType.string,
-                                   True
-                               )
-                           ]
-                           ),
-                SubCommand('pre', 'Преподготовка текста к токенизации',
-                           [
-                               Option(
-                                   'text',
-                                   'Текст для преподготовки',
-                                   OptionType.string,
-                                   True
-                               )
-                           ]
-                           ),
-            )
-        ),
+        #SubCommandGroup(
+        #    'tokenizer',
+        #    (
+        #        SubCommand('tokenize', 'Токенизировать текст (сырой текст принимается)',
+        #                   [
+        #                       Option(
+        #                           'text',
+        #                           'Текст для токенизации',
+        #                           OptionType.string,
+        #                           True
+        #                       )
+        #                   ]
+        #                   ),
+        #        SubCommand('pre', 'Преподготовка текста к токенизации',
+        #                   [
+        #                       Option(
+        #                           'text',
+        #                           'Текст для преподготовки',
+        #                           OptionType.string,
+        #                           True
+        #                       )
+        #                   ]
+        #                   ),
+        #    )
+        #),
         SubCommand(
             'skip-gramm',
             'Генерация скип-граммы из текста',
@@ -303,22 +303,22 @@ data = Command(
                         )
                     ]
                 ),
-                SubCommand(
-                    'ml',
-                    'Извлечение обучаемых параметров',
-                    [
-                        Option(
-                            'key',
-                            'Ключ',
-                            OptionType.string,
-                            True,
-                            {
-                                'Словарный корпус': 'corpus'
-                            }
-                        )
-                    ],
-                    'Чёрный свисток'
-                )
+                #SubCommand(
+                #    'ml',
+                #    'Извлечение обучаемых параметров',
+                #    [
+                #        Option(
+                #            'key',
+                #            'Ключ',
+                #            OptionType.string,
+                #            True,
+                #            {
+                #                'Словарный корпус': 'corpus'
+                #            }
+                #        )
+                #    ],
+                #    'Чёрный свисток'
+                #)
             ),
             access='Красный свисток'
         ),
@@ -398,29 +398,29 @@ data = Command(
                         )
                     ]
                 ),
-                SubCommand(
-                    'ml-corpus',
-                    'Параметры заполнения корпуса',
-                    [
-                        Option(
-                            'condition',
-                            'Включение заполнения корпуса',
-                            OptionType.string,
-                            True,
-                            {
-                                'Да': '1',
-                                'Нет': '0'
-                            }
-                        ),
-                        Option(
-                            'limit',
-                            'Лимит корпуса',
-                            OptionType.integer,
-                            False
-                        )
-                    ],
-                    'Лунный свисток'
-                )
+                #SubCommand(
+                #    'ml-corpus',
+                #    'Параметры заполнения корпуса',
+                #    [
+                #        Option(
+                #            'condition',
+                #            'Включение заполнения корпуса',
+                #            OptionType.string,
+                #            True,
+                #            {
+                #                'Да': '1',
+                #                'Нет': '0'
+                #            }
+                #        ),
+                #        Option(
+                #            'limit',
+                #            'Лимит корпуса',
+                #            OptionType.integer,
+                #            False
+                #        )
+                #    ],
+                #    'Лунный свисток'
+                #)
             ),
             access='Синий свисток'
         )
@@ -476,10 +476,10 @@ info = Command(
                 )
             ]
         ),
-        SubCommand(
-            'ml',
-            'Информация о состоянии обучения'
-        ),
+        #SubCommand(
+        #    'ml',
+        #    'Информация о состоянии обучения'
+        #),
         SubCommand(
             'member',
             'Информация о пользователе',
@@ -492,21 +492,21 @@ info = Command(
                 )
             ]
         ),
-        SubCommand(
-            'rating',
-            'Рейтинг вклада в знания естественного языка',
-            [
-                Option(
-                    'ml',
-                    'Часть конвейера NLP',
-                    OptionType.string,
-                    True,
-                    {
-                        'Словарный корпус': 'corpus'
-                    }
-                )
-            ]
-        ),
+        #SubCommand(
+        #    'rating',
+        #    'Рейтинг вклада в знания естественного языка',
+        #    [
+        #        Option(
+        #            'ml',
+        #            'Часть конвейера NLP',
+        #            OptionType.string,
+        #            True,
+        #            {
+        #                'Словарный корпус': 'corpus'
+        #            }
+        #        )
+        #    ]
+        #),
         SubCommand(
             'ram',
             'График использования ОЗУ'

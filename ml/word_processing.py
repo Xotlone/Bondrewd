@@ -62,6 +62,7 @@ class Tokenizator:
             if token != '' and token not in map(lambda w: w[1], corpus):
                 corpus.append([author_id, token, len(corpus)])
 
+        # TODO: Решить проблему с сохранением файлов
         with open('ml/corpus.csv', 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerows(corpus)
