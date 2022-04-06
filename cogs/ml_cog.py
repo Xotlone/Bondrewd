@@ -28,7 +28,7 @@ class ML(dis_commands.Cog):
         with open('temp/_df.txt', 'w', encoding='utf-8') as f:
             f.write(str(s_gramm_txt))
         file = disnake.File('temp/_df.txt', 'skip-gramm.txt')
-        await inter.edit_original_message(file=file)
+        await inter.send(file=file)
 
 
 def setup(bot):

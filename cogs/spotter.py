@@ -27,7 +27,7 @@ class Spotter(dis_commands.Cog):
                 description=f'```{request}```',
                 colour=controller.RANKS_DICT['Белый свисток'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error, request)
@@ -41,7 +41,7 @@ class Spotter(dis_commands.Cog):
                 description=f'`True`',
                 colour=controller.RANKS_DICT['Белый свисток'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
     @dis_commands.slash_command(**commands.data())
     @dis_commands.check(commands.data.acs)
@@ -72,7 +72,7 @@ class Spotter(dis_commands.Cog):
                 description=f'```{table}```',
                 colour=controller.RANKS_DICT['Красный свисток'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
@@ -93,14 +93,14 @@ class Spotter(dis_commands.Cog):
     #                description=f'Заполненность {pb}',
     #                colour=controller.RANKS_DICT['Чёрный свисток'].colour
     #            )
-    #            await inter.edit_original_message(embed=embed, file=corpus)
+    #            await inter.send(embed=embed, file=corpus)
     #
     #        else:
     #            embed = disnake.Embed(
     #                title='Корпус не обнаружен',
     #                colour=controller.RANKS_DICT['Чёрный свисток'].colour
     #            )
-    #            await inter.edit_original_message(embed=embed)
+    #            await inter.send(embed=embed)
 
     @command_data.sub_command_group(**commands.data.sub['insert']())
     @dis_commands.check(commands.data.sub['insert'].acs)
@@ -126,7 +126,7 @@ class Spotter(dis_commands.Cog):
                 description=f'```{table}```',
                 colour=controller.RANKS_DICT['Синий свисток'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
@@ -167,7 +167,7 @@ class Spotter(dis_commands.Cog):
                 description=f'```{table}```',
                 colour=controller.RANKS_DICT['Синий свисток'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
         except errors.SyntaxError as error:
             await exceptions.DBSyntax.call(inter, error)
@@ -187,7 +187,7 @@ class Spotter(dis_commands.Cog):
     #            description=f'`corpus_condition={condition}`\n`corpus_limit={limit}`',
     #            colour=controller.RANKS_DICT['Лунный свисток'].colour
     #        )
-    #        await inter.edit_original_message(embed=embed)
+    #        await inter.send(embed=embed)
     #
     #    else:
     #        error = Exception('Corpus limit')

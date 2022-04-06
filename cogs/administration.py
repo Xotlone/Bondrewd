@@ -35,7 +35,7 @@ class Administration(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
 
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
 
 def setup(bot):

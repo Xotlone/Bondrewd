@@ -35,7 +35,7 @@ class Images(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         embed.set_image(img.url)
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_images.sub_command(**commands.images.sub['parse']())
     @dis_commands.check(commands.images.sub['parse'].acs)

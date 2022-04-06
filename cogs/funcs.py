@@ -27,11 +27,12 @@ class Funcs(dis_commands.Cog):
             description=f"{primer} = {eval(primer)}",
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_funcs.sub_command(**commands.funcs.sub['learn-japanese']())
     @dis_commands.check(commands.funcs.sub['learn-japanese'].acs)
     async def sub_learn_japanese(self, inter: disnake.CommandInteraction, alphabet: str, only_complex: str = '0'):
+        await inter.response.defer()
         only_complex = int(only_complex)
         if alphabet == 'hiragana':
             alphabet = list(config.HIRAGANA.items())
@@ -187,7 +188,7 @@ class Funcs(dis_commands.Cog):
             )
             embed.add_field(f'С {from_lang} на {to_lang}', translated)
 
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
 
 def setup(bot):

@@ -56,7 +56,7 @@ class Information(dis_commands.Cog):
         for access, sub in _instances.items():
             backslashed_sub = '\n'.join(sub)
             embed.add_field(access, f'```{backslashed_sub}```', inline=False)
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['command']())
     @dis_commands.check(commands.info.sub['command'].acs)
@@ -78,7 +78,7 @@ class Information(dis_commands.Cog):
                 description=command.description,
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
         else:
             embed = disnake.Embed(
@@ -86,7 +86,7 @@ class Information(dis_commands.Cog):
                 description=f'Команда `{name}` не найдена',
                 colour=config.DEFAULT_COLOR
             )
-            await inter.edit_original_message(embed=embed)
+            await inter.send(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['avatar']())
     @dis_commands.check(commands.info.sub['avatar'].acs)
@@ -99,7 +99,7 @@ class Information(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         embed.set_image(user.avatar)
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['ping']())
     @dis_commands.check(commands.info.sub['ping'].acs)
@@ -110,7 +110,7 @@ class Information(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         t = time.monotonic()
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
         _ping = round((time.monotonic() - t) * 1000, 2)
         msg = await inter.original_message()
         embed.description = f'{_ping} мс.'
@@ -142,7 +142,7 @@ class Information(dis_commands.Cog):
                 colour=controller.RANKS_DICT['Колокольчик'].colour
             )
 
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['member']())
     @dis_commands.check(commands.info.sub['member'].acs)
@@ -168,11 +168,12 @@ class Information(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         embed.set_thumbnail(user.avatar)
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
     @command_info.sub_command(**commands.info.sub['ram']())
     @dis_commands.check(commands.info.sub['ram'].acs)
     async def sub_ram(self, inter: disnake.CommandInteraction):
+        await inter.response.defer()
         x, y = [], []
         with open('temp/ram.csv') as csv_file:
             data = csv.reader(csv_file)
@@ -199,7 +200,7 @@ class Information(dis_commands.Cog):
             colour=controller.RANKS_DICT['Колокольчик'].colour
         )
         embed.set_image(file=disnake.File('temp/ram_plot.png'))
-        await inter.edit_original_message(embed=embed)
+        await inter.send(embed=embed)
 
 
 def setup(bot):
