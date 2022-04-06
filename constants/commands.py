@@ -303,22 +303,6 @@ data = Command(
                         )
                     ]
                 ),
-                #SubCommand(
-                #    'ml',
-                #    'Извлечение обучаемых параметров',
-                #    [
-                #        Option(
-                #            'key',
-                #            'Ключ',
-                #            OptionType.string,
-                #            True,
-                #            {
-                #                'Словарный корпус': 'corpus'
-                #            }
-                #        )
-                #    ],
-                #    'Чёрный свисток'
-                #)
             ),
             access='Красный свисток'
         ),
@@ -346,25 +330,6 @@ data = Command(
                         )
                     ]
                 ),
-                #SubCommand(
-                #    'ml',
-                #    'Запись обучаемых параметров',
-                #    [
-                #        Option(
-                #            'type',
-                #            'Тип',
-                #            OptionType.string,
-                #            True
-                #        ),
-                #        Option(
-                #            'file',
-                #            'Файл с параметрами',
-                #            OptionType.attachment,
-                #            True
-                #        )
-                #    ],
-                #    'Лунный свисток'
-                #)
             ),
             access='Синий свисток'
         ),
@@ -398,29 +363,6 @@ data = Command(
                         )
                     ]
                 ),
-                #SubCommand(
-                #    'ml-corpus',
-                #    'Параметры заполнения корпуса',
-                #    [
-                #        Option(
-                #            'condition',
-                #            'Включение заполнения корпуса',
-                #            OptionType.string,
-                #            True,
-                #            {
-                #                'Да': '1',
-                #                'Нет': '0'
-                #            }
-                #        ),
-                #        Option(
-                #            'limit',
-                #            'Лимит корпуса',
-                #            OptionType.integer,
-                #            False
-                #        )
-                #    ],
-                #    'Лунный свисток'
-                #)
             ),
             access='Синий свисток'
         )
@@ -476,10 +418,6 @@ info = Command(
                 )
             ]
         ),
-        #SubCommand(
-        #    'ml',
-        #    'Информация о состоянии обучения'
-        #),
         SubCommand(
             'member',
             'Информация о пользователе',
@@ -492,21 +430,6 @@ info = Command(
                 )
             ]
         ),
-        #SubCommand(
-        #    'rating',
-        #    'Рейтинг вклада в знания естественного языка',
-        #    [
-        #        Option(
-        #            'ml',
-        #            'Часть конвейера NLP',
-        #            OptionType.string,
-        #            True,
-        #            {
-        #                'Словарный корпус': 'corpus'
-        #            }
-        #        )
-        #    ]
-        #),
         SubCommand(
             'ram',
             'График использования ОЗУ'

@@ -15,39 +15,6 @@ class ML(dis_commands.Cog):
     async def command_ml(self, inter: disnake.CommandInteraction):
         pass
 
-    #@command_ml.sub_command_group(**commands.ml.sub['tokenizer']())
-    #@dis_commands.check(commands.ml.sub['tokenizer'].acs)
-    #async def group_tokenizer(self, inter: disnake.CommandInteraction):
-    #    pass
-    #
-    #@group_tokenizer.sub_command(**commands.ml.sub['tokenizer'].sub['tokenize']())
-    #@dis_commands.check(commands.ml.sub['tokenizer'].sub['tokenize'].acs)
-    #async def sub_tokenize(self, inter: disnake.CommandInteraction, text: str):
-    #    tokens = word_processing.Tokenizator.tokenize(inter.author.id, text)
-    #    with open('temp/_df.txt', 'w', encoding='utf-8') as f:
-    #        f.write(str(tokens))
-    #
-    #    tokenized_text = disnake.File('temp/_df.txt', 'tokenized_text.txt')
-    #    embed = disnake.Embed(
-    #        title='Токенизированный текст',
-    #        colour=controller.RANKS_DICT['Чёрный свисток'].colour
-    #    )
-    #    await inter.edit_original_message(embed=embed, file=tokenized_text)
-    #
-    #@group_tokenizer.sub_command(**commands.ml.sub['tokenizer'].sub['pre']())
-    #@dis_commands.check(commands.ml.sub['tokenizer'].sub['pre'].acs)
-    #async def sub_pre(self, inter: disnake.CommandInteraction, text: str):
-    #    tokens = word_processing.Tokenizator.pre(text)
-    #
-    #    with open('temp/_df.txt', 'w', encoding='utf-8') as f:
-    #        f.write(str(tokens))
-    #    file = disnake.File('temp/_df.txt', 'filtered_text.txt')
-    #    embed = disnake.Embed(
-    #        title='Подготовленный текст',
-    #        colour=controller.RANKS_DICT['Чёрный свисток'].colour
-    #    )
-    #    await inter.edit_original_message(embed=embed, file=file)
-
     @command_ml.sub_command(**commands.ml.sub['skip-gramm']())
     @dis_commands.check(commands.ml.sub['skip-gramm'].acs)
     async def skip_gramm(self, inter: disnake.CommandInteraction, text: str, n_gramm: int = 3,

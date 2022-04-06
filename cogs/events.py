@@ -30,7 +30,7 @@ class Events(dis_commands.Cog):
         await controller.initialization(self.bot)
         config.owner_id = self.bot.owner_id
         log('Инициализация ML', 'ML')
-        word_processing.Tokenizator.corpus_init()
+
         log_msg = f'Подключение за {round(time.time() - config.connect_time, 2)} с.'
         log(log_msg, 'Event')
         async for guild in self.bot.fetch_guilds(limit=None):
