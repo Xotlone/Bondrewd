@@ -1,117 +1,92 @@
 import time
+import re
 
 import disnake
 from disnake.ext import commands as dis_commands
 
-from database import database
-from constants import config
+import database
+from database import cursor
 from utilities import log
-import controller
-from ml import word_processing
+from constants import config
+import economy
+
+
+async def log_chnl(guild: disnake.Guild, text: str):
+    logging_chnl = cursor(f'SELECT logging_chnl FROM guilds WHERE id = {guild.id}')[0]
+    if logging_chnl != 0:
+        await guild.get_channel(logging_chnl).send(embed=disnake.Embed(
+            color=config.EMBED_COLOR,
+            title='Лог',
+            description=text
+        ))
 
 
 class Events(dis_commands.Cog):
     def __init__(self, bot: dis_commands.Bot):
         self.bot = bot
 
-    async def send_logging(self, guild_id: int, text: str):
-        channel_id = database(f'SELECT logging FROM servers_settings WHERE id = {guild_id}', 'one')[0]
-        if channel_id != 0:
-            channel = self.bot.get_channel(channel_id)
-            embed = disnake.Embed(
-                title='Лог',
-                description=text,
-                colour=disnake.Colour.yellow()
-            )
-            await channel.send(embed=embed)
-
     @dis_commands.Cog.listener()
     async def on_connect(self):
-        await controller.initialization(self.bot)
-        config.owner_id = self.bot.owner_id
-        log('Инициализация ML', 'ML')
-
-        log_msg = f'Подключение за {round(time.time() - config.connect_time, 2)} с.'
-        log(log_msg, 'Event')
-        async for guild in self.bot.fetch_guilds(limit=None):
-            await self.send_logging(guild.id, log_msg)
+        log('Инициализация базы данных...', 'INIT')
+        database.init()
+        database.insert(users=self.bot.users, guilds=await self.bot.fetch_guilds().flatten())
+        log('Соединение установлено', 'INIT')
 
     @dis_commands.Cog.listener()
     async def on_disconnect(self):
-        config.shutdown_time = time.time()
-        log('Отключение', 'Event')
-    
+        log('Соединение разорвано', 'EVENT')
+
     @dis_commands.Cog.listener()
     async def on_resumed(self):
-        log_msg = f'Соединение восстановлено за {round(time.time() - config.shutdown_time, 2)} с.'
-        log(log_msg, 'Event')
-        async for guild in self.bot.fetch_guilds(limit=None):
-            await self.send_logging(guild.id, log_msg)
-    
+        log('Соединение восстановлено', 'EVENT')
+
     @dis_commands.Cog.listener()
     async def on_message(self, msg: disnake.Message):
-        if msg.author.bot:
-            return
-    
-    @dis_commands.Cog.listener()
-    async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
-        log(f'Выполнение "{inter.application_command.name}"', 'Command')
-        config.command_time = time.time()
-    
-    @dis_commands.Cog.listener()
-    async def on_slash_command_completion(self, inter: disnake.CommandInteraction):
-        t = round(time.time() - config.command_time, 2)
-        log(f'  Команда выполнена за {t} с.', 'Command')
-    
-    @dis_commands.Cog.listener()
-    async def on_guild_join(self, guild: disnake.Guild):
-        log(f'Присоединение к гильдии "{guild.name}"', 'E')
+        if not msg.author.bot:
+            log(f'#{msg.channel.name} -> @{msg.author} отправил сообщение: {msg.content}', 'MESSAGE')
 
-        if guild.id not in map(lambda a: a[0], database('SELECT id FROM servers_settings', 'all')):
-            database(f'INSERT INTO servers_settings VALUES ({guild.id})')
-            log(f'   Сервер "{guild.name}" добавлен в таблицу')
-
-        for member in guild.members:
-            if member.id not in map(lambda a: a[0], database('SELECT id FROM users', 'all')) and not member.bot:
-                if await self.bot.is_owner(member):
-                    new_member = controller.User(member.id, 5)
-                
-                else:
-                    new_member = controller.User(member.id, 0)
-
-                new_member.insert()
-                log(f'Записан новый участник {member.name}', 'Event')
-    
-    @dis_commands.Cog.listener()
-    async def on_message(self, message: disnake.Message):
-        if message.author.bot or message.content == '':
-            return
-        
-        log(f'{message.author.name}: "{message.content}"', 'Message')
-        
-        corpus_condition = int(database('SELECT condition FROM ml WHERE name = \'corpus_condition\'', 'one')[0])
-        corpus_limit = int(database('SELECT condition FROM ml WHERE name = \'corpus_limit\'', 'one')[0])
-        if corpus_condition and corpus_limit < 100000:
-            word_processing.Tokenizator.corpus_update(message.author.id, message.content)
+            await economy.message_check(msg)
 
     @dis_commands.Cog.listener()
-    async def on_message_delete(self, message: disnake.Message):
-        if message.author.bot:
-            return
-
-        log_msg = f'Сообщение автора {message.author.name} удалено "{message.content}"'
-        log(log_msg, 'Message')
-        await self.send_logging(message.guild.id, log_msg)
+    async def on_message_delete(self, msg: disnake.Message):
+        if not msg.author.bot:
+            await log_chnl(msg.guild, f'{msg.channel.mention} -> {msg.author} удалено сообщение: {msg.content}')
+            log(f'#{msg.channel.name} -> @{msg.author} удалено сообщение: {msg.content}', 'LOGGING')
 
     @dis_commands.Cog.listener()
     async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
-        if before.author.bot:
-            return
+        if not before.author.bot:
+            await log_chnl(before.guild,
+                           f'{before.channel.mention} -> {before.author} изменено сообщение: {before.content} -> '
+                           f'{after.content}')
+            log(f'#{before.channel.name} -> @{before.author} изменено сообщение: {before.content} -> {after.content}',
+                'LOGGING')
 
-        log_msg = f'Сообщение автора {before.author.name} изменено "{before.content}" -> "{after.content}"'
-        log(log_msg, 'Message')
-        await self.send_logging(before.guild.id, log_msg)
+    @dis_commands.Cog.listener()
+    async def on_slash_command(self, inter: disnake.ApplicationCommandInteraction):
+        log(f'#{inter.channel.name} -> @{inter.author} вызвал команду {inter.application_command.name}', 'COMMAND')
+        config.command_time = time.time()
+
+    @dis_commands.Cog.listener()
+    async def on_slash_command_completion(self, inter: disnake.ApplicationCommandInteraction):
+        log(f'Команда {inter.application_command.name} завершена за {round(time.time() - config.command_time, 2)}с.',
+            'COMMAND')
+
+    @dis_commands.Cog.listener()
+    async def on_guild_join(self, guild: disnake.Guild):
+        log(f'Наначи добавлена на сервер {guild.name}', 'EVENT')
+        database.insert(guilds=[guild])
+
+    @dis_commands.Cog.listener()
+    async def on_member_join(self, member: disnake.Member):
+        log(f'#{member.name} присоединился к серверу {member.guild.name}', 'EVENT')
+        database.insert(users=[member])
+
+    @dis_commands.Cog.listener()
+    async def on_member_remove(self, member: disnake.Member):
+        await log_chnl(member.guild, f'{member.mention} покинул сервер {member.guild.name}')
+        log(f'@{member} покинул сервер {member.guild.name}', 'EVENT')
 
 
-def setup(bot):
+def setup(bot: dis_commands.Bot):
     bot.add_cog(Events(bot))

@@ -1,6 +1,7 @@
 import logging
 import requests
 import random
+from math import exp
 
 from bs4 import BeautifulSoup
 
@@ -9,27 +10,35 @@ from constants import config
 _log = logging.getLogger('logs')
 
 
-def log(msg, log_type: str = '', gradu: str = 'info'):
+def log(msg, log_type: str = 'UNKNOWN', log_as: str = 'info'):
     log_type = f'{log_type:<8}'
-    if gradu == 'info':
+    if log_as == 'info':
         msg = log_type + ' - ' + str(msg)
         _log.info(msg)
-    elif gradu == 'error':
+    elif log_as == 'error':
         _log.error(msg, exc_info=True)
-    elif gradu == 'warn':
+    elif log_as == 'warn':
         msg = log_type + ' - ' + str(msg)
         _log.warning(msg),
-    elif gradu == 'debug':
+    elif log_as == 'debug':
         msg = log_type + ' - ' + str(msg)
         _log.debug(msg)
 
 
+def normed_exponential(z: list):
+    k = 10 ** len(str(max(z)))
+    x = list(map(lambda n: n / k, z))
+    x_exps = list(map(lambda y: y if y != 1 else 0, list(map(lambda n: exp(n), x))))
+    sum_x_exps = sum(x_exps)
+    return [y / sum_x_exps for y in x_exps]
+
+
 class ProgressBar:
-    def __init__(self, max_size: int, current: int = 0, size: int = 20, progress: bool = False):
+    def __init__(self, max_size: int, current: int = 0, size: int = 10, advanced: bool = False):
         self.max_size = max_size
         self.current = current
         self.size = size
-        self.progress = progress
+        self.advanced = advanced
 
         self.border = '│'
         self.sym = '█'
@@ -43,7 +52,7 @@ class ProgressBar:
 
         bar = self.border + self.sym * int(self.current / step) + int(
             (self.max_size - self.current) / step) * self.space + self.border
-        if self.progress:
+        if self.advanced:
             proc = round(self.current / self.max_size * 100, 2)
             bar = f'{bar} [{self.current}/{self.max_size}] {proc}%'
         return bar
@@ -54,28 +63,34 @@ class Parser:
         """Родительский класс для парсинга"""
         self.attempts = attempts
 
-    def try_parse(self, objects=None) -> dict:
+    def try_parse(self, count: int = 1):
         """Попытка парсинга"""
-        if objects is None:
-            objects = []
+        objects = []
         attempt = 0
-        while attempt < self.attempts:
-            try:
-                parsed = self.parse()
-                for repeated_attempt in range(self.attempts):
-                    if parsed in objects or parsed == False:
-                        parsed = self.parse()
-                        log(f'    Существующее изображение или неудачный результат. Попытка {repeated_attempt}...')
-                    else:
-                        return parsed
-                break
+        for i in range(count):
+            while 1:
+                try:
+                    parsed = self.parse()
+                    repeated_attempt = 0
+                    while 1:
+                        if parsed in objects or parsed is False:
+                            parsed = self.parse()
+                            log(f'    Существующее изображение или неудачный результат. Попытка {repeated_attempt}...')
+                            repeated_attempt += 1
+                            if repeated_attempt > self.attempts:
+                                raise Exception('parsing', self.attempts, 'repeated attempts exhausted')
+                        else:
+                            objects.append(parsed)
+                            break
+                    break
 
-            except TypeError:
-                log(f'    Попытка парсинга {attempt} неудачна...')
-                attempt += 1
-                continue
+                except TypeError:
+                    log(f'    Попытка парсинга {attempt} неудачна...')
+                    attempt += 1
+                    if attempt > self.attempts:
+                        raise Exception('parsing', self.attempts, 'attempts exhausted')
 
-        raise Exception('parsing', self.attempts, 'attempts exhausted')
+        return objects
 
     def parse(self) -> dict:
         """Уникальная функция парсинга одного объекта"""
@@ -113,7 +128,7 @@ class AnimeEroParser(Parser):
             headers=config.HEADERS
         )
         soup = BeautifulSoup(page.content, 'html.parser')
-        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        item = 'https:' + random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
         return {'image': item}
 
 
@@ -135,7 +150,7 @@ class AnimeEroGifsParser(Parser):
                 headers=config.HEADERS
             )
             soup = BeautifulSoup(page.content, 'html.parser')
-            item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+            item = 'https:' + random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
             if '.gif' in item:
                 return {'image': item}
         return False
@@ -158,7 +173,7 @@ class AnimeEarsParser(Parser):
             headers=config.HEADERS
         )
         soup = BeautifulSoup(page.content, 'html.parser')
-        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        item = 'https:' + random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
         return {'image': item}
 
 
@@ -179,7 +194,7 @@ class AnimeCuteParser(Parser):
             headers=config.HEADERS
         )
         soup = BeautifulSoup(page.content, 'html.parser')
-        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        item = 'https:' + random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
         return {'image': item}
 
 
@@ -200,7 +215,7 @@ class AnimeMonsterGirlParser(Parser):
             headers=config.HEADERS
         )
         soup = BeautifulSoup(page.content, 'html.parser')
-        item = random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
+        item = 'https:' + random.choice(soup.findAll('div', {'class': 'image'})).find('img')['src']
         return {'image': item}
 
 

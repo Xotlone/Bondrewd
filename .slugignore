@@ -7,3 +7,4 @@ _df.txt
 queries.pgsql
 workspace.code-workspace
 .idea
+tests

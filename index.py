@@ -1,8 +1,4 @@
 import time
-
-from constants import config
-config.connect_time = time.time()
-
 import logging
 import os
 
@@ -11,6 +7,9 @@ from disnake.ext import commands
 from dotenv import load_dotenv
 
 from utilities import log
+from constants import config
+
+config.connect_time = time.time()
 
 file_log = logging.FileHandler('logs.log', 'w', 'utf-8')
 console_out = logging.StreamHandler()
@@ -27,10 +26,10 @@ intents = disnake.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
 bot.remove_command('help')
 
-log('Загрузка модулей', 'Loading')
+log('Загрузка модулей', 'LOADING')
 for cog_name in os.listdir('./cogs'):
     if cog_name.endswith('.py'):
         bot.load_extension(f'cogs.{cog_name[:-3]}')
-        log(f'  {cog_name[:-3]} загружен', 'Loading')
+        log(f'  {cog_name[:-3]} загружен', 'LOADING')
 
 bot.run(os.getenv('TOKEN'))
